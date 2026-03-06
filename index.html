@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OGP -->
+    <meta property="og:title" content="UGC Maker | AIでUGC動画広告を大量生成">
+    <meta property="og:description" content="撮影・編集は完全不要。AIが数分でUGC動画広告を生成。すでに400社以上が導入。">
+    <meta property="og:image" content="https://service.ugcmaker.jp/ugcmaker-og-1200x630.jpg?v=2">
+    <meta property="og:url" content="https://service.ugcmaker.jp">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UGC Maker">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UGC Maker | AIでUGC動画広告を大量生成">
+    <meta name="twitter:description" content="撮影・編集は完全不要。AIが数分でUGC動画広告を生成。すでに400社以上が導入。">
+    <meta name="twitter:image" content="https://service.ugcmaker.jp/ugcmaker-og-1200x630.jpg?v=2">
+<title>UGC Maker | AIでUGC動画広告を数分で大量生成</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+QGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9TnVuaXRvK1NhbnM6d2dodEA5MDAmYW1wO2Rpc3BsYXk9c3dhcCcpOzwvc3R5bGU+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiByeD0iMjgiIGZpbGw9IiMwMDAiLz4KICA8dGV4dCB4PSI2NCIgeT0iNzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSInTnVuaXRvIFNhbnMnLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iODIiIGZpbGw9IiNmZmYiPlU8L3RleHQ+Cjwvc3ZnPgo=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --black-soft: #1a1a1a;
+  --gray-900: #222;
+  --gray-700: #444;
+  --gray-500: #666;
+  --gray-300: #bbb;
+  --gray-200: #ddd;
+  --gray-100: #f0f0f0;
+  --gray-50: #f7f7f7;
+  --white: #ffffff;
+  --font-display: 'Nunito Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  line-height: 1.8;
+  overflow-x: hidden;
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+@keyframes fadeInUp { from { opacity:0; transform:translateY(35px); } to { opacity:1; transform:translateY(0); } }
+@keyframes scrollX { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+.anim { opacity:0; transform:translateY(35px); transition: opacity 0.65s cubic-bezier(.23,1,.32,1), transform 0.65s cubic-bezier(.23,1,.32,1); }
+.anim.visible { opacity:1; transform:translateY(0); }
+
+/* Header */
+.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,30,30,0.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,0.06); transition:background 0.3s; }
+.header.scrolled { background:rgba(30,30,30,0.75); }
+.header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.85rem 2rem; }
+.logo-img { height:52px; }
+.logo-img text { fill:#ffffff; }
+.nav { display:flex; align-items:center; gap:2rem; }
+.nav a { font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.7); transition:color 0.2s; }
+.nav a:hover { color:#fff; }
+.nav-cta { background:rgba(255,255,255,0.12)!important; color:#fff!important; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.88rem!important; font-weight:700!important; transition:background 0.2s, transform 0.2s; border:1px solid rgba(255,255,255,0.15); }
+.nav-cta:hover { background:rgba(255,255,255,0.2)!important; transform:translateY(-1px); }
+
+/* Language Switch */
+
+/* Floating CTA */
+.float-cta { position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; background:linear-gradient(160deg, #1a1a1a 0%, #111 100%); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:1.8rem 2rem 1.5rem; box-shadow:0 12px 48px rgba(0,0,0,0.35); display:flex; flex-direction:column; align-items:center; gap:1rem; max-width:300px; transform:translateY(120%); transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.float-cta.show { transform:translateY(0); }
+.float-cta-close { position:absolute; top:0.7rem; right:0.8rem; background:rgba(255,255,255,0.06); border:none; font-size:1rem; color:rgba(255,255,255,0.55); cursor:pointer; line-height:1; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+.float-cta-close:hover { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); }
+.float-cta-badge { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(74,222,128,0.1); border:1px solid rgba(74,222,128,0.2); border-radius:20px; padding:0.3rem 0.9rem; font-size:0.88rem; font-weight:700; color:#4ade80; letter-spacing:0.04em; }
+.float-cta-badge-dot { width:6px; height:6px; border-radius:50%; background:#4ade80; animation:pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.float-cta-text { text-align:center; }
+.float-cta-title { font-size:1.2rem; font-weight:800; color:var(--white); line-height:1.4; }
+.float-cta-sub { font-size:0.88rem; color:rgba(255,255,255,0.6); margin-top:0.4rem; line-height:1.6; }
+.float-cta-btn { display:block; width:100%; text-align:center; background:var(--white); color:var(--black); padding:0.85rem 1.8rem; border-radius:12px; font-size:0.95rem; font-weight:800; transition:background 0.2s, transform 0.15s; }
+.float-cta-btn:hover { background:#f0f0f0; transform:translateY(-1px); }
+.float-cta-meta { font-size:0.88rem; color:rgba(255,255,255,0.55); letter-spacing:0.02em; }
+.mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
+
+/* Shared */
+.sec { padding:7rem 2rem; }
+.sec-inner { max-width:1100px; margin:0 auto; }
+.sec-label { display:inline-block; font-size:0.88rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray-500); margin-bottom:0.8rem; }
+.sec-title { font-family:var(--font-body); font-size:2.5rem; font-weight:900; line-height:1.4; color:var(--black); margin-bottom:0.6rem; }
+.sec-sub { color:var(--gray-500); font-size:1.05rem; margin-bottom:3.5rem; }
+.sec-center { text-align:center; }
+
+/* Hero */
+.hero { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #2a2a2a 100%); color:var(--white); padding:8rem 2rem 4.5rem; margin-top:56px; position:relative; overflow:hidden; }
+.hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+.hero-left { animation:fadeInUp 0.7s ease forwards; }
+.hero-ctas { display:flex; flex-direction:column; gap:0.8rem; align-items:flex-start; }
+.hero-dl-btn { display:none; text-decoration:none; }
+.hero-dl-sub { font-size:0.75rem; color:rgba(255,255,255,0.5); }
+.hero-dl-main { font-size:0.95rem; font-weight:700; color:#fff; }
+.campaign-banner { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:0.9rem 1.3rem; margin-bottom:2rem; font-size:0.92rem; line-height:1.6; color:rgba(255,255,255,0.8); }
+.campaign-banner .hl { display:inline-block; background:var(--white); color:var(--black); padding:0.1rem 0.5rem; border-radius:4px; font-weight:700; margin:0 0.1rem; }
+.hero-h1 { font-family:var(--font-body); font-size:3rem; font-weight:900; line-height:1.35; margin-bottom:0.6rem; }
+.hero-h1 .big { font-size:3.8rem; }
+.hero-h1 .box { display:inline-block; background:var(--white); color:var(--black); padding:0.15rem 0.65rem; border-radius:6px; font-size:2rem; }
+.hero-note { font-size:0.88rem; color:var(--gray-500); margin-bottom:1.5rem; }
+.hero-sub { font-size:1.1rem; color:rgba(255,255,255,0.7); margin-bottom:1.5rem; line-height:1.8; }
+.hero-checks { margin-bottom:1.5rem; display:flex; flex-direction:column; gap:0.4rem; }
+.hero-check { font-size:1rem; color:rgba(255,255,255,0.9); font-weight:600; }
+.btn-primary { display:inline-flex; align-items:center; gap:0.6rem; background:var(--white); color:var(--black); padding:1rem 2.2rem; border-radius:10px; font-weight:800; font-size:1rem; border:none; cursor:pointer; font-family:var(--font-body); position:relative; overflow:hidden; z-index:1; transition:color 0.8s; }
+.btn-primary::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:var(--black); z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.btn-primary:hover { color:var(--white); }
+.btn-primary:hover::before { width:100%; }
+.hero-tags { margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.4rem; }
+.hero-tags span { font-size:0.88rem; color:var(--gray-500); background:rgba(255,255,255,0.06); padding:0.2rem 0.6rem; border-radius:20px; }
+.hero-tags .label { color:var(--white); font-weight:700; font-size:0.8rem; background:none; padding:0; }
+
+.ugc-grid-wrap { overflow:hidden; }
+.ugc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.6rem; animation:fadeInUp 0.8s ease 0.25s forwards; opacity:0; }
+.ugc-card { background:var(--gray-900); border-radius:10px; aspect-ratio:9/16; position:relative; overflow:hidden; }
+.ugc-card video { width:100%; height:100%; object-fit:cover; display:block; position:absolute; top:0; left:0; z-index:1; }
+.ugc-grid .ugc-card:nth-child(n+9) { display:none; }
+.ugc-label .ck { color:#6fcf7c; }
+
+/* Scroll Tags */
+.scroll-tags { background:var(--black-soft); padding:1rem 0; overflow:hidden; }
+.scroll-tags-track { display:flex; gap:2.5rem; white-space:nowrap; width:max-content; animation:scrollX 30s linear infinite; }
+.scroll-tags-track span { color:var(--gray-500); font-size:0.92rem; font-weight:500; }
+
+/* Trust */
+.trust { background:var(--gray-50); }
+
+/* Demo */
+.demo-section { background:var(--white); }
+
+/* AI Features */
+.ai-features { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); }
+.aif-hero { display:grid; grid-template-columns:1fr 1fr; gap:2rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:3rem; margin-bottom:1.5rem; }
+.aif-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:900; margin-bottom:0.8rem; }
+.aif-hero-desc { font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem; }
+.aif-btn { display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.92rem; font-weight:700; transition:background 0.2s; }
+.aif-btn:hover { background:rgba(255,255,255,0.18); }
+.aif-avatar-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; }
+.aif-avatar { aspect-ratio:9/16; border-radius:10px; position:relative; overflow:hidden; }
+.aif-avatar:nth-child(1) { background:linear-gradient(145deg, #667eea, #764ba2); }
+.aif-avatar:nth-child(2) { background:linear-gradient(145deg, #f093fb, #f5576c); }
+.aif-avatar:nth-child(3) { background:linear-gradient(145deg, #4facfe, #00f2fe); }
+.aif-avatar:nth-child(4) { background:linear-gradient(145deg, #43e97b, #38f9d7); }
+.aif-avatar:nth-child(5) { background:linear-gradient(145deg, #fa709a, #fee140); }
+.aif-avatar:nth-child(6) { background:linear-gradient(145deg, #a18cd1, #fbc2eb); }
+.aif-avatar::before { content:''; position:absolute; bottom:45%; left:50%; transform:translateX(-50%); width:35%; height:28%; background:rgba(255,255,255,0.25); border-radius:50%; }
+.aif-avatar::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60%; height:45%; background:rgba(255,255,255,0.15); border-radius:50% 50% 0 0; }
+.aif-avatar-label { position:absolute; bottom:0.5rem; left:0; right:0; text-align:center; font-size:0.88rem; color:rgba(255,255,255,0.9); font-weight:600; z-index:1; text-shadow:0 1px 4px rgba(0,0,0,0.4); }
+.aif-avatar-img { background-size:100% 100%; background-position:center center; background-image:none !important; }
+.aif-avatar-img::before, .aif-avatar-img::after { display:none; }
+
+.aif-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; margin-bottom:1.5rem; }
+.aif-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:1.8rem; }
+.aif-card-visual { aspect-ratio:16/10; background:rgba(255,255,255,0.03); border-radius:10px; margin-bottom:1.2rem; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.aif-card-placeholder { display:flex; gap:0.6rem; }
+.aif-mini-avatar { width:80px; height:110px; border-radius:8px; position:relative; overflow:hidden; }
+.aif-mini-avatar:nth-child(1) { background:linear-gradient(145deg, #f6d365, #fda085); }
+.aif-mini-avatar:nth-child(2) { background:linear-gradient(145deg, #89f7fe, #66a6ff); }
+.aif-mini-avatar::before { content:''; position:absolute; bottom:45%; left:50%; transform:translateX(-50%); width:35%; height:25%; background:rgba(255,255,255,0.25); border-radius:50%; }
+.aif-mini-avatar::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60%; height:40%; background:rgba(255,255,255,0.15); border-radius:50% 50% 0 0; }
+.lang-visual { gap:1rem; font-size:1.5rem; }
+.aif-soon { position:absolute; top:0.8rem; right:0.8rem; background:rgba(255,255,255,0.12); padding:0.15rem 0.6rem; border-radius:4px; font-size:0.88rem; font-weight:700; }
+.aif-card-title { font-size:1.15rem; font-weight:800; margin-bottom:0.4rem; }
+.aif-card-desc { font-size:0.95rem; color:rgba(255,255,255,0.6); line-height:1.7; }
+
+/* Mass Production */
+.mass-section { background:var(--gray-50); }
+.mass-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-bottom:2rem; }
+.mass-card { background:var(--white); border:1px solid var(--gray-100); border-radius:16px; padding:2.2rem 1.8rem; text-align:center; }
+.mass-num { font-family:var(--font-display); font-size:2.8rem; font-weight:900; color:var(--black); line-height:1.1; }
+.mass-num span { font-size:1rem; font-weight:700; color:var(--gray-500); }
+.mass-label { font-size:0.9rem; font-weight:700; color:var(--gray-500); margin:0.4rem 0 1rem; letter-spacing:0.03em; }
+.mass-desc { font-size:0.95rem; color:var(--gray-500); line-height:1.7; text-align:left; }
+
+.mass-detail { background:var(--black); border-radius:16px; padding:3rem; }
+.mass-detail-inner { max-width:900px; margin:0 auto; }
+.mass-detail-title { font-family:var(--font-body); font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:2rem; text-align:center; }
+.mass-detail-content { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+.mass-detail-item { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; }
+.mass-detail-head { font-size:1rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
+.mass-detail-text { font-size:0.92rem; color:rgba(255,255,255,0.6); line-height:1.7; }
+.trust-stats { display:grid; grid-template-columns:1fr 1px 1fr; align-items:center; gap:0; background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #2a2a2a 100%); border-radius:20px; overflow:hidden; padding:4rem 0; }
+.trust-divider { background:rgba(255,255,255,0.12); height:70px; align-self:center; }
+.trust-stat { padding:0 4rem; text-align:center; }
+.trust-stat-num { font-family:var(--font-display); font-size:4.5rem; font-weight:900; color:#fff; line-height:1; margin-bottom:0.8rem; letter-spacing:-1px; display:flex; align-items:baseline; justify-content:center; gap:0; }
+.trust-stat-num .unit { font-size:1.5rem; font-weight:700; letter-spacing:0; line-height:1; margin-left:0.35em; }
+.trust-stat-label { font-size:0.85rem; color:rgba(255,255,255,0.4); line-height:1.8; max-width:280px; margin:0 auto; }
+.trust-logos { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+.trust-logo-item { background:var(--white); border-radius:10px; padding:1.8rem 1.2rem; text-align:center; font-weight:700; font-size:0.88rem; color:var(--gray-700); border:1px solid var(--gray-100); transition:transform 0.25s, border-color 0.25s; }
+.trust-logo-item:hover { }
+
+/* Problems */
+.problems-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
+.problem-card { background:linear-gradient(145deg, #0a0a0a 0%, #1f1f1f 100%); color:var(--white); padding:2.5rem 2rem; border-radius:16px; position:relative; overflow:hidden; min-height:200px; display:flex; flex-direction:column; justify-content:center; text-align:center; }
+.problem-card-title { font-size:1.2rem; font-weight:800; line-height:1.7; margin-bottom:1.2rem; }
+.problem-card-desc { font-size:0.95rem; color:rgba(255,255,255,0.6); line-height:1.8; font-weight:400; }
+
+/* Pricing */
+.pricing { background:var(--gray-50); }
+
+/* Comparison Table */
+.compare-table-sec { background:#f7f7f7; padding-bottom:0; }
+.stores-compare { display:grid; grid-template-columns:160px 1.4fr 1fr 1fr 1fr; margin-top:2.5rem; position:relative; padding-bottom:0; }
+.sc-corner { }
+.sc-brand-head { background:#2563eb; color:var(--white); font-size:1.2rem; font-weight:900; text-align:center; padding:2.2rem 1.5rem; border-radius:16px 16px 0 0; line-height:1.4; border-left:3px solid #2563eb; border-right:3px solid #2563eb; border-top:3px solid #2563eb; }
+.sc-comp-head { background:#666; color:var(--white); font-size:0.92rem; font-weight:700; text-align:center; padding:1.3rem 1rem; border-radius:12px 12px 0 0; margin-left:6px; align-self:end; }
+.sc-row-label { background:#f8f8f8; padding:0 1.4rem; font-size:0.9rem; font-weight:700; color:var(--gray-900); display:flex; align-items:center; border-bottom:1px solid #eee; min-height:110px; }
+.sc-row-brand { background:var(--white); padding:1.2rem 1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem; min-height:110px; border-left:3px solid #2563eb; border-right:3px solid #2563eb; border-bottom:1px solid rgba(37,99,235,0.12); }
+.sc-row-brand-val { font-size:1.7rem; font-weight:900; color:#1e293b; line-height:1.2; }
+.sc-row-brand-val small { font-size:0.92rem; font-weight:500; }
+.sc-row-brand-sub { font-size:0.92rem; color:#2563eb; line-height:1.4; }
+.sc-badge { display:inline-block; background:#2563eb; color:var(--white); font-size:0.88rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:4px; }
+.sc-row-comp { background:var(--white); padding:1.2rem 1rem; text-align:center; border-bottom:1px solid #eee; margin-left:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3rem; min-height:110px; }
+.sc-row-comp-val { font-size:1.2rem; font-weight:800; color:var(--gray-800); line-height:1.2; }
+.sc-row-comp-val small { font-size:0.88rem; font-weight:500; }
+.sc-row-comp-sub { font-size:0.92rem; color:var(--gray-400); line-height:1.4; }
+.sc-row-comp-icon { font-size:1.4rem; color:var(--gray-300); line-height:1; }
+.sc-row-brand-icon { font-size:1.4rem; color:#2563eb; line-height:1; }
+.sc-last .sc-row-brand { border-radius:0 0 16px 16px; border-bottom:3px solid #2563eb; border-left:3px solid #2563eb; border-right:3px solid #2563eb; }
+.sc-last .sc-row-comp { border-bottom:none; border-radius:0 0 8px 8px; }
+.sc-last .sc-row-label { border-bottom:none; border-radius:0 0 0 8px; }
+@media(max-width:768px){
+  .stores-compare { grid-template-columns:90px 1.4fr 1fr 1fr 1fr; }
+  .sc-brand-head { font-size:0.88rem; padding:1.4rem 0.4rem; }
+  .sc-comp-head { font-size:0.88rem; padding:0.8rem 0.3rem; margin-left:3px; }
+  .sc-row-label { padding:0 0.6rem; font-size:0.92rem; min-height:80px; }
+  .sc-row-brand { padding:0.8rem 0.5rem; min-height:80px; }
+  .sc-row-brand-val { font-size:1.1rem; }
+  .sc-row-comp { padding:0.8rem 0.4rem; min-height:80px; margin-left:3px; }
+  .sc-row-comp-val { font-size:0.92rem; }
+  .sc-badge { font-size:0.88rem; padding:0.15rem 0.4rem; }
+  .sc-row-brand-sub, .sc-row-comp-sub { font-size:0.88rem; }
+}
+}
+
+/* Compare Slider (mobile) */
+.sc-slider { display:none; margin-top:2rem; }
+.sc-slider-tabs { display:flex; gap:0.5rem; margin-bottom:1.2rem; justify-content:center; }
+.sc-slider-tab { padding:0.55rem 1.1rem; border-radius:20px; font-size:0.8rem; font-weight:700; border:1.5px solid var(--gray-200); background:#fff; color:var(--gray-500); cursor:pointer; transition:all 0.25s; }
+.sc-slider-tab.active { background:var(--black); color:#fff; border-color:var(--black); }
+.sc-slider-card { display:none; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,0.06); overflow:hidden; }
+.sc-slider-card.active { display:block; }
+.sc-slider-head { display:grid; grid-template-columns:1fr 1fr; border-radius:14px 14px 0 0; overflow:hidden; }
+.sc-slider-head-brand { background:linear-gradient(135deg, #1e40af 0%, #2563eb 100%); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:800; font-size:0.95rem; letter-spacing:0.03em; }
+.sc-slider-head-comp { background:var(--gray-700); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:700; font-size:0.95rem; }
+.sc-slider-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #f0f0f0; }
+.sc-slider-label { grid-column:1/-1; background:#f7f7f7; padding:0.7rem 1rem; font-size:0.8rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center; border-bottom:1px solid #eee; }
+.sc-slider-brand { background:#f0f5ff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; border-left:3px solid #2563eb; }
+.sc-slider-comp { background:#fff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; }
+.sc-slider-val { font-size:1.2rem; font-weight:900; color:#1e293b; line-height:1.3; }
+.sc-slider-val.brand { color:#2563eb; }
+.sc-slider-sub { font-size:0.75rem; color:var(--gray-500); line-height:1.4; }
+.sc-slider-row:last-child { border-bottom:none; border-radius:0 0 14px 14px; overflow:hidden; }
+.sc-slider-card > .sc-slider-row:last-child .sc-slider-brand { border-radius:0 0 0 14px; }
+.sc-slider-card > .sc-slider-row:last-child .sc-slider-comp { border-radius:0 0 14px 0; }
+
+/* Cost Comparison */
+.cost-compare { background:var(--white); }
+.cost-chart { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; align-items:end; }
+.cost-col { text-align:center; }
+.cost-col-price { font-family:var(--font-display); font-size:1.1rem; font-weight:800; margin-bottom:0.8rem; color:var(--gray-700); }
+.cost-col-price-hl { color:var(--black); font-size:1.3rem; }
+.cost-bar { display:flex; flex-direction:column; border:1px solid var(--gray-200); border-radius:8px; overflow:hidden; }
+.cost-bar-tall { height:340px; }
+.cost-bar-mid { height:220px; }
+.cost-bar-short { height:80px; }
+.cost-bar-item { display:flex; align-items:center; justify-content:center; font-size:0.92rem; font-weight:600; color:var(--gray-700); background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:0.4rem; text-align:center; }
+.cost-bar-item:last-child { border-bottom:none; }
+.cost-bar-hl { background:linear-gradient(160deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%); color:#fff; font-size:1rem; font-weight:800; border:none; height:100%; letter-spacing:0.03em; position:relative; overflow:hidden; text-shadow:0 1px 3px rgba(0,0,0,0.2); }
+.cost-bar-hl::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%); }
+.cost-bar-hl::after { content:''; position:absolute; bottom:-20px; right:-20px; width:80px; height:80px; background:rgba(255,255,255,0.06); border-radius:50%; }
+.cost-col-hl .cost-bar { border:2.5px solid #2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.15), 0 8px 24px rgba(37,99,235,0.2); border-radius:10px; }
+.cost-col-price-hl { color:#1d4ed8; font-size:1.4rem; font-weight:900; }
+.cost-col-label { font-size:0.92rem; font-weight:700; margin-top:0.8rem; color:var(--gray-900); }
+.cost-points { display:flex; flex-direction:column; gap:1rem; justify-content:center; }
+.cost-point { font-size:0.95rem; line-height:1.7; color:var(--gray-700); padding-left:1.2rem; position:relative; }
+.cost-point::before { content:'●'; position:absolute; left:0; color:var(--black); font-size:0.88rem; top:0.4rem; }
+.cost-point strong { color:var(--black); font-weight:800; }
+/* Plan Compare (STORES style) */
+.plan-compare { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; position:relative; }
+.plan-col { background:var(--gray-50); display:flex; flex-direction:column; position:relative; }
+.plan-col:first-child { border-radius:20px 0 0 20px; }
+.plan-col:last-child { border-radius:0 20px 20px 0; }
+.plan-col-rec { background:var(--white); border:2.5px solid var(--black); border-radius:20px; z-index:2; margin:-8px -1px; box-shadow:0 8px 32px rgba(0,0,0,0.10); }
+.plan-rec-badge { position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--black); color:var(--white); padding:0.35rem 1.6rem; border-radius:20px; font-size:0.8rem; font-weight:800; white-space:nowrap; letter-spacing:0.05em; }
+.plan-head { padding:2.5rem 2rem 2rem; text-align:center; }
+.plan-name { font-family:var(--font-body); font-size:1.5rem; font-weight:900; margin-bottom:0.2rem; }
+.plan-for { font-size:0.88rem; color:var(--gray-500); margin-bottom:1.2rem; }
+.plan-price { font-family:var(--font-body); font-size:2.8rem; font-weight:900; color:var(--black); line-height:1.1; }
+.plan-price span { font-size:0.9rem; font-weight:600; color:var(--gray-500); }
+.plan-body { padding:0 2rem; flex:1; }
+.plan-group-title { font-size:0.88rem; font-weight:800; color:var(--gray-900); text-align:center; margin-bottom:1rem; margin-top:0.5rem; padding-bottom:0.6rem; border-bottom:1px solid var(--gray-200); }
+.plan-item { display:flex; align-items:center; gap:0.7rem; font-size:0.9rem; padding:0.55rem 0; line-height:1.5; }
+.plan-item::before { flex-shrink:0; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.88rem; font-weight:700; }
+.plan-item.ok { color:var(--gray-900); font-weight:500; }
+.plan-item.ok::before { content:'✓'; background:#22c55e; color:#fff; }
+.plan-col-rec .plan-item.ok::before { content:'✓'; background:#22c55e; color:#fff; }
+.plan-item.no { color:var(--gray-300); }
+.plan-item.no::before { content:'×'; background:var(--gray-200); color:var(--gray-400); }
+
+/* Plan Initial Fee */
+.plan-initial { margin-top:2.5rem; }
+.plan-initial-header { text-align:center; margin-bottom:1.5rem; }
+.plan-initial-header-badge { display:inline-block; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:0.4rem 1.2rem; font-size:0.88rem; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:0.06em; }
+.plan-initial-inner { background:linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:3rem 3.5rem; display:flex; align-items:center; gap:0; }
+.plan-initial-head { flex-shrink:0; display:flex; flex-direction:column; justify-content:center; padding-right:3.5rem; min-width:240px; }
+.plan-initial-label { font-size:0.92rem; font-weight:700; color:rgba(255,255,255,0.6); margin-bottom:0.5rem; letter-spacing:0.1em; }
+.plan-initial-price { font-family:var(--font-display); font-size:3rem; font-weight:900; color:var(--white); line-height:1.2; }
+.plan-initial-price span { font-size:0.9rem; font-weight:500; color:rgba(255,255,255,0.6); margin-left:0.3rem; }
+.plan-initial-note { font-size:0.88rem; color:rgba(255,255,255,0.55); margin-top:0.5rem; }
+.plan-initial-divider { width:1px; background:rgba(255,255,255,0.1); flex-shrink:0; align-self:stretch; }
+.plan-initial-body { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2.5rem; padding-left:3.5rem; align-content:center; }
+.plan-initial-item { text-align:left; }
+.plan-initial-item-title { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem; }
+.plan-initial-item-title::before { content:''; display:inline-block; width:6px; height:6px; background:rgba(255,255,255,0.35); border-radius:50%; flex-shrink:0; }
+.plan-initial-item-desc { font-size:0.92rem; color:rgba(255,255,255,0.6); line-height:1.6; padding-left:1.1rem; }
+
+/* Steps */
+.steps-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.step-card { text-align:center; padding:2.5rem 1.5rem; background:var(--white); border-radius:16px; border:1px solid var(--gray-100); }
+.step-badge { display:inline-block; background:var(--black); color:var(--white); padding:0.35rem 1.1rem; border-radius:6px; font-weight:800; font-size:0.88rem; margin-bottom:1.3rem; font-family:var(--font-display); letter-spacing:0.05em; }
+.step-title { font-size:1rem; font-weight:700; margin-bottom:0.6rem; line-height:1.5; }
+.step-desc { font-size:0.92rem; color:var(--gray-500); }
+
+/* Features Dark */
+.features-dark { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); }
+.feature-block { margin-bottom:2.5rem; }
+.feature-block:last-child { margin-bottom:0; }
+.feature-title-box { background:var(--white); color:var(--black); padding:1.1rem 1.8rem; border-radius:10px; font-size:1.05rem; font-weight:800; margin-bottom:1rem; }
+.feature-desc { font-size:0.95rem; line-height:1.9; color:rgba(255,255,255,0.7); padding-left:0.3rem; }
+.feature-note { font-size:0.88rem; color:var(--gray-500); margin-top:0.6rem; }
+
+/* Cases / Voice */
+.voice-sec { background:#f7f7f8; }
+.voice-card { margin-bottom:2rem; background:var(--white); border-radius:24px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.07); border:1px solid rgba(0,0,0,0.06); }
+
+/* ヘッダー */
+.voice-header { background:#0d0d0d; color:var(--white); padding:2.8rem 3rem 2.4rem; position:relative; overflow:hidden; }
+.voice-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 60%); pointer-events:none; }
+.voice-header::after { content:'"'; position:absolute; right:2.5rem; top:1rem; font-size:10rem; font-weight:900; color:rgba(255,255,255,0.04); line-height:1; pointer-events:none; font-family:Georgia, serif; }
+.voice-company { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1rem; }
+.voice-company::before { content:''; display:inline-block; width:16px; height:1.5px; background:rgba(255,255,255,0.25); }
+.voice-headline { font-size:1.25rem; font-weight:800; line-height:1.75; color:var(--white); position:relative; z-index:1; max-width:600px; }
+
+/* ボディ：課題＋効果の2カラム */
+.voice-body { display:grid; grid-template-columns:1fr 1fr; }
+.voice-col { padding:2.2rem 3rem; position:relative; }
+.voice-col:first-child { border-right:1px solid #f0f0f0; }
+.voice-col-label { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.95rem; font-weight:700; letter-spacing:0.06em; padding:0.45rem 1.1rem; border-radius:8px; margin-bottom:0.7rem; }
+.voice-col-label.label-issue { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
+.voice-col-label.label-effect { background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; }
+.voice-col-summary { font-size:1.05rem; font-weight:800; color:#111; margin-bottom:0.75rem; line-height:1.4; }
+.voice-col-text { font-size:0.88rem; color:#4b5563; line-height:1.9; }
+.voice-col-text strong { color:#111; font-weight:700; }
+
+/* Results */
+.results { background:var(--gray-50); padding-top:3rem; }
+.results-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.result-card { background:var(--white); border-radius:20px; padding:2.5rem 2rem; text-align:center; border:2.5px solid var(--black); }
+.result-label { font-size:0.9rem; font-weight:700; margin-bottom:1.5rem; color:var(--gray-700); }
+.result-metric { display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-bottom:0.6rem; }
+.result-metric-badge { background:var(--black); color:var(--white); padding:0.25rem 0.7rem; border-radius:4px; font-size:0.88rem; font-weight:700; letter-spacing:0.03em; }
+.result-metric-val { font-family:var(--font-display); font-size:1.3rem; font-weight:900; color:var(--black); }
+.result-arrow { font-size:0.8rem; color:var(--gray-300); margin-bottom:0.5rem; }
+.result-after { font-family:var(--font-display); font-size:3rem; font-weight:900; color:#2563eb; margin-bottom:0.8rem; line-height:1.1; }
+.result-after span { font-size:1.2rem; font-weight:700; }
+.result-badge { display:inline-block; background:#2563eb; color:var(--white); padding:0.4rem 1.2rem; border-radius:8px; font-weight:800; font-size:0.9rem; font-family:var(--font-display); }
+
+/* Download CTA */
+.download-cta { background:linear-gradient(160deg, #0a0a0a 0%, #161616 40%, #1e1e1e 70%, #252525 100%); color:var(--white); text-align:center; }
+.download-msg { font-family:var(--font-body); font-size:2.2rem; font-weight:900; line-height:1.5; margin-bottom:1rem; }
+.download-msg .box { display:inline-block; background:var(--white); color:var(--black); padding:0.12rem 0.6rem; border-radius:6px; }
+.download-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem; margin-top:1.5rem; }
+.download-tags span { font-size:0.88rem; color:var(--gray-500); background:rgba(255,255,255,0.06); padding:0.2rem 0.7rem; border-radius:20px; }
+
+/* Final Hero */
+.final-hero { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); text-align:center; padding:6rem 2rem; }
+
+/* Agency Support */
+.agency-section { background:linear-gradient(160deg, #000 0%, #0a0a0a 20%, #0f0f0f 50%, #1a1a1a 80%, #0a0a0a 100%); color:var(--white); }
+.agency-hero { background:linear-gradient(135deg, #0a0a0a 0%, #111111 25%, #1a1a1a 50%, #111111 75%, #0a0a0a 100%); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:0; text-align:left; position:relative; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
+.agency-hero-visual { position:relative; display:flex; align-items:center; justify-content:center; padding:3rem; }
+.agency-hero-visual canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
+.agency-hero-visual-text { position:relative; z-index:1; font-family:var(--font-display); font-size:1.5rem; font-weight:900; color:rgba(255,255,255,0.9); text-align:center; line-height:1.5; letter-spacing:-0.02em; text-shadow:0 2px 20px rgba(0,0,0,0.5); }
+.agency-hero-inner { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; padding:3rem; }
+.agency-hero-badge { display:inline-block; background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.25); font-size:0.88rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:4px; margin-bottom:1.2rem; letter-spacing:0.05em; width:fit-content; }
+.agency-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:900; margin-bottom:0.8rem; line-height:1.45; }
+.agency-hero-desc { font-size:0.88rem; color:rgba(255,255,255,0.6); margin-bottom:1.2rem; line-height:1.7; }
+.agency-hero-features { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.8rem; }
+.agency-hero-feat { display:flex; gap:0.7rem; align-items:flex-start; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.9rem; }
+.agency-hero-feat-num { font-family:var(--font-display); font-size:0.8rem; font-weight:800; color:rgba(255,255,255,0.25); flex-shrink:0; margin-top:0.1rem; }
+.agency-hero-feat-title { font-size:0.95rem; font-weight:800; color:rgba(255,255,255,0.9); margin-bottom:0.2rem; }
+.agency-hero-feat-desc { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.5; }
+.agency-hero-btn { display:inline-flex; align-items:center; gap:0.5rem; background:#fff; color:#0a0a0a; padding:0.9rem 2.2rem; border-radius:40px; font-size:0.95rem; font-weight:800; transition:transform 0.2s, box-shadow 0.2s; width:fit-content; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+.agency-hero-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.4); }
+@media(max-width:767px){
+  .agency-hero { grid-template-columns:1fr; min-height:auto; }
+  .agency-hero-visual { min-height:280px; }
+  .agency-hero-inner { padding:2rem 1.5rem; }
+  .agency-hero-title { font-size:1.8rem; }
+  .agency-hero-features { grid-template-columns:1fr; }
+}
+  .agency-hero-inner { padding:2rem 1.5rem; }
+  .agency-hero-title { font-size:1.6rem; }
+}
+.agency-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:2.5rem; }
+.agency-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:2rem; position:relative; }
+.agency-card-num { font-family:var(--font-display); font-size:0.92rem; font-weight:800; color:rgba(255,255,255,0.45); margin-bottom:0.8rem; }
+.agency-card-title { font-size:1.05rem; font-weight:800; margin-bottom:0.5rem; }
+.agency-card-desc { font-size:0.92rem; color:rgba(255,255,255,0.55); line-height:1.7; }
+.agency-cta { text-align:center; }
+.agency-cta-link { font-size:1rem; font-weight:700; color:#fff; text-decoration:underline; text-underline-offset:4px; transition:opacity 0.2s; }
+.agency-cta-link:hover { opacity:0.7; }
+.final-hero-msg { font-family:var(--font-body); font-size:2.8rem; font-weight:900; line-height:1.5; margin-bottom:1.5rem; }
+.final-hero-msg .box { display:inline-block; background:var(--white); color:var(--black); padding:0.1rem 0.6rem; border-radius:6px; }
+.final-hero .hero-note { text-align:center; }
+
+
+/* Support Section */
+.support-section { background:var(--white); }
+.support-inner { display:grid; grid-template-columns:1fr 1.4fr; gap:3rem; align-items:start; }
+.support-left { position:static; }
+.support-badge { display:inline-block; background:var(--black); color:var(--white); font-size:0.88rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:4px; margin-bottom:1.2rem; letter-spacing:0.05em; }
+.support-heading { font-family:var(--font-body); font-size:2.6rem; font-weight:900; color:var(--black); line-height:1.4; margin-bottom:1rem; }
+.support-desc { font-size:1.05rem; color:var(--gray-500); line-height:1.8; margin-bottom:2.5rem; }
+.support-btns { display:flex; flex-direction:column; gap:0.8rem; }
+.support-btn { display:flex; align-items:center; justify-content:space-between; background:var(--black); color:var(--white); padding:1rem 1.8rem; border-radius:14px; font-size:0.95rem; font-weight:700; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; }
+.support-btn::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#444; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.support-btn:hover::before { width:100%; }
+.support-btn-arrow { font-size:1.1rem; opacity:0.6; }
+.support-cards { display:flex; flex-direction:column; gap:1.2rem; }
+.support-card { background:var(--white); border:1.5px solid var(--gray-200); border-radius:16px; padding:2.2rem 2rem; display:grid; grid-template-columns:56px 1fr; gap:1.5rem; align-items:start; transition:border-color 0.25s, box-shadow 0.25s; }
+.support-card:hover { border-color:var(--gray-300); box-shadow:0 4px 20px rgba(0,0,0,0.04); }
+.support-card-icon { width:56px; height:56px; display:flex; align-items:center; justify-content:center; }
+.support-card-icon svg { width:44px; height:44px; }
+.support-card-title { font-size:1.2rem; font-weight:800; color:var(--black); margin-bottom:0.5rem; }
+.support-card-text { font-size:0.95rem; color:var(--gray-500); line-height:1.8; }
+.support-card-note { font-size:0.92rem; color:var(--gray-300); margin-top:0.3rem; }
+@media(max-width:767px){
+  .support-inner { grid-template-columns:1fr; gap:2rem; }
+  .support-left { position:static; }
+  .support-heading { font-size:1.8rem; }
+  .support-btns { flex-direction:row; }
+  .support-btn { flex:1; justify-content:center; gap:0.5rem; }
+}
+
+
+/* Sticky Bottom CTA */
+/* ── Sticky CTA ── */
+.sticky-cta {
+  position:fixed; bottom:0; left:0; right:0; z-index:998;
+  background:#fff;
+  border-top:2px solid rgba(37,99,235,0.12);
+  padding:0.9rem 2rem;
+  transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow:0 -4px 32px rgba(37,99,235,0.08);
+}
+.sticky-cta.show { transform:translateY(0); }
+.sticky-cta-inner {
+  max-width:900px; margin:0 auto;
+  display:flex; align-items:center; justify-content:center; gap:1rem;
+}
+/* Primary CTA */
+.sticky-cta-btn {
+  display:flex; align-items:center; justify-content:center; gap:0.6rem;
+  padding:0; border-radius:14px; font-family:var(--font-body);
+  border:none; cursor:pointer; text-decoration:none;
+  transition:transform 0.18s, box-shadow 0.18s;
+  flex:1; max-width:380px; overflow:hidden;
+}
+.sticky-cta-btn:hover { transform:translateY(-2px); }
+.sticky-cta-primary {
+  background:linear-gradient(135deg, #2563eb 0%, #1a4fd6 100%);
+  color:#fff;
+  box-shadow:0 6px 24px rgba(37,99,235,0.35);
+  flex-direction:column; align-items:stretch; padding:0;
+}
+.sticky-cta-primary:hover { box-shadow:0 10px 36px rgba(37,99,235,0.45); }
+.sticky-cta-primary-inner {
+  display:flex; align-items:center; justify-content:center;
+  gap:0.6rem; padding:1rem 2rem;
+  font-size:1rem; font-weight:800; white-space:nowrap;
+}
+.sticky-cta-primary-badge {
+  display:inline-flex; align-items:center; gap:0.3rem;
+  font-size:0.68rem; background:rgba(255,255,255,0.18);
+  padding:0.2rem 0.7rem; border-radius:4px; font-weight:700;
+  letter-spacing:0.03em; white-space:nowrap;
+}
+.sticky-cta-primary-badge::before {
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:#7dd3fc; animation:pulse-dot 2s infinite;
+  flex-shrink:0;
+}
+/* Arrow icon in primary button */
+.sticky-cta-arrow {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:22px; height:22px; border-radius:50%;
+  background:rgba(255,255,255,0.22); font-size:0.8rem; flex-shrink:0;
+}
+/* Secondary CTA */
+.sticky-cta-secondary {
+  background:#fff; color:#1e40af;
+  border:2px solid #2563eb;
+  flex-direction:column; align-items:stretch; padding:0;
+  box-shadow:0 2px 12px rgba(37,99,235,0.08);
+}
+.sticky-cta-secondary:hover { background:#eff6ff; box-shadow:0 6px 24px rgba(37,99,235,0.14); }
+.sticky-cta-secondary-inner {
+  display:flex; align-items:center; justify-content:center;
+  gap:0.6rem; padding:1rem 2rem;
+  font-size:1rem; font-weight:800; white-space:nowrap;
+}
+.sticky-cta-secondary-badge {
+  display:inline-flex; align-items:center;
+  font-size:0.68rem; background:#eff6ff; color:#2563eb;
+  padding:0.2rem 0.7rem; border-radius:4px; font-weight:700;
+  letter-spacing:0.03em; white-space:nowrap;
+}
+.sticky-cta-doc-icon { font-size:0.9rem; }
+/* Trust line */
+.sticky-cta-trust {
+  display:flex; align-items:center; gap:0.4rem;
+  font-size:0.72rem; color:#64748b; font-weight:600; white-space:nowrap;
+}
+.sticky-cta-trust-dot { width:4px; height:4px; border-radius:50%; background:#22c55e; flex-shrink:0; }
+@media(max-width:767px){
+  .sticky-cta { padding:0.7rem 1rem; }
+  .sticky-cta-inner { gap:0.6rem; }
+  .sticky-cta-primary-badge, .sticky-cta-secondary-badge { display:none; }
+  .sticky-cta-trust { font-size:0.68rem; }
+}
+
+
+/* Marquee BG Text + Decorative Lines */
+.problems-bg-wrap { position:relative; overflow:hidden; }
+.problems-bg-text { position:absolute; top:50%; left:0; transform:translateY(-50%); white-space:nowrap; font-family:var(--font-display); font-size:clamp(6rem,12vw,11rem); font-weight:900; color:rgba(0,0,0,0.04); letter-spacing:0.02em; z-index:0; animation:marqueeText 25s linear infinite; pointer-events:none; }
+@keyframes marqueeText { 0%{transform:translateY(-50%) translateX(0);} 100%{transform:translateY(-50%) translateX(-50%);} }
+.problems-deco-line { position:absolute; z-index:0; pointer-events:none; }
+.problems-deco-line svg { width:100%; height:100%; }
+.problems-deco-line-1 { top:-40px; left:-60px; width:280px; height:280px; }
+.problems-deco-line-2 { bottom:-30px; right:-40px; width:220px; height:220px; }
+.problems-grid { position:relative; z-index:1; }
+.sec-inner { position:relative; z-index:1; }
+
+/* Contact & Download Sections */
+.contact-sec { background:var(--gray-50); text-align:center; }
+.contact-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:3.5rem; }
+.contact-block { background:#fff; border-radius:16px; padding:2.5rem; box-shadow:0 2px 16px rgba(0,0,0,0.05); text-align:center; }
+.contact-block-title { font-size:1.3rem; font-weight:800; margin-bottom:0.5rem; color:var(--black); }
+.contact-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.7; }
+.contact-calendar-btn { display:inline-flex; align-items:center; gap:0.6rem; background:var(--black); color:#fff; padding:1rem 2rem; border-radius:10px; font-weight:700; font-size:1rem; text-decoration:none; transition:background 0.2s, transform 0.15s; }
+.contact-calendar-btn:hover { background:#333; transform:translateY(-1px); }
+.contact-calendar-btn svg { width:20px; height:20px; flex-shrink:0; }
+.form-group { margin-bottom:1.2rem; }
+.form-group label { display:block; font-size:0.88rem; font-weight:700; color:var(--gray-700); margin-bottom:0.4rem; text-align:left; }
+.form-group label .req { color:#e53e3e; margin-left:0.3rem; font-size:0.8rem; }
+.form-error { display:none; font-size:0.82rem; color:#e53e3e; margin-top:0.3rem; text-align:left; }
+.form-group.has-error input, .form-group.has-error textarea { border-color:#e53e3e; }
+.form-group.has-error .form-error { display:block; }
+.form-group input, .form-group textarea, .form-group select { width:100%; padding:0.8rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:0.95rem; font-family:var(--font-body); background:#fff; transition:border-color 0.2s; box-sizing:border-box; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline:none; border-color:var(--black); }
+.form-group textarea { resize:vertical; min-height:100px; }
+.form-submit { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:0.9rem 2rem; border-radius:10px; font-weight:700; font-size:0.95rem; border:none; cursor:pointer; font-family:var(--font-body); transition:background 0.2s, transform 0.15s; }
+.form-submit:hover { background:#333; transform:translateY(-1px); }
+.form-success { display:none; text-align:center; padding:2rem 1rem; }
+.form-success.show { display:block; }
+.form-success-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+.form-success-msg { font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; }
+.form-success-sub { font-size:0.92rem; color:var(--gray-500); }
+.download-sec { background:#fff; text-align:center; }
+.download-inner { max-width:600px; margin:0 auto; margin-top:3.5rem; }
+.download-block { background:var(--gray-50); border-radius:16px; padding:2.5rem; border:1px solid var(--gray-100); text-align:center; }
+.download-block-title { font-size:1.3rem; font-weight:800; margin-bottom:0.5rem; color:var(--black); text-align:center; }
+.download-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.7; text-align:center; }
+.download-link { display:none; text-align:center; margin-top:1.5rem; }
+.download-link.show { display:block; }
+.download-link a { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 2rem; border-radius:10px; font-weight:700; font-size:1rem; text-decoration:none; transition:background 0.2s, transform 0.15s; }
+.download-link a:hover { background:#333; transform:translateY(-1px); }
+
+/* Footer */
+.footer { background:var(--gray-50); padding:4rem 2rem 2rem; border-top:1px solid var(--gray-100); }
+.footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2rem; }
+.footer-brand p { font-size:0.92rem; color:var(--gray-500); line-height:1.7; margin-top:0.8rem; }
+.footer-col h4 { font-size:0.95rem; font-weight:700; margin-bottom:0.8rem; }
+.footer-col a { display:block; font-size:0.92rem; color:var(--gray-500); margin-bottom:0.5rem; transition:color 0.2s; }
+.footer-col a:hover { color:var(--black); }
+.footer-copy { text-align:center; padding-top:2rem; margin-top:2rem; border-top:1px solid var(--gray-200); font-size:0.88rem; color:var(--gray-300); max-width:1100px; margin-left:auto; margin-right:auto; }
+.footer-big-logo { background:var(--gray-50); padding:2rem 0 4rem; overflow:hidden; white-space:nowrap; }
+.footer-big-logo-track { display:inline-flex; align-items:center; gap:80px; animation: marquee-logo 28s linear infinite; will-change:transform; }
+.footer-big-logo-item { font-family:'Nunito Sans', sans-serif; font-weight:900; font-size:clamp(80px,12vw,160px); color:rgba(0,0,0,0.07); letter-spacing:-4px; line-height:1; flex-shrink:0; }
+@keyframes marquee-logo {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Responsive */
+@media (max-width:1024px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .pricing-cards, .steps-cards, .cases-cards, .results-cards { grid-template-columns:1fr 1fr; }
+  .trust-logos { grid-template-columns:repeat(2,1fr); }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+  .aif-hero { grid-template-columns:1fr; }
+  .mass-grid { grid-template-columns:1fr 1fr; }
+  .cost-chart { grid-template-columns:1fr 1fr 1fr; }
+  .contact-inner { grid-template-columns:1fr; }
+}
+@media (max-width:767px) {
+  .nav { display:none; }
+  .mobile-menu { display:block; }
+  .header-inner { padding:0.7rem 1rem; }
+  .header-inner > a svg { height:36px; }
+  .hero { padding:4.5rem 1.2rem 2rem; }
+  .hero-inner { gap:1.5rem; }
+  .hero-left { position:relative; z-index:2; }
+  .hero-ctas { align-items:stretch; gap:0.7rem; margin-top:0.5rem; }
+  .hero-ctas .btn-primary { display:flex; width:100%; justify-content:center; text-align:center; font-size:0.95rem; padding:1rem 1.5rem; min-height:48px; box-sizing:border-box; }
+  .hero-dl-btn { display:flex !important; flex-direction:column; align-items:center; padding:0.8rem 1.5rem; border:1.5px solid rgba(255,255,255,0.25); border-radius:10px; text-align:center; transition:background 0.2s; min-height:48px; box-sizing:border-box; }
+  .hero-dl-btn:hover { background:rgba(255,255,255,0.06); }
+  .hero-h1 { font-size:1.6rem; }
+  .hero-h1 .big { font-size:2rem; }
+  .hero-h1 .box { font-size:1.1rem; padding:2px 6px; }
+  .hero-sub { font-size:0.88rem; margin-bottom:0.8rem; }
+  .hero-cta { font-size:1rem; padding:1rem 2rem; }
+  .ugc-grid-wrap { width:100%; min-width:0; overflow:hidden; }
+  .ugc-grid { display:flex; gap:0.6rem; animation:ugcScroll 25s linear infinite; width:max-content; opacity:1; }
+  .ugc-grid .ugc-card:nth-child(n+9) { display:block; }
+  .ugc-card { width:110px; flex-shrink:0; aspect-ratio:9/16; border-radius:8px; }
+  @keyframes ugcScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ugc-item-label { font-size:0.75rem; padding:3px 8px; }
+  .problems-grid, .pricing-cards, .steps-cards, .cases-cards, .results-cards { grid-template-columns:1fr; }
+  .plan-compare { grid-template-columns:1fr; gap:1.2rem; }
+  .plan-col { border-radius:20px !important; }
+  .plan-col-rec { margin:0; }
+  .trust-logos { grid-template-columns:1fr 1fr; }
+  .trust-stats { grid-template-columns:1fr; padding:2.5rem 0; }
+  .trust-divider { width:60%; height:1px; margin:0 auto; }
+  .trust-stat { padding:2rem 2rem; }
+  .trust-stat-num { font-size:3rem; }
+  .footer-inner { grid-template-columns:1fr; gap:2rem; }
+  .sec { padding:3.5rem 1.2rem; }
+  .sec-title { font-size:1.5rem; }
+  .sec-label { font-size:0.75rem; }
+  .download-msg { font-size:1.3rem; }
+  .final-hero-msg { font-size:1.5rem; }
+  .aif-grid { grid-template-columns:1fr; }
+  .aif-hero { padding:1.5rem; }
+  .aif-card { padding:1.5rem; }
+  .aif-card-title { font-size:1.1rem; }
+  .mass-grid { grid-template-columns:1fr; }
+  .mass-detail-content { grid-template-columns:1fr; }
+  .mass-detail { padding:1.5rem; }
+  .cost-chart { grid-template-columns:1fr 1fr 1fr; gap:0.5rem; }
+  .cost-bar-tall { height:180px; }
+  .cost-bar-mid { height:120px; }
+  .cost-bar-short { height:55px; }
+  .cost-bar-item { font-size:0.65rem; padding:0.2rem; }
+  .cost-bar-hl { font-size:0.7rem; }
+  .cost-col-price { font-size:0.75rem; }
+  .cost-col-price-hl { font-size:0.8rem; }
+  .cost-col-label { font-size:0.75rem; }
+  .cost-vs-label { font-size:1rem; }
+  .agency-grid { grid-template-columns:1fr; }
+  .agency-hero { padding:2rem 1.2rem; }
+  .agency-hero-title { font-size:1.3rem; }
+  .agency-hero-features { grid-template-columns:1fr; gap:1rem; }
+
+  /* Float CTA - hide on mobile, use sticky instead */
+  .float-cta { display:none !important; }
+
+  /* Sticky CTA mobile */
+  .sticky-cta { padding:0.4rem 0.6rem; padding-bottom:calc(0.4rem + env(safe-area-inset-bottom)); }
+  .sticky-cta-inner { gap:0.4rem; flex-direction:row; }
+  .sticky-cta-btn { border-radius:6px; flex:1; }
+  .sticky-cta-primary-inner { padding:0.6rem 0.4rem; font-size:0.78rem; justify-content:center; }
+  .sticky-cta-primary-badge, .sticky-cta-secondary-badge { display:none; }
+  .sticky-cta-primary-inner .sticky-cta-arrow { width:18px; height:18px; }
+  .sticky-cta-secondary-inner { padding:0.6rem 0.4rem; font-size:0.78rem; justify-content:center; }
+  .sticky-cta-trust { display:none; }
+
+  /* Compare table - horizontal scroll */
+  .stores-compare { display:none; }
+  .sc-slider { display:block; }
+
+  /* Voice cards */
+  .voice-body { grid-template-columns:1fr; }
+  .voice-col:first-child { border-right:none; border-bottom:1px solid #f0f0f0; }
+  .voice-col { padding:1.6rem 1.8rem; }
+  .voice-header { padding:2rem 1.8rem; }
+
+  /* Pricing */
+  .plan-price-num { font-size:2.8rem; }
+  .plan-initial-inner { flex-direction:column; padding:2rem 1.5rem; gap:1.5rem; }
+  .plan-initial-head { padding-right:0; min-width:auto; text-align:center; }
+  .plan-initial-divider { width:100%; height:1px; align-self:auto; }
+  .plan-initial-body { padding-left:0; grid-template-columns:1fr; gap:1.2rem; }
+  .plan-initial-price { font-size:1.8rem; }
+  .plan-initial-header-badge { font-size:0.75rem; padding:0.3rem 0.8rem; }
+
+  /* Steps */
+  .step-card { padding:1.5rem; }
+  .step-card-num { font-size:2rem; width:50px; height:50px; }
+
+  /* Results */
+  .result-card { padding:1.5rem; }
+
+  /* Problems marquee - hide on mobile */
+  .problems-marquee { display:none; }
+
+  /* Support */
+  .support-inner { grid-template-columns:1fr; gap:1.5rem; }
+  .support-left { position:static; }
+  .support-heading { font-size:1.5rem; }
+  .support-btns { flex-direction:column; gap:0.8rem; }
+  .support-btn { justify-content:center; }
+
+  /* Download CTA */
+  .download-cta { padding:3rem 1.2rem; }
+
+  /* Contact & Download */
+  .contact-sec { padding:3.5rem 1.2rem; }
+  .contact-inner { grid-template-columns:1fr; gap:1.5rem; margin-top:2rem; }
+  .contact-block { padding:1.5rem; }
+  .contact-block-title { font-size:1.1rem; }
+  .contact-block-desc { font-size:0.85rem; }
+  .contact-calendar-btn { font-size:0.9rem; padding:0.85rem 1.5rem; width:100%; justify-content:center; }
+  .download-sec { padding:3.5rem 1.2rem; }
+  .download-inner { margin-top:2rem; }
+  .download-block { padding:1.5rem; }
+  .download-block-title { font-size:1.1rem; }
+  .download-block-desc { font-size:0.85rem; }
+  .form-group input, .form-group textarea, .form-group select { font-size:16px; }
+  .form-submit { width:100%; justify-content:center; }
+
+  /* Final CTA */
+  .final-hero { padding:3rem 1.2rem; }
+
+  /* Footer */
+  .footer { padding:2.5rem 1.2rem 1.5rem; }
+  .footer-logo { font-size:1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="42" style="display:block;">
+        <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
+        <text x="600" y="225" text-anchor="middle" dominant-baseline="middle"
+              font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
+              fill="#ffffff" letter-spacing="-2">UGC Maker</text>
+      </svg>
+    </a>
+    <nav class="nav">
+      <a href="#features">機能紹介</a>
+      <a href="#cases">導入事例</a>
+      <a href="#pricing">料金プラン</a>
+      <a href="#steps">導入方法</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#download">ダウンロード</a>
+      <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="nav-cta">導入相談する</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">☰</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        テキスト入力するだけ。<br>
+        <span class="box">AIがUGC動画広告を</span><br>
+        <span class="big">数分</span>で大量生成。
+      </h1>
+      <p class="hero-sub">撮影・キャスティング・編集不要。1本あたり約2,000円から。</p>
+      <div class="hero-ctas">
+        <a href="https://www.ugcmaker.jp/onboarding/login" class="btn-primary" style="text-decoration:none;">
+          今すぐ無料で動画を生成する ›
+        </a>
+        <a href="#download" class="hero-dl-btn">
+          <span class="hero-dl-sub">3分でわかる</span>
+          <span class="hero-dl-main">資料ダウンロード（無料）</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="ugc-grid-wrap">
+      <div class="ugc-grid">
+        <div class="ugc-card"><video src="lp-videos/hero-1.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-2.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-3.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-4.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-5.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-6.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-7.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-8.mp4" autoplay loop muted playsinline></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="ugc-card"><video src="lp-videos/hero-1.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-2.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-3.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-4.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-5.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-6.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-7.mp4" autoplay loop muted playsinline></video></div>
+        <div class="ugc-card"><video src="lp-videos/hero-8.mp4" autoplay loop muted playsinline></video></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scroll-tags">
+  <div class="scroll-tags-track">
+    <span>#家事・育児</span><span>#Vlog</span><span>#ダイエット</span><span>#美容</span><span>#ヘアケア</span><span>#脱毛</span><span>#人材</span><span>#シニア</span><span>#不動産・住宅</span><span>#金融</span><span>#D2C</span><span>#EC</span><span>#SaaS</span><span>#アプリ</span><span>#副業・転職</span>
+    <span>#家事・育児</span><span>#Vlog</span><span>#ダイエット</span><span>#美容</span><span>#ヘアケア</span><span>#脱毛</span><span>#人材</span><span>#シニア</span><span>#不動産・住宅</span><span>#金融</span><span>#D2C</span><span>#EC</span><span>#SaaS</span><span>#アプリ</span><span>#副業・転職</span>
+  </div>
+</div>
+
+<section class="trust sec" id="trust">
+  <div class="sec-inner">
+    <div class="sec-center" style="margin-bottom:3rem;">
+      <div class="sec-label anim">TRUSTED BY</div>
+      <h2 class="sec-title anim">スタートアップから大企業まで、<br>幅広く選ばれています</h2>
+      <p class="sec-sub anim">Meta広告・TikTok広告・SNSコンテンツ制作に活用されています</p>
+    </div>
+    <div class="trust-stats anim">
+      <div class="trust-stat">
+        <div class="trust-stat-num">50<span class="unit">億円超</span></div>
+        <div class="trust-stat-label">売上50億円超の大企業から、<br>創業期のスタートアップまで幅広く導入</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">1<span class="unit">万本以上</span></div>
+        <div class="trust-stat-label">年間1万本以上の動画を生成<br>圧倒的な量産体制を実現</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec problems-bg-wrap">
+  <div class="problems-bg-text">PROBLEMS&nbsp;&nbsp;WE&nbsp;&nbsp;SOLVE&nbsp;&nbsp;&nbsp;PROBLEMS&nbsp;&nbsp;WE&nbsp;&nbsp;SOLVE&nbsp;&nbsp;&nbsp;PROBLEMS&nbsp;&nbsp;WE&nbsp;&nbsp;SOLVE&nbsp;&nbsp;&nbsp;PROBLEMS&nbsp;&nbsp;WE&nbsp;&nbsp;SOLVE&nbsp;&nbsp;&nbsp;</div>
+
+  <div class="sec-inner sec-center">
+    <div class="sec-label anim">PROBLEMS</div>
+    <h2 class="sec-title anim" style="margin-bottom:3rem;">こんなお悩みがあれば、<br>私たちが解決します</h2>
+    <div class="problems-grid">
+      <div class="problem-card anim">
+        <div class="problem-card-title">UGC動画を作りたいが<br>コストが高すぎる</div>
+        <div class="problem-card-desc">撮影・キャスティング・編集を外注すると1本数十万円。量産なんてとても無理だった</div>
+      </div>
+      <div class="problem-card anim">
+        <div class="problem-card-title">AI動画ツールを試したが<br>クオリティが低かった</div>
+        <div class="problem-card-desc">既存のAIツールでは不自然さが目立ち、広告として使えるレベルに達していなかった</div>
+      </div>
+      <div class="problem-card anim">
+        <div class="problem-card-title">広告クリエイティブの<br>制作を内製化したい</div>
+        <div class="problem-card-desc">制作ノウハウだけでなく、内製化する方法も一緒に考えアドバイスをして欲しい</div>
+      </div>
+      <div class="problem-card anim">
+        <div class="problem-card-title">ABテスト用の動画を<br>大量に回したい</div>
+        <div class="problem-card-desc">勝ちクリエイティブを見つけるには大量のABテストが必要。でも制作本数に限界があり、検証スピードが出せなかった</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ===== AI Features Grid (Arcads-style) ===== -->
+<section class="ai-features sec" id="features">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim" style="color:var(--gray-500)">FEATURES</div>
+      <h2 class="sec-title anim" style="color:#fff;">おすすめ機能紹介</h2>
+      <p class="sec-sub anim" style="color:rgba(255,255,255,0.5)">UGC Makerの主要機能をご紹介します</p>
+    </div>
+
+    <!-- Hero Feature -->
+    <div class="aif-hero anim">
+      <div class="aif-hero-text">
+        <h3 class="aif-hero-title">超リアルなAIアクター</h3>
+        <p class="aif-hero-desc">お手持ちの演者画像を指定するだけでAI動画を生成。演者がいない場合は、AIアクターを自動生成することも可能です。</p>
+        <a href="#final" class="aif-btn">AI動画を生成 →</a>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <img src="lp-videos/actor-grid.png" style="width:100%;border-radius:12px;" alt="AIアクター一覧">
+      </div>
+    </div>
+
+    <!-- 2x2 Feature Grid -->
+    <div class="aif-grid">
+            
+      <div class="aif-card anim">
+        <div class="aif-card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;">
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#667eea,#764ba2);"></div>
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#f093fb,#f5576c);"></div>
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#4facfe,#00f2fe);"></div>
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#43e97b,#38f9d7);"></div>
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#fa709a,#fee140);"></div>
+            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#a18cd1,#fbc2eb);"></div>
+          </div>
+        </div>
+        <h4 class="aif-card-title">大量クリエイティブを一括生成</h4>
+        <p class="aif-card-desc">クリエイター×スクリプト×フックの組み合わせで、数十本の動画を一度に生成。A/Bテストを高速で回せます。</p>
+      </div>
+      <div class="aif-card anim">
+        <div class="aif-card-visual" style="display:flex;align-items:center;justify-content:center;padding:1rem;">
+          <img src="lp-videos/script-ui.png" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);" alt="AIスクリプト生成UI">
+        </div>
+        <h4 class="aif-card-title">AIがスクリプトを自動生成</h4>
+        <p class="aif-card-desc">商品情報を入力するだけで、広告効果の高い台本をAIが複数パターン作成。フック・訴求軸・CTAまで自動最適化。</p>
+      </div>
+      <div class="aif-card anim" style="position:relative;">
+        <div class="aif-card-visual" style="position:relative;">
+          <span style="position:absolute;top:0.6rem;left:0.6rem;z-index:2;display:inline-block;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);color:#4ade80;font-size:0.75rem;font-weight:800;padding:0.2rem 0.6rem;border-radius:20px;letter-spacing:0.05em;">リリース予定</span>
+          <div class="aif-card-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M7 15h4M7 12h8"/></svg>
+          </div>
+        </div>
+        <h4 class="aif-card-title">BGMとテロップを自動追加</h4>
+        <p class="aif-card-desc">生成した動画にBGMとテロップを自動で追加。編集作業ゼロでSNS投稿可能な完成動画を出力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="voice-sec sec" id="cases">
+  <div class="sec-inner">
+    <div class="sec-center" style="margin-bottom:3rem;">
+      <div class="sec-label anim">VOICE</div>
+      <h2 class="sec-title anim">お客様の声</h2>
+    </div>
+
+    <!-- Voice 1 -->
+    <div class="voice-card anim">
+      <div class="voice-header">
+        <div class="voice-company">人材系広告代理店 A社様</div>
+        <h3 class="voice-headline">月5本が限界だったクリエイティブが、月100本以上に。<br>検証スピードが劇的に向上しました。</h3>
+      </div>
+      <div class="voice-body">
+        <div class="voice-col">
+          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
+          <p class="voice-col-summary">月5本が限界、外注費が高すぎて A/B テストできず</p>
+          <p class="voice-col-text">月5本のクリエイティブが限界で、A/Bテストも満足にできていませんでした。外注すると1本あたり数十万円、社内で作ろうにもリソースもノウハウもない状況でした。</p>
+        </div>
+        <div class="voice-col">
+          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
+          <p class="voice-col-summary">月100本以上を生成、CPA が従来比 40% 改善</p>
+          <p class="voice-col-text">導入初月から月100本以上のUGC動画を生成。フック・訴求軸・アクターの組み合わせを一気にテストした結果、<strong>CPAが従来比40%改善</strong>。来期の予算増額も決定しました。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice 2 -->
+    <div class="voice-card anim">
+      <div class="voice-header">
+        <div class="voice-company">EC・D2Cブランド B社様</div>
+        <h3 class="voice-headline">AIが生成するUGC動画のリアルさに驚き。<br>広告のCTRが2倍以上に改善しました。</h3>
+      </div>
+      <div class="voice-body">
+        <div class="voice-col">
+          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
+          <p class="voice-col-summary">素材動画では「広告感」が出てスキップされ続けた</p>
+          <p class="voice-col-text">素材サイトの動画を使っていましたが、どうしても「広告感」が拭えず、ユーザーにスキップされてしまう状況でした。リアルなUGC風動画を量産したいと考えていました。</p>
+        </div>
+        <div class="voice-col">
+          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
+          <p class="voice-col-summary">CTR 2倍以上、外注コスト月100万円以上削減</p>
+          <p class="voice-col-text">Meta広告での配信後、<strong>CTRが従来比2倍以上</strong>に向上。制作会社への外注コストも月100万円以上削減でき、広告クリエイティブの制作を完全に内製化できています。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice 3 -->
+    <div class="voice-card anim">
+      <div class="voice-header">
+        <div class="voice-company">店舗リード獲得 C社様</div>
+        <h3 class="voice-headline">撮影の手間がゼロに。初月からROAS 400%を達成し、<br>Web売上がオフラインを超えました。</h3>
+      </div>
+      <div class="voice-body">
+        <div class="voice-col">
+          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
+          <p class="voice-col-summary">Web 広告の知見ゼロ、制作も運用も外注依存だった</p>
+          <p class="voice-col-text">オフライン集客がメインでしたが、Web広告の必要性を感じていました。社内に広告の知見がなく、制作も運用も外注に頼るしかなく、コストも時間もかかりすぎていました。</p>
+        </div>
+        <div class="voice-col">
+          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
+          <p class="voice-col-summary">初月から ROAS 400%、3ヶ月でWeb売上がオフライン超え</p>
+          <p class="voice-col-text">動画制作の手間がほぼゼロになり、運用サポートも受けられたことで<strong>初月からROAS 400%を達成</strong>。3ヶ月目以降はWeb経由の売上がオフラインを超えるまでに成長しました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results sec" id="results">
+  <div class="sec-inner sec-center">
+    <div class="sec-label anim">RESULTS</div>
+    <h2 class="sec-title anim">導入成果</h2>
+    <p class="sec-sub anim">数値改善のご報告、多数いただいています</p>
+    <div class="results-cards">
+      <div class="result-card anim">
+        <div class="result-label">金融・カードローン案件</div>
+        <div class="result-metric"><span class="result-metric-badge">CPA</span><span class="result-metric-val">12,000円</span></div>
+        <div class="result-arrow">▼</div>
+        <div class="result-after">4,800<span>円</span></div>
+        <div class="result-badge">-7,200円</div>
+      </div>
+      <div class="result-card anim">
+        <div class="result-label">不動産・住宅案件</div>
+        <div class="result-metric"><span class="result-metric-badge">CVR</span><span class="result-metric-val">0.8%</span></div>
+        <div class="result-arrow">▼</div>
+        <div class="result-after">2.4<span>%</span></div>
+        <div class="result-badge">3倍に改善</div>
+      </div>
+      <div class="result-card anim">
+        <div class="result-label">人材・採用案件</div>
+        <div class="result-metric"><span class="result-metric-badge">CPA</span><span class="result-metric-val">5,000円</span></div>
+        <div class="result-arrow">▼</div>
+        <div class="result-after">3,800<span>円</span></div>
+        <div class="result-badge">-1,200円</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cost-compare sec">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim">COST</div>
+      <h2 class="sec-title anim">自社制作した場合とのコスト比較</h2>
+      <p class="sec-sub anim">独自AIワークフローで、すべてのコストを代替</p>
+    </div>
+    <div class="cost-chart anim">
+      <div class="cost-col">
+        <div class="cost-col-price">月額100万円</div>
+        <div class="cost-bar cost-bar-tall">
+          <div class="cost-bar-item" style="flex:1.2">編集費</div>
+          <div class="cost-bar-item" style="flex:1.5">撮影・ロケ費</div>
+          <div class="cost-bar-item" style="flex:1">ディレクション費</div>
+          <div class="cost-bar-item" style="flex:0.6">動画生成ツール費</div>
+          <div class="cost-bar-item" style="flex:1.8">人件費</div>
+        </div>
+        <div class="cost-col-label">制作会社</div>
+      </div>
+      <div class="cost-col">
+        <div class="cost-col-price">月額25万円</div>
+        <div class="cost-bar cost-bar-mid">
+          <div class="cost-bar-item" style="flex:1">動画生成ツール費</div>
+          <div class="cost-bar-item" style="flex:2">人件費</div>
+        </div>
+        <div class="cost-col-label">自社制作</div>
+      </div>
+      <div class="cost-col cost-col-hl">
+        <div class="cost-col-price cost-col-price-hl">月額2.1万円〜</div>
+        <div class="cost-bar cost-bar-short">
+          <div class="cost-bar-item cost-bar-hl">独自AIワークフロー<br>ですべて代替</div>
+        </div>
+        <div class="cost-col-label">UGC Maker</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== Mass Production & AB Test ===== -->
+<section class="mass-section sec">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim">SCALE</div>
+      <h2 class="sec-title anim">圧倒的な大量生産力で、広告検証のスピードを変える</h2>
+      <p class="sec-sub anim">従来の100倍のクリエイティブを、コスト1/10で生成</p>
+    </div>
+    <div class="mass-grid">
+      <div class="mass-card anim">
+        <div class="mass-num">100本 <span>/ 日</span></div>
+        <div class="mass-label">動画生成能力</div>
+        <p class="mass-desc">1日で100本以上のUGC動画を生成可能。従来の撮影では月5本が限界だった制作本数を劇的に改善。</p>
+      </div>
+      <div class="mass-card anim">
+        <div class="mass-num">制限なし</div>
+        <div class="mass-label">クリエイティブの組み合わせ</div>
+        <p class="mass-desc">アクター × スクリプト × フック × 訴求軸。変数を掛け合わせて無限のバリエーションを生成。</p>
+      </div>
+      <div class="mass-card anim">
+        <div class="mass-num">10倍 <span>速い</span></div>
+        <div class="mass-label">A/Bテスト検証速度</div>
+        <p class="mass-desc">大量のクリエイティブを一括生成し、勝ちパターンを高速で発見。PDCAを圧倒的に加速。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== Cost Comparison ===== -->
+
+
+<!-- ===== Comparison Table ===== -->
+<section class="compare-table-sec sec">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim">COMPARE</div>
+      <h2 class="sec-title anim">他の制作方法との比較</h2>
+      <p class="sec-sub anim">UGC Makerなら、コスト・スピード・量産性すべてで優位</p>
+    </div>
+    <div class="stores-compare anim">
+      <div class="sc-corner"></div>
+      <div class="sc-brand-head">UGC Maker</div>
+      <div class="sc-comp-head">自社制作</div>
+      <div class="sc-comp-head">代理店</div>
+      <div class="sc-comp-head">Sora 2</div>
+      <div class="sc-row-label">インフルエンサー選択</div>
+      <div class="sc-row-brand"><span class="sc-badge">自由選択</span><div class="sc-row-brand-val">◎</div><div class="sc-row-brand-sub">400種以上から選択可能</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">キャスティング必要</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">代理店が手配</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">固定できない</div></div>
+      <div class="sc-row-label">制作コスト/本</div>
+      <div class="sc-row-brand"><span class="sc-badge">最安水準</span><div class="sc-row-brand-val">¥2,000<small>〜</small></div><div class="sc-row-brand-sub">プランにより変動</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">¥30万<small>〜</small></div><div class="sc-row-comp-sub">撮影・編集費込み</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">¥50万<small>〜</small></div><div class="sc-row-comp-sub">企画〜納品</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">¥0<small>〜</small></div><div class="sc-row-comp-sub">API利用料のみ</div></div>
+      <div class="sc-row-label">制作時間</div>
+      <div class="sc-row-brand"><span class="sc-badge">最速</span><div class="sc-row-brand-val">数分</div><div class="sc-row-brand-sub">テキスト入力のみ</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">数日〜数週間</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">2週間〜1ヶ月</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">試行錯誤が必要</div></div>
+      <div class="sc-row-label">動画の長さ</div>
+      <div class="sc-row-brand"><div class="sc-row-brand-val">最大1分</div><div class="sc-row-brand-sub">広告に最適な尺</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">自由</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">自由</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">最大12秒程度</div></div>
+      <div class="sc-row-label">量産性</div>
+      <div class="sc-row-brand"><span class="sc-badge">強み</span><div class="sc-row-brand-val">◎</div><div class="sc-row-brand-sub">月100本以上可能</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">スケールしにくい</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">都度発注</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">一貫性が保てない</div></div>
+      <div class="sc-row-label sc-last">声の統一性</div>
+      <div class="sc-row-brand sc-last"><div class="sc-row-brand-icon">◎</div><div class="sc-row-brand-sub">常に同じ声で統一</div></div>
+      <div class="sc-row-comp sc-last"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">同じ人をキャスト</div></div>
+      <div class="sc-row-comp sc-last"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">指定可能</div></div>
+      <div class="sc-row-comp sc-last"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">毎回変わる</div></div>
+    </div>
+
+    <!-- Mobile Slider -->
+    <div class="sc-slider anim">
+      <div class="sc-slider-tabs">
+        <button class="sc-slider-tab active" data-sc="0">自社制作と比較</button>
+        <button class="sc-slider-tab" data-sc="1">代理店と比較</button>
+        <button class="sc-slider-tab" data-sc="2">Sora 2と比較</button>
+      </div>
+      <div class="sc-slider-card active" data-sc-card="0">
+        <div class="sc-slider-head"><div class="sc-slider-head-brand">UGC Maker</div><div class="sc-slider-head-comp">自社制作</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">○</div><div class="sc-slider-sub">キャスティング必要</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥30万〜</div><div class="sc-slider-sub">撮影・編集費込み</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">数日〜数週間</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">月100本以上可能</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">スケールしにくい</div></div></div>
+      </div>
+      <div class="sc-slider-card" data-sc-card="1">
+        <div class="sc-slider-head"><div class="sc-slider-head-brand">UGC Maker</div><div class="sc-slider-head-comp">代理店</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">○</div><div class="sc-slider-sub">代理店が手配</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥50万〜</div><div class="sc-slider-sub">企画〜納品</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">2週間〜1ヶ月</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">月100本以上可能</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">都度発注</div></div></div>
+      </div>
+      <div class="sc-slider-card" data-sc-card="2">
+        <div class="sc-slider-head"><div class="sc-slider-head-brand">UGC Maker</div><div class="sc-slider-head-comp">Sora 2</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">固定できない</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥0〜</div><div class="sc-slider-sub">API利用料のみ</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">試行錯誤が必要</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">月100本以上可能</div></div><div class="sc-slider-comp"><div class="sc-slider-val">○</div><div class="sc-slider-sub">一貫性が保てない</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing sec" id="pricing">
+  <div class="sec-inner sec-center">
+    <div class="sec-label anim">PRICING</div>
+    <h2 class="sec-title anim">料金プラン</h2>
+    <p class="sec-sub anim">必要な本数に応じて、最適なプランを選べます</p>
+
+    <div class="plan-compare anim">
+
+      <!-- Starter -->
+      <div class="plan-col">
+        <div class="plan-head">
+          <h3 class="plan-name">スタータープラン</h3>
+          <p class="plan-for">週2〜3回投稿におすすめ</p>
+          <div class="plan-price">¥21,000<span>/月</span></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-group">
+            <div class="plan-group-title">含まれるサービス</div>
+            <div class="plan-item ok">クレジット: 21,000</div>
+            <div class="plan-item ok">動画本数: 月10本</div>
+            <div class="plan-item ok">動画の長さ: 30秒</div>
+            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">スクリプト自動生成</div>
+            <div class="plan-item no">A/Bテスト一括生成</div>
+            <div class="plan-item no">優先サポート</div>
+            <div class="plan-item no">専任担当者</div>
+            <div class="plan-item no">広告運用サポート</div>
+            <div class="plan-item no">カスタム機能開発</div>
+          </div>
+        </div>
+        </div>
+
+      <!-- Pro (Recommended) -->
+      <div class="plan-col plan-col-rec">
+        <div class="plan-rec-badge">おすすめ</div>
+        <div class="plan-head">
+          <h3 class="plan-name">プロプラン</h3>
+          <p class="plan-for">毎日投稿・本格運用に</p>
+          <div class="plan-price">¥62,000<span>/月</span></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-group">
+            <div class="plan-group-title">含まれるサービス</div>
+            <div class="plan-item ok">クレジット: 62,000</div>
+            <div class="plan-item ok">動画本数: 月30本</div>
+            <div class="plan-item ok">動画の長さ: 30秒</div>
+            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">スクリプト自動生成</div>
+            <div class="plan-item ok">A/Bテスト一括生成</div>
+            <div class="plan-item ok">優先サポート</div>
+            <div class="plan-item ok">専任担当者</div>
+            <div class="plan-item no">広告運用サポート</div>
+            <div class="plan-item no">カスタム機能開発</div>
+          </div>
+        </div>
+        </div>
+
+      <!-- Enterprise -->
+      <div class="plan-col">
+        <div class="plan-head">
+          <h3 class="plan-name">エンタープライズ</h3>
+          <p class="plan-for">大規模チーム向け</p>
+          <div class="plan-price">要相談</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-group">
+            <div class="plan-group-title">含まれるサービス</div>
+            <div class="plan-item ok">カスタムクレジット数</div>
+            <div class="plan-item ok">カスタム動画生成数</div>
+            <div class="plan-item ok">動画の長さ: カスタム</div>
+            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">スクリプト自動生成</div>
+            <div class="plan-item ok">A/Bテスト一括生成</div>
+            <div class="plan-item ok">優先サポート</div>
+            <div class="plan-item ok">専任担当者</div>
+            <div class="plan-item ok">広告運用サポート</div>
+            <div class="plan-item ok">カスタム機能開発</div>
+          </div>
+        </div>
+        </div>
+
+    </div>
+
+    <!-- 初期費用（オプション） -->
+    <div class="plan-initial anim">
+      <div class="plan-initial-header">
+        <span class="plan-initial-header-badge">OPTION ─ 必須ではありません。より成果を出したい方向けのオプションです</span>
+      </div>
+      <div class="plan-initial-inner">
+        <div class="plan-initial-head">
+          <div class="plan-initial-label">導入サポート</div>
+          <div class="plan-initial-price">¥200,000<span>（税別）</span></div>
+          <div class="plan-initial-note">プロによる初期設定・運用支援</div>
+          <div style="margin-top:0.6rem;font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.6;">※ ツール単体でも十分にご利用いただけます。<br>導入サポートなしでも広告動画の生成・運用が可能です。</div>
+        </div>
+        <div class="plan-initial-divider"></div>
+        <div class="plan-initial-body">
+          <div class="plan-initial-item">
+            <div class="plan-initial-item-title">プロンプトチューニング</div>
+            <div class="plan-initial-item-desc">貴社ブランドに最適化したAI設定を実施</div>
+          </div>
+          <div class="plan-initial-item">
+            <div class="plan-initial-item-title">AIアクター選定</div>
+            <div class="plan-initial-item-desc">ターゲットに刺さるアクター提案</div>
+          </div>
+          <div class="plan-initial-item">
+            <div class="plan-initial-item-title">初期クリエイティブ制作</div>
+            <div class="plan-initial-item-desc">最初の動画制作をプロが伴走</div>
+          </div>
+          <div class="plan-initial-item">
+            <div class="plan-initial-item-title">広告配信設計</div>
+            <div class="plan-initial-item-desc">配信媒体・予算配分のコンサル</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec" id="steps">
+  <div class="sec-inner sec-center">
+    <div class="sec-label anim">HOW IT WORKS</div>
+    <h2 class="sec-title anim">簡単3ステップ</h2>
+    <p class="sec-sub anim">導入までの流れ</p>
+    <div class="steps-cards">
+      <div class="step-card anim"><div class="step-badge">STEP 01</div><div class="step-title">商品画像・情報を<br>アップロード</div><div class="step-desc">商品写真とアピールポイントを入力するだけ</div></div>
+      <div class="step-card anim"><div class="step-badge">STEP 02</div><div class="step-title">AIがUGC動画を<br>自動生成</div><div class="step-desc">複数のAIクリエイターが多様なパターンの動画を作成</div></div>
+      <div class="step-card anim"><div class="step-badge">STEP 03</div><div class="step-title">そのまま広告配信<br>すぐに成果検証</div><div class="step-desc">Meta・TikTok等の広告にそのまま入稿できます</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="download-cta sec">
+  <div class="sec-inner anim">
+    <div class="download-msg"><span class="box">テキスト入力</span><br><span class="box">AIが動画を自動生成</span><br>あとは配信するだけ。</div>
+    <p style="font-size:0.88rem;color:var(--gray-500);">※アカウント作成後、即日動画生成が可能</p>
+    <div class="download-tags">
+      <span>#20代vlog系</span><span>#キッズ</span><span>#シニア</span><span>#美容</span><span>#ダイエット</span><span>#歯・口臭</span><span>#80代以上</span><span>#副業・転職・人材</span><span>#ヘアケア</span><span>#金融</span><span>#生活暮らし</span><span>#脱毛</span><span>#体型別</span><span>#カップル</span><span>その他30以上！</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ===== Agency Support ===== -->
+<section class="agency-section sec">
+  <div class="sec-inner">
+    <div class="agency-hero anim">
+      <div class="agency-hero-visual">
+        <canvas id="particleCanvas"></canvas>
+        <div class="agency-hero-visual-text">UGC Maker<br>Ad Support</div>
+      </div>
+      <div class="agency-hero-inner">
+        <div class="agency-hero-badge">Ad Support</div>
+        <h3 class="agency-hero-title">"勝てるコンテンツ"を一緒につくる</h3>
+        <p class="agency-hero-desc">AIツールの提供だけではありません。広告戦略から運用まで、まるっとサポートします。</p>
+        <div class="agency-hero-features">
+          <div class="agency-hero-feat">
+            <span class="agency-hero-feat-num">01</span>
+            <div>
+              <h4 class="agency-hero-feat-title">広告戦略の設計</h4>
+              <p class="agency-hero-feat-desc">ターゲット選定、媒体選び、予算配分まで最適な戦略をゼロから設計</p>
+            </div>
+          </div>
+          <div class="agency-hero-feat">
+            <span class="agency-hero-feat-num">02</span>
+            <div>
+              <h4 class="agency-hero-feat-title">クリエイティブ企画・制作</h4>
+              <p class="agency-hero-feat-desc">訴求軸の設計からスクリプト作成・構成提案まで専任チームが伴走</p>
+            </div>
+          </div>
+          <div class="agency-hero-feat">
+            <span class="agency-hero-feat-num">03</span>
+            <div>
+              <h4 class="agency-hero-feat-title">広告運用・改善</h4>
+              <p class="agency-hero-feat-desc">Meta・TikTok・YouTube等の運用代行。データに基づくPDCAで成果最大化</p>
+            </div>
+          </div>
+          <div class="agency-hero-feat">
+            <span class="agency-hero-feat-num">04</span>
+            <div>
+              <h4 class="agency-hero-feat-title">月次レポート・定例会</h4>
+              <p class="agency-hero-feat-desc">数値分析と月1回の定例会でトレンド共有・改善提案を実施</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="agency-hero-btn">まずは相談する ></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Support Section ===== -->
+<section class="support-section sec">
+  <div class="sec-inner">
+    <div class="support-inner">
+      <div class="support-left anim">
+        <div class="support-badge">Support</div>
+        <h2 class="support-heading">導入後のサポート</h2>
+        <p class="support-desc">スムーズにご利用いただくために、<br>各種サポートをご用意しております</p>
+        <div class="support-btns">
+          <a href="#download" class="support-btn">資料ダウンロード <span class="support-btn-arrow">></span></a>
+          <a href="#contact" class="support-btn">お問合せ <span class="support-btn-arrow">></span></a>
+        </div>
+      </div>
+      <div class="support-cards">
+        <div class="support-card anim">
+          <div class="support-card-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#1a1a1a" stroke-width="2.5" fill="none"/><path d="M16 24l6 6 10-12" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <div>
+            <h4 class="support-card-title">サポート満足度 97%</h4>
+            <p class="support-card-text">チャット・メールでの問い合わせサポートとオンボーディング支援をご用意。経験豊富なスタッフが迅速・丁寧に解決します。</p>
+            <p class="support-card-note">※2025年 自社調べ</p>
+          </div>
+        </div>
+        <div class="support-card anim">
+          <div class="support-card-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M6 36V12a4 4 0 014-4h28a4 4 0 014 4v18a4 4 0 01-4 4H14l-8 6z" stroke="#1a1a1a" stroke-width="2.5" stroke-linejoin="round" fill="none"/><path d="M16 18h16M16 24h10" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h4 class="support-card-title">初心者の方でもご安心ください</h4>
+            <p class="support-card-text">AI動画制作が初めての方のために、豊富なマニュアルやテンプレート、動画チュートリアルをご用意しています。</p>
+          </div>
+        </div>
+        <div class="support-card anim">
+          <div class="support-card-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="8" stroke="#1a1a1a" stroke-width="2.5" fill="none"/><path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+          </div>
+          <div>
+            <h4 class="support-card-title">導入支援サービス（有償）</h4>
+            <p class="support-card-text">導入から運用開始までに必要な設定を専任の担当者がサポートします。社内展開前のテスト運用、社内周知から運用開始まで伴走するので安心です。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="contact-sec sec" id="contact">
+  <div class="sec-inner">
+    <p class="sec-label anim">Contact</p>
+    <h2 class="sec-title anim">お問い合わせ</h2>
+    <div class="contact-inner anim">
+      <div class="contact-block">
+        <div class="contact-block-title">導入相談予約</div>
+        <p class="contact-block-desc">オンラインで導入のご相談を承ります。<br>ご都合の良い日時をお選びください。</p>
+        <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="contact-calendar-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          カレンダーで日時を予約する
+        </a>
+      </div>
+      <div class="contact-block">
+        <div class="contact-block-title">お問い合わせフォーム</div>
+        <p class="contact-block-desc">ご質問やご要望がございましたら、<br>お気軽にお問い合わせください。</p>
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label>会社名<span class="req">*</span></label>
+            <input type="text" name="company" required placeholder="株式会社リスポ">
+            <div class="form-error">正しい会社名を入力してください</div>
+          </div>
+          <div class="form-group">
+            <label>お名前<span class="req">*</span></label>
+            <input type="text" name="name" required placeholder="山田 太郎">
+            <div class="form-error">正しいお名前を入力してください</div>
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="example@company.com">
+            <div class="form-error">正しいメールアドレスを入力してください</div>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ内容</label>
+            <textarea name="message" placeholder="ご質問やご要望をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+        <div class="form-success" id="contactSuccess">
+          <div class="form-success-icon">&#10003;</div>
+          <div class="form-success-msg">送信完了しました</div>
+          <p class="form-success-sub">担当者より2営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 資料ダウンロード -->
+<section class="download-sec sec" id="download">
+  <div class="sec-inner">
+    <p class="sec-label anim">Download</p>
+    <h2 class="sec-title anim">資料ダウンロード</h2>
+    <div class="download-inner anim">
+      <div class="download-block">
+        <div class="download-block-title">UGC Maker サービス資料</div>
+        <p class="download-block-desc">料金プラン・導入事例・機能詳細をまとめた<br>サービス紹介資料をダウンロードいただけます。</p>
+        <form id="downloadForm" novalidate>
+          <div class="form-group">
+            <label>会社名<span class="req">*</span></label>
+            <input type="text" name="company" required placeholder="株式会社リスポ">
+            <div class="form-error">正しい会社名を入力してください</div>
+          </div>
+          <div class="form-group">
+            <label>お名前</label>
+            <input type="text" name="name" placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="example@company.com">
+            <div class="form-error">正しいメールアドレスを入力してください</div>
+          </div>
+          <div class="form-group">
+            <label>電話番号<span class="req">*</span></label>
+            <input type="tel" name="phone" required pattern="^[0-9\-\+\(\)\s]{8,15}$" placeholder="03-1234-5678">
+            <div class="form-error">正しい電話番号を入力してください（例: 03-1234-5678）</div>
+          </div>
+          <button type="submit" class="form-submit">資料をダウンロードする</button>
+        </form>
+        <div class="form-success" id="downloadSuccess">
+          <div class="form-success-icon">&#10003;</div>
+          <div class="form-success-msg">送信完了しました</div>
+          <p class="form-success-sub">ご入力いただいたメールアドレスに資料をお送りしました。</p>
+        </div>
+        <div class="download-link" id="downloadLink">
+          <a href="#" download>資料をダウンロードする</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-hero" id="final">
+  <div class="sec-inner anim">
+    <h2 class="final-hero-msg">UGC Makerなら<br>UGC動画広告を<span class="box">大量生産</span><br><span class="box">数分</span>で何本でも生成可能<br>撮影・編集は完全不要</h2>
+    <p class="hero-note">すでに400社以上が導入</p>
+    <a href="https://www.ugcmaker.jp/onboarding/login" class="btn-primary" style="font-size:1.1rem;padding:1.2rem 2.8rem;text-decoration:none;">今すぐ無料で動画を生成する ›</a>
+  </div>
+</section>
+
+<!-- Floating CTA Banner -->
+<div class="float-cta" id="floatCta">
+  <button class="float-cta-close" id="floatCtaClose">×</button>
+  <div class="float-cta-badge"><span class="float-cta-badge-dot"></span>無料トライアル受付中</div>
+  <div class="float-cta-text">
+    <div class="float-cta-title">無料で動画を生成</div>
+    <div class="float-cta-sub">初期費用0円・クレカ不要で<br>まずは1本お試しください</div>
+  </div>
+  <a href="#download" class="float-cta-btn">資料ダウンロード</a>
+  <div class="float-cta-meta">30秒で完了 ・ 営業電話なし</div>
+</div>
+  </div>
+
+
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 200" height="36" style="display:block;">
+        <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
+        <text x="0" y="155" text-anchor="start" dominant-baseline="auto"
+              font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
+              fill="#000000" letter-spacing="-2">UGC Maker</text>
+      </svg>
+      <p>クリエイティブを、解き放て。</p>
+    </div>
+    <div class="footer-col"><h4>サービス</h4><a href="#features">特徴</a><a href="#pricing">料金プラン</a><a href="#steps">使い方</a></div>
+    <div class="footer-col"><h4>会社情報</h4><a href="#">運営会社</a><a href="#contact">お問い合わせ</a></div>
+    <div class="footer-col"><h4>リソース</h4><a href="#">利用規約</a><a href="#">プライバシーポリシー</a></div>
+  </div>
+  <div class="footer-copy">©2026 UGC Maker Inc. All rights reserved.</div>
+</footer>
+<div class="footer-big-logo">
+  <div class="footer-big-logo-track">
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+const hdr=document.getElementById('header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+const mm=document.getElementById('mobileMenu'),nv=document.querySelector('.nav');let open=false;
+mm.addEventListener('click',()=>{open=!open;if(open){nv.style.cssText='display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(30,30,30,0.97);padding:1.5rem 2rem;box-shadow:0 10px 30px rgba(0,0,0,0.3);gap:1rem;backdrop-filter:blur(16px);';}else{nv.removeAttribute('style');}});
+nv.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{if(open){open=false;nv.removeAttribute('style');}});});
+
+
+/* Form Validation */
+function validateForm(form){
+  let valid=true;
+  form.querySelectorAll('.form-group').forEach(g=>g.classList.remove('has-error'));
+  form.querySelectorAll('[required]').forEach(input=>{
+    const g=input.closest('.form-group');
+    const v=input.value.trim();
+    if(!v){valid=false;g.classList.add('has-error');return;}
+    if(input.name==='company'&&v.length<2){valid=false;g.classList.add('has-error');return;}
+    if(input.name==='name'&&v.length<2){valid=false;g.classList.add('has-error');return;}
+    if(input.name==='message'&&v.length<5){valid=false;g.classList.add('has-error');return;}
+    if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){valid=false;g.classList.add('has-error');return;}
+    if(input.type==='tel'&&input.pattern&&!new RegExp(input.pattern).test(v)){valid=false;g.classList.add('has-error');return;}
+  });
+  return valid;
+}
+document.querySelectorAll('#contactForm [required], #downloadForm [required]').forEach(input=>{
+  input.addEventListener('input',()=>input.closest('.form-group').classList.remove('has-error'));
+});
+
+/* Contact & Download Forms */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!validateForm(this))return;
+  const fd=new FormData(this);
+  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),message:fd.get('message')})}).catch(()=>{});
+  this.style.display='none';
+  document.getElementById('contactSuccess').classList.add('show');
+});
+document.getElementById('downloadForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!validateForm(this))return;
+  const fd=new FormData(this);
+  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'download',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')})}).catch(()=>{});
+  this.style.display='none';
+  document.getElementById('downloadSuccess').classList.add('show');
+  document.getElementById('downloadLink').classList.add('show');
+});
+
+/* Compare Slider Tabs */
+document.querySelectorAll('.sc-slider-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.sc-slider-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.sc-slider-card').forEach(c=>c.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector('[data-sc-card="'+tab.dataset.sc+'"]').classList.add('active');
+  });
+});
+
+/* Floating CTA */
+const floatCta=document.getElementById('floatCta');
+const floatClose=document.getElementById('floatCtaClose');
+let ctaDismissed=false;
+if(floatCta&&floatClose){
+floatCta.classList.add('show');
+window.addEventListener('scroll',()=>{
+  if(ctaDismissed) return;
+  if(scrollY>400){floatCta.classList.remove('show');ctaDismissed=true;}
+});
+floatClose.addEventListener('click',()=>{
+  floatCta.classList.remove('show');
+  ctaDismissed=true;
+});
+}
+
+/* Particle Circle Canvas */
+(function(){
+  const canvas = document.getElementById('particleCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const PARTICLE_COUNT = 700;
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    w = rect.width; h = rect.height;
+  }
+
+  function initParticles(){
+    particles = [];
+    const cx = w * 0.5, cy = h * 0.5;
+    const radius = Math.min(w, h) * 0.36;
+    for(let i = 0; i < PARTICLE_COUNT; i++){
+      const angle = (Math.PI * 2 * i / PARTICLE_COUNT) + (Math.random() - 0.5) * 0.5;
+      const spread = (Math.random() - 0.5);
+      const r = radius + spread * radius * 0.3;
+      particles.push({
+        baseAngle: angle,
+        baseR: r,
+        cx: cx, cy: cy,
+        size: Math.random() * 2.0 + 0.4,
+        alpha: Math.random() * 0.7 + 0.3,
+        speed: (Math.random() - 0.5) * 0.012,
+        drift: Math.random() * 1.2 + 0.6,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+    // Add inner scattered particles
+    for(let i = 0; i < 80; i++){
+      const angle = Math.random() * Math.PI * 2;
+      const r = Math.random() * radius * 0.6;
+      particles.push({
+        baseAngle: angle,
+        baseR: r,
+        cx: cx, cy: cy,
+        size: Math.random() * 1.2 + 0.3,
+        alpha: Math.random() * 0.3 + 0.1,
+        speed: (Math.random() - 0.5) * 0.008,
+        drift: Math.random() * 0.8 + 0.3,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  let time = 0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    time += 0.006;
+    for(const p of particles){
+      const angle = p.baseAngle + time * p.speed + Math.sin(time * 0.6 + p.phase) * 0.08;
+      const r = p.baseR + Math.sin(time * p.drift + p.phase) * 6;
+      const x = p.cx + Math.cos(angle) * r;
+      const y = p.cy + Math.sin(angle) * r;
+      const a = p.alpha * (0.65 + Math.sin(time * 0.8 + p.phase) * 0.35);
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + a + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  initParticles();
+  draw();
+  window.addEventListener('resize', function(){ resize(); initParticles(); });
+})();
+</script>
+
+<!-- Sticky Bottom CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <a href="https://www.ugcmaker.jp/onboarding/signup" target="_blank" class="sticky-cta-btn sticky-cta-primary">
+      <div class="sticky-cta-primary-inner">
+        <span class="sticky-cta-primary-badge">最短即日で生成可能</span>
+        <span>無料でAI動画を試す</span>
+        <span class="sticky-cta-arrow">→</span>
+      </div>
+    </a>
+    <a href="#download" class="sticky-cta-btn sticky-cta-secondary">
+      <div class="sticky-cta-secondary-inner">
+        <span class="sticky-cta-secondary-badge">3分でわかる</span>
+        <span>サービス資料をダウンロードする</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>!function(){var e=document.getElementById("stickyCta");if(e)window.addEventListener("scroll",function(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;s>400&&s<d-200?e.classList.add("show"):e.classList.remove("show")})}();</script>
+</body>
+</html>

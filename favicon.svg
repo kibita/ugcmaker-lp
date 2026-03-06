@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#000"/>
+  <text x="64" y="72" text-anchor="middle" dominant-baseline="middle" font-family="'Nunito Sans',sans-serif" font-weight="900" font-size="82" fill="#fff">U</text>
+</svg>
