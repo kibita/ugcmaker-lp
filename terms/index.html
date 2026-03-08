@@ -31,43 +31,22 @@
   }
 
   /* Header */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0 40px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-family: var(--font-en);
-    font-weight: 900;
-    font-size: 20px;
-    letter-spacing: -2px;
-    color: var(--black);
-    text-decoration: none;
-  }
-
-  .header-badge {
-    font-family: var(--font-en);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-400);
-  }
+  .header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,30,30,0.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,0.06); transition:background 0.3s; }
+  .header.scrolled { background:rgba(30,30,30,0.75); }
+  .header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.85rem 2rem; }
+  .nav { display:flex; align-items:center; gap:2rem; }
+  .nav a { font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.7); transition:color 0.2s; text-decoration:none; }
+  .nav a:hover { color:#fff; }
+  .nav-cta { background:rgba(255,255,255,0.12)!important; color:#fff!important; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.88rem!important; font-weight:700!important; transition:background 0.2s, transform 0.2s; border:1px solid rgba(255,255,255,0.15); }
+  .nav-cta:hover { background:rgba(255,255,255,0.2)!important; transform:translateY(-1px); }
+  .mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
 
   /* Hero */
   .hero {
     background: var(--black);
     color: var(--white);
     padding: 80px 40px 60px;
+    margin-top: 56px;
     position: relative;
     overflow: hidden;
   }
@@ -307,9 +286,27 @@
 </head>
 <body>
 
-<header class="site-header">
-  <a href="https://ugcmaker.jp" class="logo">UGC Maker</a>
-  <span class="header-badge">Legal</span>
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="https://service.ugcmaker.jp" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="42" style="display:block;">
+        <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
+        <text x="600" y="225" text-anchor="middle" dominant-baseline="middle"
+              font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
+              fill="#ffffff" letter-spacing="-2">UGC Maker</text>
+      </svg>
+    </a>
+    <nav class="nav">
+      <a href="https://service.ugcmaker.jp/#features">機能紹介</a>
+      <a href="https://service.ugcmaker.jp/#cases">導入事例</a>
+      <a href="https://service.ugcmaker.jp/#steps">導入方法</a>
+      <a href="https://service.ugcmaker.jp/#contact">お問い合わせ</a>
+      <a href="https://service.ugcmaker.jp/#download">ダウンロード</a>
+      <a href="https://corp.ugcmaker.jp/" target="_blank" rel="noopener">運営会社</a>
+      <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="nav-cta">導入相談する</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">☰</div>
+  </div>
 </header>
 
 <div class="hero">
