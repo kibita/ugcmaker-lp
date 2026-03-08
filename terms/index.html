@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約 | UGC Maker</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray-100: #f5f5f5;
+    --gray-200: #e8e8e8;
+    --gray-400: #999999;
+    --gray-600: #555555;
+    --accent: #0a0a0a;
+    --font-en: 'Nunito Sans', sans-serif;
+    --font-ja: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-ja);
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -2px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .header-badge {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: 'TERMS';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 140px;
+    letter-spacing: -8px;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .hero-label {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .hero-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .content-wrap {
+    padding: 64px 0 100px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--gray-100);
+    border-left: 3px solid var(--black);
+    padding: 28px 32px;
+    margin-bottom: 56px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .toc-title {
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+
+  .toc ol {
+    list-style: none;
+    columns: 2;
+    column-gap: 32px;
+  }
+
+  .toc li {
+    margin-bottom: 6px;
+    break-inside: avoid;
+  }
+
+  .toc a {
+    color: var(--gray-600);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .toc a:hover { color: var(--black); }
+
+  .toc-num {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    min-width: 24px;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 52px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-num {
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--gray-400);
+    min-width: 40px;
+  }
+
+  .section h2 {
+    font-family: var(--font-ja);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  .section-body {
+    padding-left: 56px;
+  }
+
+  .section-body p {
+    color: var(--gray-600);
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .section-body ul {
+    list-style: none;
+    margin: 8px 0 16px;
+  }
+
+  .section-body ul li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--gray-600);
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.75;
+  }
+
+  .section-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 1px;
+    background: var(--gray-400);
+  }
+
+  /* Contact box */
+  .contact-box {
+    background: var(--black);
+    color: var(--white);
+    padding: 32px;
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+
+  .contact-box p {
+    color: rgba(255,255,255,0.7) !important;
+    margin-bottom: 6px !important;
+    font-size: 13px !important;
+  }
+
+  .contact-box a {
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s;
+  }
+
+  .contact-box a:hover { border-color: var(--white); }
+
+  /* Footer */
+  .site-footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 40px;
+    text-align: center;
+  }
+
+  .site-footer p {
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--black); }
+
+  @media (max-width: 640px) {
+    .site-header { padding: 0 20px; }
+    .hero { padding: 60px 20px 48px; }
+    .container { padding: 0 20px; }
+    .toc ol { columns: 1; }
+    .section-body { padding-left: 0; }
+    .section-header { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ugcmaker.jp" class="logo">UGC Maker</a>
+  <span class="header-badge">Legal</span>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <p class="hero-label">Legal / Terms</p>
+    <h1>利用規約</h1>
+    <p class="hero-meta">制定日：2026年3月8日　｜　株式会社リスポ</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content-wrap">
+
+    <nav class="toc">
+      <p class="toc-title">目次</p>
+      <ol>
+        <li><a href="#art1"><span class="toc-num">01</span>定義</a></li>
+        <li><a href="#art2"><span class="toc-num">02</span>利用登録</a></li>
+        <li><a href="#art3"><span class="toc-num">03</span>アカウント管理</a></li>
+        <li><a href="#art4"><span class="toc-num">04</span>料金・決済</a></li>
+        <li><a href="#art5"><span class="toc-num">05</span>投稿素材に関するユーザーの責任</a></li>
+        <li><a href="#art6"><span class="toc-num">06</span>生成コンテンツの利用・権利</a></li>
+        <li><a href="#art7"><span class="toc-num">07</span>広告表示・ステマ規制への遵守</a></li>
+        <li><a href="#art8"><span class="toc-num">08</span>禁止事項</a></li>
+        <li><a href="#art9"><span class="toc-num">09</span>外部サービスの利用</a></li>
+        <li><a href="#art10"><span class="toc-num">10</span>免責事項</a></li>
+        <li><a href="#art11"><span class="toc-num">11</span>サービスの変更・停止・終了</a></li>
+        <li><a href="#art12"><span class="toc-num">12</span>規約の変更</a></li>
+        <li><a href="#art13"><span class="toc-num">13</span>準拠法・管轄裁判所</a></li>
+        <li><a href="#art14"><span class="toc-num">14</span>お問い合わせ</a></li>
+      </ol>
+    </nav>
+
+    <p style="font-size:14px; color:#555; margin-bottom:48px; line-height:1.85;">
+      本利用規約（以下「本規約」）は、株式会社リスポ（以下「当社」）が提供するAI動画広告生成SaaSサービス「UGC Maker」（以下「本サービス」）の利用条件を定めるものです。ユーザーは本規約に同意のうえ本サービスをご利用ください。
+    </p>
+
+    <div class="section" id="art1">
+      <div class="section-header">
+        <span class="section-num">第1条</span>
+        <h2>定義</h2>
+      </div>
+      <div class="section-body">
+        <p>本規約において使用する用語の定義は以下のとおりです。</p>
+        <ul>
+          <li>「本サービス」：当社が提供するUGC Makerおよびこれに付随するすべての機能・コンテンツ</li>
+          <li>「ユーザー」：本規約に同意し、本サービスを利用する個人または法人</li>
+          <li>「生成コンテンツ」：本サービスを通じてAIが生成した動画、スクリプト、画像その他のコンテンツ</li>
+          <li>「投稿素材」：ユーザーが本サービスにアップロードする動画、画像、テキスト等の素材</li>
+          <li>「クレジット」：本サービス内で動画生成等の機能を利用するために必要な仮想通貨単位</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="art2">
+      <div class="section-header">
+        <span class="section-num">第2条</span>
+        <h2>利用登録</h2>
+      </div>
+      <div class="section-body">
+        <p>1. ユーザーは所定の方法で利用登録を行い、当社が承認した時点で本規約に基づく利用契約が成立します。</p>
+        <p>2. 以下に該当する場合、当社は登録を拒否または取り消すことができます。</p>
+        <ul>
+          <li>登録情報に虚偽・誤記がある場合</li>
+          <li>過去に本規約違反により利用停止・強制退会となった場合</li>
+          <li>反社会的勢力またはその関係者である場合</li>
+          <li>その他当社が不適切と判断した場合</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="art3">
+      <div class="section-header">
+        <span class="section-num">第3条</span>
+        <h2>アカウント管理</h2>
+      </div>
+      <div class="section-body">
+        <p>1. ユーザーはアカウントのID・パスワードを自己の責任において厳重に管理するものとします。</p>
+        <p>2. アカウントの第三者への譲渡・貸与・共有は禁止します。</p>
+        <p>3. 不正利用が発覚した場合、当社は当該アカウントを停止することができます。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art4">
+      <div class="section-header">
+        <span class="section-num">第4条</span>
+        <h2>料金・決済</h2>
+      </div>
+      <div class="section-body">
+        <p>1. 本サービスの利用料金は当社が別途定める料金表に従います。</p>
+        <p>2. 支払いはStripeを通じたクレジットカード決済により行います。</p>
+        <p>3. 購入済みクレジットおよび有料プランの返金は、法令に基づく場合を除き原則として行いません。</p>
+        <p>4. 当社は料金を変更する場合、30日前までにサービス内またはメールで通知します。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art5">
+      <div class="section-header">
+        <span class="section-num">第5条</span>
+        <h2>投稿素材に関するユーザーの責任</h2>
+      </div>
+      <div class="section-body">
+        <p>1. ユーザーは投稿素材について、以下の事項を保証するものとします。</p>
+        <ul>
+          <li>投稿素材に関する著作権・商標権・肖像権その他一切の知的財産権および権利を適法に保有または利用許諾を受けていること</li>
+          <li>投稿素材が第三者の権利を侵害していないこと</li>
+          <li>登場する人物の肖像権・プライバシー権について適切な同意を得ていること</li>
+        </ul>
+        <p>2. 投稿素材に起因する第三者からのクレーム、紛争、損害については、ユーザーが自己の費用と責任で対処するものとし、当社は一切の責任を負いません。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art6">
+      <div class="section-header">
+        <span class="section-num">第6条</span>
+        <h2>生成コンテンツの利用・権利</h2>
+      </div>
+      <div class="section-body">
+        <p>1. 本サービスを通じて生成されたコンテンツの利用権はユーザーに帰属します。ただし、当社のAI技術に由来する基盤部分の権利は当社または第三者に留保されます。</p>
+        <p>2. ユーザーは生成コンテンツを商業目的（広告配信・納品等を含む）に利用できます。</p>
+        <p>3. ユーザーが代理店として第三者（クライアント等）に生成コンテンツを納品・提供する場合、当該コンテンツに関する権利・義務はユーザーが負担するものとし、当社は一切関与しません。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art7">
+      <div class="section-header">
+        <span class="section-num">第7条</span>
+        <h2>広告表示・ステルスマーケティング規制への遵守</h2>
+      </div>
+      <div class="section-body">
+        <p>1. 生成コンテンツを広告・プロモーションに使用する場合、ユーザーは景品表示法、不正競争防止法および消費者庁のステルスマーケティングに関するガイドライン（2023年10月施行）を遵守する義務を負います。</p>
+        <p>2. SNSへの投稿・掲載時における「#広告」「#PR」等の適切な表示はユーザーの責任において行うものとします。</p>
+        <p>3. 当社は生成コンテンツの広告法令適合性について一切の保証を行わず、法令違反に起因する損害についても責任を負いません。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art8">
+      <div class="section-header">
+        <span class="section-num">第8条</span>
+        <h2>禁止事項</h2>
+      </div>
+      <div class="section-body">
+        <p>ユーザーは以下の行為を行ってはなりません。</p>
+        <ul>
+          <li>第三者の著作権・肖像権・商標権その他の知的財産権を侵害する行為</li>
+          <li>虚偽・誇大広告となる生成コンテンツの作成・配信</li>
+          <li>ステルスマーケティング規制に違反するコンテンツの作成・配信</li>
+          <li>反社会的・差別的・暴力的・性的なコンテンツの生成</li>
+          <li>本サービスのリバースエンジニアリング、不正アクセス、サーバーへの過負荷行為</li>
+          <li>当社の事前承認なき本サービスの再販・転用・OEM提供</li>
+          <li>その他法令または公序良俗に反する行為</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="art9">
+      <div class="section-header">
+        <span class="section-num">第9条</span>
+        <h2>外部サービスの利用</h2>
+      </div>
+      <div class="section-body">
+        <p>本サービスはAnthropic API、ElevenLabs、fal.ai、Creatomate等の第三者サービスを利用しています。これらサービスの利用規約の変更により、本サービスの一部機能が制限・変更される場合があります。当社はこれに起因する損害について責任を負いません。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art10">
+      <div class="section-header">
+        <span class="section-num">第10条</span>
+        <h2>免責事項</h2>
+      </div>
+      <div class="section-body">
+        <p>1. 当社は生成コンテンツの品質・正確性・完全性・適法性について一切の保証を行いません。</p>
+        <p>2. 本サービスの利用に起因してユーザーまたは第三者に生じた損害について、当社の故意または重過失による場合を除き、当社は責任を負いません。</p>
+        <p>3. 当社が損害賠償責任を負う場合であっても、その賠償額は損害発生前3ヶ月間にユーザーが当社に支払った利用料金の総額を上限とします。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art11">
+      <div class="section-header">
+        <span class="section-num">第11条</span>
+        <h2>サービスの変更・停止・終了</h2>
+      </div>
+      <div class="section-body">
+        <p>当社は予告なく本サービスの内容を変更し、または一時停止・終了することができます。これによりユーザーに損害が生じた場合であっても、当社は責任を負いません。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art12">
+      <div class="section-header">
+        <span class="section-num">第12条</span>
+        <h2>規約の変更</h2>
+      </div>
+      <div class="section-body">
+        <p>当社は本規約を変更する場合、サービス内またはメールで30日前までに通知します。変更後も継続してご利用された場合、変更後の規約に同意したものとみなします。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art13">
+      <div class="section-header">
+        <span class="section-num">第13条</span>
+        <h2>準拠法・管轄裁判所</h2>
+      </div>
+      <div class="section-body">
+        <p>本規約は日本法に準拠します。本規約に関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+      </div>
+    </div>
+
+    <div class="section" id="art14">
+      <div class="section-header">
+        <span class="section-num">第14条</span>
+        <h2>お問い合わせ</h2>
+      </div>
+      <div class="section-body">
+        <div class="contact-box">
+          <p>運営会社：株式会社リスポ</p>
+          <p>代表取締役：黍田龍平</p>
+          <p>サービスURL：<a href="https://ugcmaker.jp">https://ugcmaker.jp</a></p>
+          <p>お問い合わせ：<a href="mailto:support@ugcmaker.jp">support@ugcmaker.jp</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="https://ugcmaker.jp">UGC Maker</a>
+  </div>
+  <p>© 2026 株式会社リスポ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
