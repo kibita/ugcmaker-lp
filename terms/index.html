@@ -263,13 +263,22 @@
   @keyframes marquee-logo { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
   .footer-big-logo-item { font-family:'Nunito Sans', sans-serif; font-weight:900; font-size:clamp(80px,12vw,160px); color:rgba(0,0,0,0.07); letter-spacing:-4px; line-height:1; flex-shrink:0; }
 
-  @media (max-width: 640px) {
-    .site-header { padding: 0 20px; }
-    .hero { padding: 60px 20px 48px; }
+  @media (max-width:1024px) {
+    .footer-inner { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:767px) {
+    .nav { display:none; }
+    .mobile-menu { display:block; }
+    .header-inner { padding:0.6rem 1rem; justify-content:space-between; }
+    .header-inner > a { margin-right:auto; }
+    .header-inner > a svg { height:44px; }
+    .hero { padding:60px 20px 48px; margin-top:56px; }
     .container { padding: 0 20px; }
     .toc ol { columns: 1; }
     .section-body { padding-left: 0; }
     .section-header { flex-direction: column; gap: 4px; }
+    .footer { padding:2.5rem 1.2rem 1.5rem; }
+    .footer-inner { grid-template-columns:1fr; gap:2rem; }
   }
 </style>
 </head>
@@ -556,5 +565,12 @@
   </div>
 </div>
 
+<script>
+const hdr=document.getElementById('header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+const mm=document.getElementById('mobileMenu'),nv=document.querySelector('.nav');let open=false;
+mm.addEventListener('click',()=>{open=!open;if(open){nv.style.cssText='display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(30,30,30,0.97);padding:1.5rem 2rem;box-shadow:0 10px 30px rgba(0,0,0,0.3);gap:1rem;backdrop-filter:blur(16px);';}else{nv.removeAttribute('style');}});
+nv.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{if(open){open=false;nv.removeAttribute('style');}});});
+</script>
 </body>
 </html>
