@@ -251,33 +251,17 @@
   .contact-box a:hover { border-color: var(--white); }
 
   /* Footer */
-  .site-footer {
-    background: var(--gray-100);
-    border-top: 1px solid var(--gray-200);
-    padding: 32px 40px;
-    text-align: center;
-  }
-
-  .site-footer p {
-    font-size: 12px;
-    color: var(--gray-400);
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-bottom: 16px;
-  }
-
-  .footer-links a {
-    font-size: 12px;
-    color: var(--gray-600);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--black); }
+  .footer { background:var(--gray-100); padding:4rem 2rem 2rem; border-top:1px solid var(--gray-200); }
+  .footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2rem; }
+  .footer-brand p { font-size:0.92rem; color:var(--gray-400); line-height:1.7; margin-top:0.8rem; }
+  .footer-col h4 { font-size:0.95rem; font-weight:700; margin-bottom:0.8rem; }
+  .footer-col a { display:block; font-size:0.92rem; color:var(--gray-400); margin-bottom:0.5rem; transition:color 0.2s; text-decoration:none; }
+  .footer-col a:hover { color:var(--black); }
+  .footer-copy { text-align:center; padding-top:2rem; margin-top:2rem; border-top:1px solid var(--gray-200); font-size:0.88rem; color:var(--gray-400); max-width:1100px; margin-left:auto; margin-right:auto; }
+  .footer-big-logo { background:var(--gray-100); padding:2rem 0 4rem; overflow:hidden; white-space:nowrap; }
+  .footer-big-logo-track { display:inline-flex; align-items:center; gap:80px; animation: marquee-logo 28s linear infinite; will-change:transform; }
+  @keyframes marquee-logo { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .footer-big-logo-item { font-family:'Nunito Sans', sans-serif; font-weight:900; font-size:clamp(80px,12vw,160px); color:rgba(0,0,0,0.07); letter-spacing:-4px; line-height:1; flex-shrink:0; }
 
   @media (max-width: 640px) {
     .site-header { padding: 0 20px; }
@@ -542,9 +526,35 @@
   </div>
 </div>
 
-<footer class="site-footer">
-  <p>© 2026 株式会社リスポ. All rights reserved.</p>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 200" height="36" style="display:block;">
+        <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
+        <text x="0" y="155" text-anchor="start" dominant-baseline="auto"
+              font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
+              fill="#000000" letter-spacing="-2">UGC Maker</text>
+      </svg>
+      <p>クリエイティブを、解き放て。</p>
+    </div>
+    <div class="footer-col"><h4>サービス</h4><a href="https://service.ugcmaker.jp/#features">特徴</a><a href="https://service.ugcmaker.jp/#steps">使い方</a></div>
+    <div class="footer-col"><h4>会社情報</h4><a href="https://corp.ugcmaker.jp/" target="_blank" rel="noopener">運営会社</a><a href="https://service.ugcmaker.jp/#contact">お問い合わせ</a></div>
+    <div class="footer-col"><h4>リソース</h4><a href="/terms">利用規約</a><a href="/privacypolicy">プライバシーポリシー</a></div>
+  </div>
+  <div class="footer-copy">©2026 UGC Maker Inc. All rights reserved.</div>
 </footer>
+<div class="footer-big-logo">
+  <div class="footer-big-logo-track">
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+    <span class="footer-big-logo-item">UGC Maker</span>
+  </div>
+</div>
 
 </body>
 </html>
