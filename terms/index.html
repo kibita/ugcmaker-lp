@@ -41,6 +41,11 @@
   .nav-cta:hover { background:rgba(255,255,255,0.2)!important; transform:translateY(-1px); }
   .mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
 
+  .back-link { color:var(--gray-600); text-decoration:none; position:relative; padding-bottom:4px; transition:color 0.3s; }
+  .back-link::after { content:''; position:absolute; left:50%; bottom:0; width:0; height:1px; background:var(--black); transition:width 0.3s ease, left 0.3s ease; }
+  .back-link:hover { color:var(--black); }
+  .back-link:hover::after { width:100%; left:0; }
+
   /* Hero */
   .hero {
     background: var(--black);
@@ -531,7 +536,7 @@
     </div>
 
     <div style="text-align:center; margin-top:16px; font-size:13px;">
-      <a href="https://service.ugcmaker.jp" style="color:var(--gray-600); text-decoration:none; border-bottom:1px solid var(--gray-200); padding-bottom:2px; transition:color 0.2s;">サービスサイトに戻る</a>
+      <a href="https://service.ugcmaker.jp" class="back-link">サービスサイトに戻る</a>
     </div>
 
   </div>
