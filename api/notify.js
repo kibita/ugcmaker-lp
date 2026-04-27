@@ -32,11 +32,10 @@ export default async function handler(req, res) {
     const dash = '—';
     const field = (label, value) => ({ type: 'mrkdwn', text: `*${label}*\n${value || dash}` });
 
-    let headerText, fallbackText, blocks;
+    let headerText, blocks;
 
     if (type === 'contact') {
-      headerText = '📮 HPからお問い合わせがありました 📮';
-      fallbackText = `お問い合わせ: ${company} / ${name}`;
+      headerText = '📮 お問い合わせがありました 📮';
       blocks = [
         { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
@@ -48,8 +47,7 @@ export default async function handler(req, res) {
       }
       blocks.push({ type: 'context', elements: [ { type: 'mrkdwn', text: `受信日時: ${nowJst} (JST)　|　service.ugcmaker.jp` } ] });
     } else if (type === 'download') {
-      headerText = '📥 HPから資料のダウンロード依頼がありました 📥';
-      fallbackText = `資料DL: ${company} / ${name}`;
+      headerText = '📥 資料のダウンロード依頼がありました 📥';
       blocks = [
         { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
@@ -65,7 +63,6 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: fallbackText,
         attachments: [
           { color: '#2563eb', blocks },
         ],
