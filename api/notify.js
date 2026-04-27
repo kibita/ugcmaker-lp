@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         blocks.push({ type: 'divider' });
         blocks.push({ type: 'section', text: { type: 'mrkdwn', text: `*お問い合わせ内容*\n>>>${message}` } });
       }
-      blocks.push({ type: 'context', elements: [ { type: 'mrkdwn', text: `🕒 受信日時: ${nowJst} (JST)　|　🌐 service.ugcmaker.jp` } ] });
+      blocks.push({ type: 'context', elements: [ { type: 'mrkdwn', text: `受信日時: ${nowJst} (JST)　|　service.ugcmaker.jp` } ] });
     } else if (type === 'download') {
       headerText = '📥 HPから資料のダウンロード依頼がありました 📥';
       fallbackText = `資料DL: ${company} / ${name}`;
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
         { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
         { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
-        { type: 'context', elements: [ { type: 'mrkdwn', text: `🕒 受信日時: ${nowJst} (JST)　|　🌐 service.ugcmaker.jp` } ] },
+        { type: 'context', elements: [ { type: 'mrkdwn', text: `受信日時: ${nowJst} (JST)　|　service.ugcmaker.jp` } ] },
       ];
     } else {
       return res.status(400).json({ error: 'Invalid type' });
