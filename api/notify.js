@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { type, company, name, email, phone, message } = req.body;
+    const { type, company, name, email, phone, message, referral } = req.body;
 
     let slackText;
     if (type === 'contact') {
@@ -32,6 +32,7 @@ export default async function handler(req, res) {
         `*お名前：* ${name}`,
         `*メールアドレス：* ${email}`,
         message ? `*お問い合わせ内容：*\n${message}` : '',
+        referral ? `*知ったきっかけ：* ${referral}` : '',
       ].filter(Boolean).join('\n');
     } else if (type === 'download') {
       slackText = [
@@ -41,6 +42,7 @@ export default async function handler(req, res) {
         `*お名前：* ${name}`,
         `*メールアドレス：* ${email}`,
         phone ? `*電話番号：* ${phone}` : '',
+        referral ? `*知ったきっかけ：* ${referral}` : '',
       ].filter(Boolean).join('\n');
     } else {
       return res.status(400).json({ error: 'Invalid type' });

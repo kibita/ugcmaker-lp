@@ -576,7 +576,8 @@ ul { list-style: none; }
 .form-group.has-error .form-error { display:block; }
 .form-group input, .form-group textarea, .form-group select { width:100%; padding:0.8rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:0.95rem; font-family:var(--font-body); background:#fff; transition:border-color 0.2s; box-sizing:border-box; }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline:none; border-color:var(--black); }
-.form-group textarea { resize:vertical; min-height:100px; }
+.form-group textarea { resize:none; min-height:100px; }
+.form-group.is-hidden { display:none; }
 .form-submit { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:0.9rem 2rem; border-radius:10px; font-weight:700; font-size:0.95rem; border:none; cursor:pointer; font-family:var(--font-body); transition:background 0.2s, transform 0.15s; }
 .form-submit:hover { background:#333; transform:translateY(-1px); }
 .form-success { display:none; text-align:center; padding:2rem 1rem; }
@@ -1355,28 +1356,8 @@ ul { list-style: none; }
   </div>
 </section>
 
-<section class="download-cta sec">
-  <div class="sec-inner anim">
-    <div class="download-msg">UGC動画広告を<br><span class="big">数分</span>で大量生成<br><span class="box">1本あたり約500円</span></div>
-    <p style="font-size:0.88rem;color:var(--gray-500);">※アカウント作成後、即日動画生成が可能</p>
-    <div class="download-tags">
-      <span>#20代vlog系</span><span>#キッズ</span><span>#シニア</span><span>#美容</span><span>#ダイエット</span><span>#歯・口臭</span><span>#80代以上</span><span>#副業・転職・人材</span><span>#ヘアケア</span><span>#金融</span><span>#生活暮らし</span><span>#脱毛</span><span>#体型別</span><span>#カップル</span><span>その他30以上！</span>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
 <!-- ===== Agency Support ===== -->
-<!-- HIDDEN: Ad Supportセクション（将来再表示用） -->
-<section class="agency-section sec" style="display:none">
+<section class="agency-section sec">
   <div class="sec-inner">
     <div class="agency-hero anim">
       <div class="agency-hero-visual">
@@ -1422,6 +1403,25 @@ ul { list-style: none; }
     </div>
   </div>
 </section>
+
+<section class="download-cta sec">
+  <div class="sec-inner anim">
+    <div class="download-msg">UGC動画広告を<br><span class="big">数分</span>で大量生成<br><span class="box">1本あたり約500円</span></div>
+    <p style="font-size:0.88rem;color:var(--gray-500);">※アカウント作成後、即日動画生成が可能</p>
+    <div class="download-tags">
+      <span>#20代vlog系</span><span>#キッズ</span><span>#シニア</span><span>#美容</span><span>#ダイエット</span><span>#歯・口臭</span><span>#80代以上</span><span>#副業・転職・人材</span><span>#ヘアケア</span><span>#金融</span><span>#生活暮らし</span><span>#脱毛</span><span>#体型別</span><span>#カップル</span><span>その他30以上！</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
 
 <!-- HIDDEN: 導入後のサポートセクション（将来再表示用） -->
 <section class="support-section sec" style="display:none">
@@ -1507,6 +1507,24 @@ ul { list-style: none; }
             <label>お問い合わせ内容</label>
             <textarea name="message" placeholder="ご質問やご要望をご記入ください"></textarea>
           </div>
+          <div class="form-group">
+            <label>本サービスを知ったきっかけ</label>
+            <select name="referral">
+              <option value="">選択してください</option>
+              <option value="検索エンジン (Google / Yahoo! 等)">検索エンジン (Google / Yahoo! 等)</option>
+              <option value="SNS (X / Instagram / TikTok 等)">SNS (X / Instagram / TikTok 等)</option>
+              <option value="知人・紹介">知人・紹介</option>
+              <option value="メディア記事">メディア記事</option>
+              <option value="イベント・セミナー">イベント・セミナー</option>
+              <option value="広告">広告</option>
+              <option value="メールマガジン">メールマガジン</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="form-group is-hidden" data-referral-other>
+            <label>その他の場合は具体的にご記入ください</label>
+            <input type="text" name="referralOther" placeholder="例: 取引先からの紹介">
+          </div>
           <button type="submit" class="form-submit">送信する</button>
         </form>
         <div class="form-success" id="contactSuccess">
@@ -1547,6 +1565,24 @@ ul { list-style: none; }
             <label>電話番号<span class="req">*</span></label>
             <input type="tel" name="phone" required pattern="^[0-9\-\+\(\)\s]{8,15}$" placeholder="03-1234-5678">
             <div class="form-error">正しい電話番号を入力してください（例: 03-1234-5678）</div>
+          </div>
+          <div class="form-group">
+            <label>本サービスを知ったきっかけ</label>
+            <select name="referral">
+              <option value="">選択してください</option>
+              <option value="検索エンジン (Google / Yahoo! 等)">検索エンジン (Google / Yahoo! 等)</option>
+              <option value="SNS (X / Instagram / TikTok 等)">SNS (X / Instagram / TikTok 等)</option>
+              <option value="知人・紹介">知人・紹介</option>
+              <option value="メディア記事">メディア記事</option>
+              <option value="イベント・セミナー">イベント・セミナー</option>
+              <option value="広告">広告</option>
+              <option value="メールマガジン">メールマガジン</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="form-group is-hidden" data-referral-other>
+            <label>その他の場合は具体的にご記入ください</label>
+            <input type="text" name="referralOther" placeholder="例: 取引先からの紹介">
           </div>
           <button type="submit" class="form-submit">資料をダウンロードする</button>
         </form>
@@ -1647,12 +1683,34 @@ document.querySelectorAll('#contactForm [required], #downloadForm [required]').f
   input.addEventListener('input',()=>input.closest('.form-group').classList.remove('has-error'));
 });
 
+/* Referral select toggle (show "other" textbox) */
+function setupReferralToggle(formId){
+  const form=document.getElementById(formId);
+  if(!form)return;
+  const sel=form.querySelector('select[name="referral"]');
+  const otherGroup=form.querySelector('[data-referral-other]');
+  if(!sel||!otherGroup)return;
+  sel.addEventListener('change',()=>{
+    if(sel.value==='other'){otherGroup.classList.remove('is-hidden');}
+    else{otherGroup.classList.add('is-hidden');otherGroup.querySelector('input').value='';}
+  });
+}
+setupReferralToggle('contactForm');
+setupReferralToggle('downloadForm');
+
+/* Resolve referral value (replace "other" with free-text content) */
+function resolveReferral(fd){
+  const v=fd.get('referral')||'';
+  if(v==='other'){return (fd.get('referralOther')||'').trim()||'その他';}
+  return v;
+}
+
 /* Contact & Download Forms */
 document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
   if(!validateForm(this))return;
   const fd=new FormData(this);
-  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),message:fd.get('message')})}).catch(()=>{});
+  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),message:fd.get('message'),referral:resolveReferral(fd)})}).catch(()=>{});
   this.style.display='none';
   document.getElementById('contactSuccess').classList.add('show');
 });
@@ -1660,7 +1718,7 @@ document.getElementById('downloadForm').addEventListener('submit',function(e){
   e.preventDefault();
   if(!validateForm(this))return;
   const fd=new FormData(this);
-  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'download',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')})}).catch(()=>{});
+  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'download',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),referral:resolveReferral(fd)})}).catch(()=>{});
   this.style.display='none';
   document.getElementById('downloadSuccess').classList.add('show');
   document.getElementById('downloadLink').classList.add('show');
