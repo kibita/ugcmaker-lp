@@ -64,7 +64,12 @@ export default async function handler(req, res) {
     const slackRes = await fetch(SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: fallbackText, blocks }),
+      body: JSON.stringify({
+        text: fallbackText,
+        attachments: [
+          { color: '#2563eb', blocks },
+        ],
+      }),
     });
 
     if (!slackRes.ok) {
