@@ -23,27 +23,40 @@ export default async function handler(req, res) {
   try {
     const { type, company, name, email, phone, message, referral } = req.body;
 
-    let slackText;
+    const nowJst = new Date().toLocaleString('ja-JP', {
+      timeZone: 'Asia/Tokyo',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+    });
+
+    const dash = '—';
+    const field = (label, value) => ({ type: 'mrkdwn', text: `*${label}*\n${value || dash}` });
+
+    let headerText, fallbackText, blocks;
+
     if (type === 'contact') {
-      slackText = [
-        ':postbox: *HPからお問い合わせがありました* :postbox:',
-        '------------------------------------------------',
-        `*会社名：* ${company}`,
-        `*お名前：* ${name}`,
-        `*メールアドレス：* ${email}`,
-        message ? `*お問い合わせ内容：*\n${message}` : '',
-        referral ? `*知ったきっかけ：* ${referral}` : '',
-      ].filter(Boolean).join('\n');
+      headerText = '📮 HPからお問い合わせがありました 📮';
+      fallbackText = `お問い合わせ: ${company} / ${name}`;
+      blocks = [
+        { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
+        { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
+        { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('知ったきっかけ', referral) ] },
+      ];
+      if (message) {
+        blocks.push({ type: 'divider' });
+        blocks.push({ type: 'section', text: { type: 'mrkdwn', text: `*お問い合わせ内容*\n>>>${message}` } });
+      }
+      blocks.push({ type: 'context', elements: [ { type: 'mrkdwn', text: `🕒 受信日時: ${nowJst} (JST)　|　🌐 service.ugcmaker.jp` } ] });
     } else if (type === 'download') {
-      slackText = [
-        ':postbox: *HPから資料のダウンロード依頼がありました* :postbox:',
-        '------------------------------------------------',
-        `*会社名：* ${company}`,
-        `*お名前：* ${name}`,
-        `*メールアドレス：* ${email}`,
-        phone ? `*電話番号：* ${phone}` : '',
-        referral ? `*知ったきっかけ：* ${referral}` : '',
-      ].filter(Boolean).join('\n');
+      headerText = '📥 HPから資料のダウンロード依頼がありました 📥';
+      fallbackText = `資料DL: ${company} / ${name}`;
+      blocks = [
+        { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
+        { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
+        { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
+        { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
+        { type: 'context', elements: [ { type: 'mrkdwn', text: `🕒 受信日時: ${nowJst} (JST)　|　🌐 service.ugcmaker.jp` } ] },
+      ];
     } else {
       return res.status(400).json({ error: 'Invalid type' });
     }
@@ -51,7 +64,7 @@ export default async function handler(req, res) {
     const slackRes = await fetch(SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: slackText }),
+      body: JSON.stringify({ text: fallbackText, blocks }),
     });
 
     if (!slackRes.ok) {
