@@ -1663,6 +1663,40 @@ mm.addEventListener('click',()=>{open=!open;if(open){nv.style.cssText='display:f
 nv.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{if(open){open=false;nv.removeAttribute('style');}});});
 
 
+/* Blocked email domains (free webmail / disposable / mobile carriers) */
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  'gmail.com','googlemail.com',
+  'yahoo.com','yahoo.co.jp','yahoo.ne.jp','ymail.com','rocketmail.com',
+  'hotmail.com','hotmail.co.jp','hotmail.co.uk',
+  'outlook.com','outlook.jp','outlook.co.jp',
+  'live.com','live.jp','msn.com',
+  'icloud.com','me.com','mac.com',
+  'aol.com',
+  'nifty.com','nifty.ne.jp',
+  'biglobe.ne.jp','biglobe.jp',
+  'so-net.ne.jp','so-net.jp',
+  'ocn.ne.jp','plala.or.jp','plala.ne.jp',
+  'goo.ne.jp','excite.co.jp',
+  'dion.ne.jp','dti.ne.jp','zaq.ne.jp',
+  'docomo.ne.jp','au.com','ezweb.ne.jp',
+  'softbank.ne.jp','i.softbank.jp','ai.softbank.jp',
+  'vodafone.ne.jp','kddi.com',
+  'protonmail.com','proton.me',
+  'tutanota.com','tutanota.de',
+  'gmx.com','gmx.de','gmx.net',
+  'mail.ru','yandex.ru','yandex.com',
+  'duck.com',
+  'mailinator.com','10minutemail.com','temp-mail.org',
+  'guerrillamail.com','throwawaymail.com','maildrop.cc',
+  'sharklasers.com','spam4.me','yopmail.com','getairmail.com','mintemail.com',
+  'qq.com','163.com','126.com','sina.com','sina.cn','139.com','189.cn',
+  'web.de','mail.de','t-online.de',
+]);
+function isBlockedEmail(v){
+  const m=String(v||'').toLowerCase().match(/@([^\s@]+)$/);
+  return !!(m && BLOCKED_EMAIL_DOMAINS.has(m[1]));
+}
+
 /* Form Validation */
 function validateForm(form){
   let valid=true;
@@ -1674,7 +1708,20 @@ function validateForm(form){
     if(input.name==='company'&&v.length<2){valid=false;g.classList.add('has-error');return;}
     if(input.name==='name'&&v.length<2){valid=false;g.classList.add('has-error');return;}
     if(input.name==='message'&&v.length<5){valid=false;g.classList.add('has-error');return;}
-    if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){valid=false;g.classList.add('has-error');return;}
+    if(input.type==='email'){
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+        valid=false;
+        const err=g.querySelector('.form-error');
+        if(err)err.textContent='正しいメールアドレスを入力してください';
+        g.classList.add('has-error');return;
+      }
+      if(isBlockedEmail(v)){
+        valid=false;
+        const err=g.querySelector('.form-error');
+        if(err)err.textContent='会社ドメインのメールアドレスをご入力ください（フリーメール・キャリアメール不可）';
+        g.classList.add('has-error');return;
+      }
+    }
     if(input.type==='tel'&&input.pattern&&!new RegExp(input.pattern).test(v)){valid=false;g.classList.add('has-error');return;}
   });
   return valid;

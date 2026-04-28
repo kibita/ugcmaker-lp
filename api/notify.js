@@ -1,3 +1,36 @@
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  'gmail.com','googlemail.com',
+  'yahoo.com','yahoo.co.jp','yahoo.ne.jp','ymail.com','rocketmail.com',
+  'hotmail.com','hotmail.co.jp','hotmail.co.uk',
+  'outlook.com','outlook.jp','outlook.co.jp',
+  'live.com','live.jp','msn.com',
+  'icloud.com','me.com','mac.com',
+  'aol.com',
+  'nifty.com','nifty.ne.jp',
+  'biglobe.ne.jp','biglobe.jp',
+  'so-net.ne.jp','so-net.jp',
+  'ocn.ne.jp','plala.or.jp','plala.ne.jp',
+  'goo.ne.jp','excite.co.jp',
+  'dion.ne.jp','dti.ne.jp','zaq.ne.jp',
+  'docomo.ne.jp','au.com','ezweb.ne.jp',
+  'softbank.ne.jp','i.softbank.jp','ai.softbank.jp',
+  'vodafone.ne.jp','kddi.com',
+  'protonmail.com','proton.me',
+  'tutanota.com','tutanota.de',
+  'gmx.com','gmx.de','gmx.net',
+  'mail.ru','yandex.ru','yandex.com',
+  'duck.com',
+  'mailinator.com','10minutemail.com','temp-mail.org',
+  'guerrillamail.com','throwawaymail.com','maildrop.cc',
+  'sharklasers.com','spam4.me','yopmail.com','getairmail.com','mintemail.com',
+  'qq.com','163.com','126.com','sina.com','sina.cn','139.com','189.cn',
+  'web.de','mail.de','t-online.de',
+]);
+function isBlockedEmail(v) {
+  const m = String(v || '').toLowerCase().match(/@([^\s@]+)$/);
+  return !!(m && BLOCKED_EMAIL_DOMAINS.has(m[1]));
+}
+
 export default async function handler(req, res) {
   const allowedOrigins = ['https://corp.ugcmaker.jp', 'https://service.ugcmaker.jp'];
   const origin = req.headers.origin;
@@ -22,6 +55,13 @@ export default async function handler(req, res) {
 
   try {
     const { type, company, name, email, phone, message, referral } = req.body;
+
+    if (email && isBlockedEmail(email)) {
+      return res.status(400).json({
+        error: 'invalid_email_domain',
+        message: '会社ドメインのメールアドレスをご入力ください（フリーメール・キャリアメール不可）',
+      });
+    }
 
     const nowJst = new Date().toLocaleString('ja-JP', {
       timeZone: 'Asia/Tokyo',
