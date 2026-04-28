@@ -572,6 +572,7 @@ ul { list-style: none; }
 .form-group label { display:block; font-size:0.88rem; font-weight:700; color:var(--gray-700); margin-bottom:0.4rem; text-align:left; }
 .form-group label .req { color:#e53e3e; margin-left:0.3rem; font-size:0.8rem; }
 .form-error { display:none; font-size:0.82rem; color:#e53e3e; margin-top:0.3rem; text-align:left; }
+.form-hint { font-size:0.78rem; color:var(--gray-500,#6b7280); margin-top:0.35rem; text-align:left; line-height:1.55; }
 .form-group.has-error input, .form-group.has-error textarea { border-color:#e53e3e; }
 .form-group.has-error .form-error { display:block; }
 .form-group input, .form-group textarea, .form-group select { width:100%; padding:0.8rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:0.95rem; font-family:var(--font-body); background:#fff; transition:border-color 0.2s; box-sizing:border-box; }
@@ -1502,6 +1503,7 @@ ul { list-style: none; }
             <label>メールアドレス<span class="req">*</span></label>
             <input type="email" name="email" required placeholder="example@company.com">
             <div class="form-error">正しいメールアドレスを入力してください</div>
+            <p class="form-hint">※会社ドメインのメールアドレスをご入力ください。Gmail / Yahoo!メール / iCloud / docomo など、フリーメール・キャリアメールはご利用いただけません。</p>
           </div>
           <div class="form-group">
             <label>お問い合わせ内容</label>
@@ -1560,6 +1562,7 @@ ul { list-style: none; }
             <label>メールアドレス<span class="req">*</span></label>
             <input type="email" name="email" required placeholder="example@company.com">
             <div class="form-error">正しいメールアドレスを入力してください</div>
+            <p class="form-hint">※会社ドメインのメールアドレスをご入力ください。Gmail / Yahoo!メール / iCloud / docomo など、フリーメール・キャリアメールはご利用いただけません。</p>
           </div>
           <div class="form-group">
             <label>電話番号<span class="req">*</span></label>
@@ -1728,6 +1731,25 @@ function validateForm(form){
 }
 document.querySelectorAll('#contactForm [required], #downloadForm [required]').forEach(input=>{
   input.addEventListener('input',()=>input.closest('.form-group').classList.remove('has-error'));
+});
+
+/* Live email validation: blur時にフォーマット&ドメインNGをすぐ表示 */
+document.querySelectorAll('#contactForm input[type="email"], #downloadForm input[type="email"]').forEach(input=>{
+  input.addEventListener('blur',()=>{
+    const v=input.value.trim();
+    if(!v)return;
+    const g=input.closest('.form-group');
+    const err=g.querySelector('.form-error');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+      if(err)err.textContent='正しいメールアドレスを入力してください';
+      g.classList.add('has-error');return;
+    }
+    if(isBlockedEmail(v)){
+      if(err)err.textContent='会社ドメインのメールアドレスをご入力ください（フリーメール・キャリアメール不可）';
+      g.classList.add('has-error');return;
+    }
+    g.classList.remove('has-error');
+  });
 });
 
 /* Referral select toggle (show "other" textbox) */
