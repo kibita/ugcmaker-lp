@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- OGP -->
-    <meta property="og:title" content="UGC Maker | AIでUGC動画広告を大量生成">
-    <meta property="og:description" content="撮影・編集は完全不要。AIが数分でUGC動画広告を生成。">
+    <meta property="og:title" content="UGC Maker | AIで動画広告を大量生成">
+    <meta property="og:description" content="撮影・編集は完全不要。AIが数分で動画広告を生成。">
     <meta property="og:image" content="https://service.ugcmaker.jp/ugcmaker-og-1200x630.jpg?v=2">
     <meta property="og:url" content="https://service.ugcmaker.jp">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="UGC Maker">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="UGC Maker | AIでUGC動画広告を大量生成">
-    <meta name="twitter:description" content="撮影・編集は完全不要。AIが数分でUGC動画広告を生成。">
+    <meta name="twitter:title" content="UGC Maker | AIで動画広告を大量生成">
+    <meta name="twitter:description" content="撮影・編集は完全不要。AIが数分で動画広告を生成。">
     <meta name="twitter:image" content="https://service.ugcmaker.jp/ugcmaker-og-1200x630.jpg?v=2">
-<title>UGC Maker | AIでUGC動画広告を数分で大量生成</title>
+<title>UGC Maker | AIで動画広告を数分で大量生成</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+QGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9TnVuaXRvK1NhbnM6d2dodEA5MDAmYW1wO2Rpc3BsYXk9c3dhcCcpOzwvc3R5bGU+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiByeD0iMjgiIGZpbGw9IiMwMDAiLz4KICA8dGV4dCB4PSI2NCIgeT0iNzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSInTnVuaXRvIFNhbnMnLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iODIiIGZpbGw9IiNmZmYiPlU8L3RleHQ+Cjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -28,8 +28,17 @@
   --gray-300: #bbb;
   --gray-200: #ddd;
   --gray-100: #f0f0f0;
-  --gray-50: #f7f7f7;
+  --gray-50: #F9F9F9;
   --white: #ffffff;
+  /* kashika-inspired palette */
+  --primary-blue: #007aff;
+  --primary-blue-hover: #185abc;
+  --primary-blue-soft: #e8f0fe;
+  --text-main: #333;
+  --text-strong: #1d1d1f;
+  --text-sub: #a5a4a1;
+  --accent-yellow: #f1bf42;
+  --shadow-btn-hover: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
   --font-display: 'Nunito Sans', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
 }
@@ -47,21 +56,22 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
 @keyframes fadeInUp { from { opacity:0; transform:translateY(35px); } to { opacity:1; transform:translateY(0); } }
-@keyframes scrollX { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
 .anim { opacity:0; transform:translateY(35px); transition: opacity 0.65s cubic-bezier(.23,1,.32,1), transform 0.65s cubic-bezier(.23,1,.32,1); }
 .anim.visible { opacity:1; transform:translateY(0); }
 
 /* Header */
-.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,30,30,0.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,0.06); transition:background 0.3s; }
-.header.scrolled { background:rgba(30,30,30,0.75); }
-.header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.85rem 2rem; }
-.logo-img { height:52px; }
-.logo-img text { fill:#ffffff; }
-.nav { display:flex; align-items:center; gap:2rem; }
-.nav a { font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.7); transition:color 0.2s; }
-.nav a:hover { color:#fff; }
-.nav-cta { background:rgba(255,255,255,0.12)!important; color:#fff!important; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.88rem!important; font-weight:700!important; transition:background 0.2s, transform 0.2s; border:1px solid rgba(255,255,255,0.15); }
-.nav-cta:hover { background:rgba(255,255,255,0.2)!important; transform:translateY(-1px); }
+.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; }
+.header.scrolled { background:rgba(255,255,255,0.95); }
+.header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 2rem; }
+.logo-img { height:56px; }
+.logo-img text { fill:#1A1A1A; }
+.nav { display:flex; align-items:center; gap:1.5rem; }
+.nav a { font-size:0.92rem; font-weight:600; color:rgba(0,0,0,0.85); transition:color 0.2s; letter-spacing:0.02em; }
+.nav a:hover { color:#000; }
+.nav-cta { padding:0.75rem 1.8rem; border-radius:8px; font-weight:700!important; transition:background 0.2s, transform 0.2s; }
+.nav-cta-secondary { display:inline-flex !important; align-items:center !important; justify-content:center !important; background:#fff !important; color:var(--primary-blue) !important; padding:0 20px !important; height:44px !important; border:2px solid var(--primary-blue) !important; border-radius:5px !important; font-size:13px !important; font-weight:700 !important; text-decoration:none !important; transition:background 0.2s ease-in-out, color 0.2s ease-in-out !important; letter-spacing:0.02em !important; }
+.nav-cta-secondary:hover { background:var(--primary-blue) !important; color:#fff !important; }
+.nav-cta-secondary + .nav-cta { margin-left:-0.7rem; }
 
 /* Language Switch */
 
@@ -74,46 +84,49 @@ ul { list-style: none; }
 .float-cta-badge-dot { width:6px; height:6px; border-radius:50%; background:#4ade80; animation:pulse-dot 2s infinite; }
 @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 .float-cta-text { text-align:center; }
-.float-cta-title { font-size:1.2rem; font-weight:800; color:var(--white); line-height:1.4; }
-.float-cta-sub { font-size:0.88rem; color:rgba(255,255,255,0.6); margin-top:0.4rem; line-height:1.6; }
-.float-cta-btn { display:block; width:100%; text-align:center; background:linear-gradient(to top, #1A1A1A, #333); color:var(--white); padding:0.85rem 1.8rem; border-radius:12px; font-size:0.95rem; font-weight:800; transition:opacity 0.2s, transform 0.15s; }
-.float-cta-btn:hover { opacity:0.9; transform:translateY(-1px); }
+.float-cta-title { font-size:1.2rem; font-weight:700; letter-spacing:0.04em; color:var(--white); line-height:1.55; }
+.float-cta-sub { font-size:0.88rem; color:rgba(255,255,255,0.6); margin-top:0.4rem; line-height:1.8; }
+.float-cta-btn { display:block; width:100%; text-align:center; background:#fff; color:var(--black); padding:0.85rem 1.8rem; border-radius:12px; font-size:0.95rem; font-weight:800; transition:background 0.2s, transform 0.15s; }
+.float-cta-btn:hover { background:rgba(255,255,255,0.88); transform:translateY(-1px); }
 .float-cta-meta { font-size:0.88rem; color:rgba(255,255,255,0.55); letter-spacing:0.02em; }
-.mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
+.mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#1A1A1A; }
 
 /* Shared */
-.sec { padding:7rem 2rem; }
-.sec-inner { max-width:1100px; margin:0 auto; }
-.sec-label { display:inline-block; font-size:0.88rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray-500); margin-bottom:0.8rem; }
-.sec-title { font-family:var(--font-body); font-size:2.5rem; font-weight:900; line-height:1.4; color:var(--black); margin-bottom:0.6rem; }
-.sec-sub { color:var(--gray-500); font-size:1.05rem; margin-bottom:3.5rem; }
+.sec { padding:6.4vw 7vw; }
+.sec-inner { max-width:1280px; margin:0 auto; }
+@media(max-width:800px){ .sec { padding:3.5rem 6vw; } }
+.sec-label { display:none; }
+.sec-title { font-family:var(--font-body); font-size:clamp(2rem, 3.5vw, 4rem); font-weight:700; line-height:1.5; letter-spacing:0.04em; color:var(--black); margin-bottom:0.8rem; }
+.sec-title .sec-title-num { font-family:var(--font-display); font-weight:900; font-size:1.4em; color:var(--primary-blue); letter-spacing:-0.02em; display:inline-block; vertical-align:baseline; margin:0 0.05em; line-height:1; }
+.sec-title .sec-title-unit { color:var(--primary-blue); font-weight:900; margin-right:0.1em; }
+.sec-sub { color:var(--gray-500); font-size:clamp(0.95rem, 1.15vw, 1.2rem); margin-bottom:3rem; line-height:1.8; }
 .sec-center { text-align:center; }
 
 /* Hero */
-.hero { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #2a2a2a 100%); color:var(--white); padding:8rem 2rem 4.5rem; margin-top:56px; position:relative; overflow:hidden; }
+.hero { background:#fff; color:var(--black); padding:12rem 7vw 4.5rem; position:relative; overflow:hidden; }
 .hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
 .hero-left { animation:fadeInUp 0.7s ease forwards; }
 .hero-ctas { display:flex; flex-direction:column; gap:0.8rem; align-items:flex-start; }
-.hero-cta-deco { font-size:0.95rem; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.08em; }
+.hero-cta-deco { font-size:0.95rem; font-weight:700; color:rgba(0,0,0,0.7); letter-spacing:0.08em; }
 .hero-dl-btn { display:none; text-decoration:none; }
-.hero-dl-sub { font-size:0.75rem; color:rgba(255,255,255,0.5); }
-.hero-dl-main { font-size:0.95rem; font-weight:700; color:#fff; }
-.campaign-banner { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:0.9rem 1.3rem; margin-bottom:2rem; font-size:0.92rem; line-height:1.6; color:rgba(255,255,255,0.8); }
-.campaign-banner .hl { display:inline-block; background:var(--white); color:var(--black); padding:0.1rem 0.5rem; border-radius:4px; font-weight:700; margin:0 0.1rem; }
-.hero-h1 { font-family:var(--font-body); font-size:3rem; font-weight:900; line-height:1.6; margin-bottom:0.6rem; }
+.hero-dl-sub { font-size:0.75rem; color:rgba(0,0,0,0.55); }
+.hero-dl-main { font-size:0.95rem; font-weight:700; color:var(--black); }
+.campaign-banner { background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.08); border-radius:10px; padding:0.9rem 1.3rem; margin-bottom:2rem; font-size:0.92rem; line-height:1.6; color:rgba(0,0,0,0.78); }
+.campaign-banner .hl { display:inline-block; background:var(--black); color:var(--white); padding:0.1rem 0.5rem; border-radius:4px; font-weight:700; margin:0 0.1rem; }
+.hero-h1 { font-family:var(--font-body); font-size:3rem; font-weight:900; line-height:1.6; margin-bottom:0.6rem; color:var(--black); }
 .hero-h1 .big { font-size:3.8rem; }
-.hero-h1 .box { display:inline-block; background:var(--white); color:var(--black); padding:0.15rem 0.65rem; border-radius:6px; font-size:2.6rem; }
+.hero-h1 .box { display:inline-block; background:var(--black); color:var(--white); padding:0.15rem 0.65rem; border-radius:6px; font-size:2.6rem; }
 .hero-note { font-size:0.88rem; color:var(--gray-500); margin-bottom:1.5rem; }
-.hero-sub { font-size:1.1rem; color:rgba(255,255,255,0.7); margin-bottom:1.5rem; line-height:1.8; }
+.hero-sub { font-size:1.1rem; color:rgba(0,0,0,0.7); margin-bottom:1.5rem; line-height:1.8; }
 .hero-checks { margin-bottom:1.5rem; display:flex; flex-direction:column; gap:0.4rem; }
-.hero-check { font-size:1rem; color:rgba(255,255,255,0.9); font-weight:600; }
-.btn-primary { display:inline-flex; align-items:center; gap:0.6rem; background:var(--white); color:var(--black); padding:1rem 4.5rem; border-radius:10px; font-weight:800; font-size:1rem; border:none; cursor:pointer; font-family:var(--font-body); position:relative; overflow:hidden; z-index:1; transition:color 0.8s; }
-.btn-primary::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:var(--black); z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
-.btn-primary:hover { color:var(--white); }
+.hero-check { font-size:1rem; color:rgba(0,0,0,0.85); font-weight:600; }
+.btn-primary { display:inline-flex; align-items:center; gap:0.6rem; background:var(--black); color:var(--white); padding:1rem 4.5rem; border-radius:10px; font-weight:800; font-size:1rem; border:none; cursor:pointer; font-family:var(--font-body); position:relative; overflow:hidden; z-index:1; transition:color 0.8s; }
+.btn-primary::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.btn-primary:hover { color:var(--black); }
 .btn-primary:hover::before { width:100%; }
 .hero-tags { margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.4rem; }
-.hero-tags span { font-size:0.88rem; color:var(--gray-500); background:rgba(255,255,255,0.06); padding:0.2rem 0.6rem; border-radius:20px; }
-.hero-tags .label { color:var(--white); font-weight:700; font-size:0.8rem; background:none; padding:0; }
+.hero-tags span { font-size:0.88rem; color:var(--gray-700); background:rgba(0,0,0,0.05); padding:0.2rem 0.6rem; border-radius:20px; }
+.hero-tags .label { color:var(--black); font-weight:700; font-size:0.8rem; background:none; padding:0; }
 
 .ugc-grid-wrap { overflow:hidden; }
 .ugc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.6rem; animation:fadeInUp 0.8s ease 0.25s forwards; opacity:0; }
@@ -122,11 +135,6 @@ ul { list-style: none; }
 .ugc-grid .ugc-card:nth-child(n+9) { display:none; }
 .ugc-label .ck { color:#6fcf7c; }
 
-/* Scroll Tags */
-.scroll-tags { background:var(--black-soft); padding:1rem 0; overflow:hidden; }
-.scroll-tags-track { display:flex; gap:2.5rem; white-space:nowrap; width:max-content; animation:scrollX 30s linear infinite; }
-.scroll-tags-track span { color:var(--gray-500); font-size:0.92rem; font-weight:500; }
-
 /* Trust */
 .trust { background:var(--gray-50); }
 
@@ -134,12 +142,12 @@ ul { list-style: none; }
 .demo-section { background:var(--white); }
 
 /* AI Features */
-.ai-features { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); }
-.aif-hero { display:grid; grid-template-columns:1fr 1fr; gap:2rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:3rem; margin-bottom:1.5rem; }
-.aif-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:900; margin-bottom:0.8rem; }
-.aif-hero-desc { font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem; }
-.aif-btn { display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.92rem; font-weight:700; transition:background 0.2s; }
-.aif-btn:hover { background:rgba(255,255,255,0.18); }
+.ai-features { background:var(--white); color:var(--black); }
+.aif-hero { display:grid; grid-template-columns:1fr 1fr; gap:2rem; background:#fafafa; border:1px solid rgba(0,0,0,0.08); border-radius:16px; padding:3rem; margin-bottom:1.5rem; }
+.aif-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.8rem; }
+.aif-hero-desc { font-size:0.95rem; color:rgba(0,0,0,0.7); line-height:1.8; margin-bottom:1.5rem; }
+.aif-btn { display:inline-block; background:var(--black); border:1px solid var(--black); color:#fff; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.92rem; font-weight:700; transition:background 0.2s; }
+.aif-btn:hover { background:#333; }
 .aif-avatar-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; }
 .aif-avatar { aspect-ratio:9/16; border-radius:10px; position:relative; overflow:hidden; }
 .aif-avatar:nth-child(1) { background:linear-gradient(145deg, #667eea, #764ba2); }
@@ -155,8 +163,8 @@ ul { list-style: none; }
 .aif-avatar-img::before, .aif-avatar-img::after { display:none; }
 
 .aif-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; margin-bottom:1.5rem; }
-.aif-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:1.8rem; }
-.aif-card-visual { aspect-ratio:16/10; background:rgba(255,255,255,0.03); border-radius:10px; margin-bottom:1.2rem; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.aif-card { background:#fafafa; border:1px solid rgba(0,0,0,0.08); border-radius:16px; padding:1.8rem; }
+.aif-card-visual { aspect-ratio:16/10; background:#f0f0f0; border-radius:10px; margin-bottom:1.2rem; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
 .aif-card-placeholder { display:flex; gap:0.6rem; }
 .aif-mini-avatar { width:80px; height:110px; border-radius:8px; position:relative; overflow:hidden; }
 .aif-mini-avatar:nth-child(1) { background:linear-gradient(145deg, #f6d365, #fda085); }
@@ -164,9 +172,9 @@ ul { list-style: none; }
 .aif-mini-avatar::before { content:''; position:absolute; bottom:45%; left:50%; transform:translateX(-50%); width:35%; height:25%; background:rgba(255,255,255,0.25); border-radius:50%; }
 .aif-mini-avatar::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60%; height:40%; background:rgba(255,255,255,0.15); border-radius:50% 50% 0 0; }
 .lang-visual { gap:1rem; font-size:1.5rem; }
-.aif-soon { position:absolute; top:0.8rem; right:0.8rem; background:rgba(255,255,255,0.12); padding:0.15rem 0.6rem; border-radius:4px; font-size:0.88rem; font-weight:700; }
-.aif-card-title { font-size:1.15rem; font-weight:800; margin-bottom:0.4rem; }
-.aif-card-desc { font-size:0.95rem; color:rgba(255,255,255,0.6); line-height:1.7; }
+.aif-soon { position:absolute; top:0.8rem; right:0.8rem; background:rgba(0,0,0,0.08); padding:0.15rem 0.6rem; border-radius:4px; font-size:0.88rem; font-weight:700; }
+.aif-card-title { font-size:1.15rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.4rem; }
+.aif-card-desc { font-size:0.95rem; color:rgba(0,0,0,0.6); line-height:1.7; }
 
 /* Mass Production */
 .mass-section { background:var(--gray-50); }
@@ -179,7 +187,7 @@ ul { list-style: none; }
 
 .mass-detail { background:var(--black); border-radius:16px; padding:3rem; }
 .mass-detail-inner { max-width:900px; margin:0 auto; }
-.mass-detail-title { font-family:var(--font-body); font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:2rem; text-align:center; }
+.mass-detail-title { font-family:var(--font-body); font-size:1.5rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; color:#fff; margin-bottom:2rem; text-align:center; }
 .mass-detail-content { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
 .mass-detail-item { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; }
 .mass-detail-head { font-size:1rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
@@ -195,10 +203,23 @@ ul { list-style: none; }
 .trust-logo-item:hover { }
 
 /* Problems */
-.problems-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
-.problem-card { background:linear-gradient(145deg, #0a0a0a 0%, #1f1f1f 100%); color:var(--white); padding:2.5rem 2rem; border-radius:16px; position:relative; overflow:hidden; min-height:200px; display:flex; flex-direction:column; justify-content:center; text-align:center; }
-.problem-card-title { font-size:1.2rem; font-weight:800; line-height:1.7; margin-bottom:1.2rem; }
-.problem-card-desc { font-size:0.95rem; color:rgba(255,255,255,0.6); line-height:1.8; font-weight:400; }
+.problems-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
+.problem-card { background:var(--white); color:var(--black); padding:2.2rem 1.4rem; border-radius:16px; position:relative; overflow:hidden; min-height:240px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 20px rgba(0,0,0,0.04); }
+.problem-card-icon { margin-bottom:1.1rem; line-height:1; height:110px; display:flex; align-items:center; justify-content:center; }
+.problem-card-icon img { max-height:100%; max-width:100%; object-fit:contain; }
+.problem-card-title { font-size:1.05rem; font-weight:700; letter-spacing:0.04em; line-height:1.6; margin-bottom:0.8rem; color:var(--black); }
+.problem-card-desc { font-size:0.9rem; color:rgba(0,0,0,0.65); line-height:1.8; font-weight:400; }
+.problems-solution { margin-top:4rem; }
+.problems-solution-msg { font-size:2.2rem; font-weight:800; color:var(--black); line-height:1.6; margin-bottom:2rem; letter-spacing:0.04em; }
+.problems-solution-msg em { background:linear-gradient(transparent 65%, #ffe066 65%); font-style:normal; padding:0 0.2rem; }
+.problems-solution-logo { font-family:'Nunito Sans', sans-serif; font-weight:900; font-size:1.05em; letter-spacing:-0.04em; color:#1A1A1A; margin:0 0.15em; }
+@media(max-width:767px){ .problems-solution-msg { font-size:1.5rem; } }
+.problems-solution-cta { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 3rem; border-radius:10px; font-weight:800; font-size:1rem; text-decoration:none; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; border:1px solid var(--black); }
+.problems-solution-cta::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.problems-solution-cta:hover { color:var(--black); }
+.problems-solution-cta:hover::before { width:100%; }
+@media(max-width:900px){ .problems-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:600px){ .problems-grid { grid-template-columns:1fr; } .problems-solution-msg { font-size:1.2rem; } }
 
 /* Pricing */
 .pricing { background:var(--gray-50); }
@@ -207,21 +228,21 @@ ul { list-style: none; }
 .compare-table-sec { background:#f7f7f7; padding-bottom:2rem; }
 .stores-compare { display:grid; grid-template-columns:160px 1.4fr 1fr 1fr 1fr; margin-top:2.5rem; position:relative; padding-bottom:0; }
 .sc-corner { }
-.sc-brand-head { background:#2563eb; color:var(--white); font-size:1.2rem; font-weight:900; text-align:center; padding:2.2rem 1.5rem; border-radius:16px 16px 0 0; line-height:1.4; border-left:3px solid #2563eb; border-right:3px solid #2563eb; border-top:3px solid #2563eb; }
+.sc-brand-head { background:#007aff; color:var(--white); font-size:1.2rem; font-weight:900; text-align:center; padding:2.2rem 1.5rem; border-radius:16px 16px 0 0; line-height:1.4; border-left:3px solid #007aff; border-right:3px solid #007aff; border-top:3px solid #007aff; }
 .sc-comp-head { background:#666; color:var(--white); font-size:0.92rem; font-weight:700; text-align:center; padding:1.3rem 1rem; border-radius:12px 12px 0 0; margin-left:6px; align-self:end; }
 .sc-row-label { background:#f8f8f8; padding:0 1.4rem; font-size:0.9rem; font-weight:700; color:var(--gray-900); display:flex; align-items:center; border-bottom:1px solid #eee; min-height:110px; }
-.sc-row-brand { background:var(--white); padding:1.2rem 1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem; min-height:110px; border-left:3px solid #2563eb; border-right:3px solid #2563eb; border-bottom:1px solid rgba(37,99,235,0.12); }
+.sc-row-brand { background:var(--white); padding:1.2rem 1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem; min-height:110px; border-left:3px solid #007aff; border-right:3px solid #007aff; border-bottom:1px solid rgba(37,99,235,0.12); }
 .sc-row-brand-val { font-size:1.7rem; font-weight:900; color:#1e293b; line-height:1.2; }
 .sc-row-brand-val small { font-size:0.92rem; font-weight:500; }
-.sc-row-brand-sub { font-size:0.92rem; color:#2563eb; line-height:1.4; }
-.sc-badge { display:inline-block; background:#2563eb; color:var(--white); font-size:0.88rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:4px; }
+.sc-row-brand-sub { font-size:0.92rem; color:#007aff; line-height:1.4; }
+.sc-badge { display:inline-block; background:#007aff; color:var(--white); font-size:0.88rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:4px; }
 .sc-row-comp { background:var(--white); padding:1.2rem 1rem; text-align:center; border-bottom:1px solid #eee; margin-left:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3rem; min-height:110px; }
 .sc-row-comp-val { font-size:1.2rem; font-weight:800; color:var(--gray-800); line-height:1.2; }
 .sc-row-comp-val small { font-size:0.88rem; font-weight:500; }
 .sc-row-comp-sub { font-size:0.92rem; color:var(--gray-400); line-height:1.4; }
 .sc-row-comp-icon { font-size:1.4rem; color:var(--gray-300); line-height:1; }
-.sc-row-brand-icon { font-size:1.4rem; color:#2563eb; line-height:1; }
-.sc-last .sc-row-brand { border-radius:0 0 16px 16px; border-bottom:3px solid #2563eb; border-left:3px solid #2563eb; border-right:3px solid #2563eb; }
+.sc-row-brand-icon { font-size:1.4rem; color:#007aff; line-height:1; }
+.sc-last .sc-row-brand { border-radius:0 0 16px 16px; border-bottom:3px solid #007aff; border-left:3px solid #007aff; border-right:3px solid #007aff; }
 .sc-last .sc-row-comp { border-bottom:none; border-radius:0 0 8px 8px; }
 .sc-last .sc-row-label { border-bottom:none; border-radius:0 0 0 8px; }
 @media(max-width:768px){
@@ -246,14 +267,14 @@ ul { list-style: none; }
 .sc-slider-card { display:none; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,0.06); overflow:hidden; }
 .sc-slider-card.active { display:block; }
 .sc-slider-head { display:grid; grid-template-columns:1fr 1fr; border-radius:14px 14px 0 0; overflow:hidden; }
-.sc-slider-head-brand { background:linear-gradient(135deg, #1e40af 0%, #2563eb 100%); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:800; font-size:0.95rem; letter-spacing:0.03em; }
+.sc-slider-head-brand { background:linear-gradient(135deg, #185abc 0%, #007aff 100%); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:800; font-size:0.95rem; letter-spacing:0.03em; }
 .sc-slider-head-comp { background:var(--gray-700); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:700; font-size:0.95rem; }
 .sc-slider-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #f0f0f0; }
 .sc-slider-label { grid-column:1/-1; background:#f7f7f7; padding:0.7rem 1rem; font-size:0.8rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center; border-bottom:1px solid #eee; }
-.sc-slider-brand { background:#f0f5ff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; border-left:3px solid #2563eb; }
+.sc-slider-brand { background:#f0f5ff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; border-left:3px solid #007aff; }
 .sc-slider-comp { background:#fff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; }
 .sc-slider-val { font-size:1.2rem; font-weight:900; color:#1e293b; line-height:1.3; }
-.sc-slider-val.brand { color:#2563eb; }
+.sc-slider-val.brand { color:#007aff; }
 .sc-slider-sub { font-size:0.75rem; color:var(--gray-500); line-height:1.4; }
 .sc-slider-row:last-child { border-bottom:none; border-radius:0 0 14px 14px; overflow:hidden; }
 .sc-slider-card > .sc-slider-row:last-child .sc-slider-brand { border-radius:0 0 0 14px; }
@@ -271,14 +292,14 @@ ul { list-style: none; }
 .cost-bar-short { height:80px; }
 .cost-bar-item { display:flex; align-items:center; justify-content:center; font-size:0.92rem; font-weight:600; color:var(--gray-700); background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:0.4rem; text-align:center; }
 .cost-bar-item:last-child { border-bottom:none; }
-.cost-bar-hl { background:linear-gradient(160deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%); color:#fff; font-size:1rem; font-weight:800; border:none; height:100%; letter-spacing:0.03em; position:relative; overflow:hidden; text-shadow:0 1px 3px rgba(0,0,0,0.2); }
+.cost-bar-hl { background:linear-gradient(160deg, #185abc 0%, #007aff 50%, #007aff 100%); color:#fff; font-size:1rem; font-weight:800; border:none; height:100%; letter-spacing:0.03em; position:relative; overflow:hidden; text-shadow:0 1px 3px rgba(0,0,0,0.2); }
 .cost-bar-hl::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%); }
 .cost-bar-hl::after { content:''; position:absolute; bottom:-20px; right:-20px; width:80px; height:80px; background:rgba(255,255,255,0.06); border-radius:50%; }
-.cost-col-hl .cost-bar { border:2.5px solid #2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.15), 0 8px 24px rgba(37,99,235,0.2); border-radius:10px; }
-.cost-col-price-hl { color:#1d4ed8; font-size:1.4rem; font-weight:900; }
+.cost-col-hl .cost-bar { border:2.5px solid #007aff; box-shadow:0 0 0 4px rgba(37,99,235,0.15), 0 8px 24px rgba(37,99,235,0.2); border-radius:10px; }
+.cost-col-price-hl { color:#185abc; font-size:1.4rem; font-weight:900; }
 .cost-col-label { font-size:0.92rem; font-weight:700; margin-top:0.8rem; color:var(--gray-900); }
-.cost-saving-badge { display:flex; flex-direction:column; align-items:center; gap:0.3rem; margin-bottom:0.6rem; font-size:0.82rem; font-weight:800; color:#1d4ed8; letter-spacing:0.04em; }
-.cost-saving-circle { display:flex; align-items:baseline; justify-content:center; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#2563eb,#1d4ed8); color:#fff; font-family:var(--font-display); font-size:1.6rem; font-weight:900; line-height:64px; }
+.cost-saving-badge { display:flex; flex-direction:column; align-items:center; gap:0.3rem; margin-bottom:0.6rem; font-size:0.82rem; font-weight:800; color:#185abc; letter-spacing:0.04em; }
+.cost-saving-circle { display:flex; align-items:baseline; justify-content:center; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#007aff,#185abc); color:#fff; font-family:var(--font-display); font-size:1.6rem; font-weight:900; line-height:64px; }
 .cost-saving-pct { font-size:0.9rem; font-weight:800; }
 .cost-points { display:flex; flex-direction:column; gap:1rem; justify-content:center; }
 .cost-point { font-size:0.95rem; line-height:1.7; color:var(--gray-700); padding-left:1.2rem; position:relative; }
@@ -292,7 +313,7 @@ ul { list-style: none; }
 .plan-col-rec { background:var(--white); border:2.5px solid var(--black); border-radius:20px; z-index:2; margin:-8px -1px; box-shadow:0 8px 32px rgba(0,0,0,0.10); }
 .plan-rec-badge { position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--black); color:var(--white); padding:0.35rem 1.6rem; border-radius:20px; font-size:0.8rem; font-weight:800; white-space:nowrap; letter-spacing:0.05em; }
 .plan-head { padding:2.5rem 2rem 2rem; text-align:center; }
-.plan-name { font-family:var(--font-body); font-size:1.5rem; font-weight:900; margin-bottom:0.2rem; }
+.plan-name { font-family:var(--font-body); font-size:1.5rem; font-weight:700; letter-spacing:0.04em; margin-bottom:0.2rem; }
 .plan-for { font-size:0.88rem; color:var(--gray-500); margin-bottom:1.2rem; }
 .plan-price { font-family:var(--font-body); font-size:2.8rem; font-weight:900; color:var(--black); line-height:1.1; }
 .plan-price span { font-size:0.9rem; font-weight:600; color:var(--gray-500); }
@@ -324,14 +345,23 @@ ul { list-style: none; }
 .plan-initial-item-desc { font-size:0.92rem; color:rgba(255,255,255,0.6); line-height:1.6; padding-left:1.1rem; }
 
 /* Steps */
-.steps-cards { display:flex; align-items:stretch; gap:0; justify-content:center; }
-.step-card { text-align:center; padding:2.5rem 2rem; background:#fff; border-radius:16px; border:1px solid var(--gray-100); flex:1; max-width:320px; position:relative; }
-.step-num { display:none; }
-.step-badge { display:inline-block; font-size:0.75rem; font-weight:800; letter-spacing:0.1em; color:var(--gray-400); margin-bottom:1.2rem; font-family:var(--font-display); background:none; padding:0; border-radius:0; }
-.step-arrow-between { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:48px; color:var(--gray-300); font-size:1.6rem; font-weight:300; }
+.steps-cards { display:flex; flex-direction:column; gap:1.2rem; max-width:900px; margin:0 auto; }
+.step-card { text-align:left; padding:2rem 2.2rem 2rem 2.2rem; background:#fff; border-radius:16px; border:2px solid var(--black); position:relative; display:grid; grid-template-columns:96px 1fr; gap:1.8rem; align-items:center; max-width:none; flex:none; }
+.step-num { display:flex; position:absolute; top:0; left:1.4rem; background:var(--black); color:#fff; font-family:var(--font-display); font-size:0.92rem; font-weight:800; width:32px; height:32px; align-items:center; justify-content:center; line-height:1; }
+.step-badge { display:none; }
+.step-arrow-between { display:none; }
 .step-connector { display:none; }
-.step-title { font-size:1.05rem; font-weight:800; margin-bottom:0.7rem; line-height:1.6; color:var(--gray-900); }
-.step-desc { font-size:0.88rem; color:var(--gray-500); line-height:1.7; }
+.step-icon { line-height:1; text-align:center; height:96px; width:96px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.step-icon img, .step-icon svg { max-height:100%; max-width:100%; object-fit:contain; }
+.step-body { display:flex; flex-direction:column; }
+.step-title { font-size:1.2rem; font-weight:700; letter-spacing:0.04em; margin-bottom:0.5rem; line-height:1.55; color:var(--gray-900); }
+.step-desc { font-size:0.92rem; color:var(--gray-600); line-height:1.7; }
+.steps-cta-wrap { margin-top:3rem; text-align:center; }
+.steps-cta-msg { font-size:1.5rem; font-weight:700; color:var(--black); margin-bottom:1.8rem; letter-spacing:0.04em; line-height:1.6; }
+.steps-cta-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 3rem; border-radius:10px; font-weight:800; font-size:1rem; text-decoration:none; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; border:1px solid var(--black); }
+.steps-cta-btn::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.steps-cta-btn:hover { color:var(--black); }
+.steps-cta-btn:hover::before { width:100%; }
 
 /* Features Dark */
 .features-dark { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); }
@@ -343,7 +373,7 @@ ul { list-style: none; }
 
 /* Cases / Voice */
 .voice-sec { background:#f7f7f8; }
-.voice-card { margin-bottom:2rem; background:var(--white); border-radius:24px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.07); border:1px solid rgba(0,0,0,0.06); }
+.voice-card { margin-bottom:2rem; background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.07); border:1px solid rgba(0,0,0,0.06); }
 
 /* ヘッダー */
 .voice-header { background:#0d0d0d; color:var(--white); padding:2.8rem 3rem 2.4rem; position:relative; overflow:hidden; }
@@ -367,18 +397,46 @@ ul { list-style: none; }
 .voice-col:first-child .voice-col-summary { color:#b91c1c; }
 .voice-col:last-child .voice-col-summary { color:#15803d; }
 
+/* Resource CTA (UGC Maker style) */
+.resource-cta { background:var(--gray-50); padding:5rem 2rem; }
+.resource-cta-inner { text-align:center; max-width:1100px; margin:0 auto; }
+.resource-cta-price { display:inline-flex; align-items:baseline; gap:0.3rem; margin-bottom:1.8rem; padding:0.6rem 1.4rem; background:linear-gradient(transparent 55%, #ffe066 55%); border-radius:2px; }
+.resource-cta-price-label { font-size:1rem; font-weight:700; color:var(--black); letter-spacing:0.05em; }
+.resource-cta-price-num { font-family:var(--font-display); font-size:3rem; font-weight:900; color:var(--black); line-height:1; letter-spacing:-0.02em; }
+.resource-cta-price-unit { font-size:1.2rem; font-weight:800; color:var(--black); margin-left:-0.1em; }
+.resource-cta-price-suffix { font-size:1rem; font-weight:700; color:var(--black); letter-spacing:0.05em; margin-left:0.3rem; }
+.resource-cta-title { font-size:2.2rem; font-weight:700; color:var(--black); margin-bottom:1.5rem; line-height:1.55; letter-spacing:0.04em; }
+.resource-cta-sub { font-size:1.05rem; color:rgba(0,0,0,0.7); line-height:1.9; margin-bottom:3rem; }
+@media(max-width:767px){ .resource-cta-title { font-size:1.5rem; } }
+.resource-cta-slides { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin:0 auto 2.5rem; max-width:880px; }
+.resource-slide { background:#fff; border-radius:12px; aspect-ratio:16/10; overflow:hidden; position:relative; box-shadow:0 14px 36px -8px rgba(0,0,0,0.22), 0 6px 14px -4px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease; }
+.resource-slide:hover { transform:translateY(-4px); box-shadow:0 20px 48px -10px rgba(0,0,0,0.28), 0 8px 18px -6px rgba(0,0,0,0.14); }
+.resource-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.resource-cta-btn { display:inline-flex; align-items:center; gap:0.6rem; background:var(--black); color:#fff; padding:1rem 2.5rem; border-radius:10px; font-weight:800; font-size:1rem; text-decoration:none; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; border:1px solid var(--black); }
+.resource-cta-btn::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
+.resource-cta-btn:hover { color:var(--black); }
+.resource-cta-btn:hover::before { width:100%; }
+.resource-cta-badge { display:inline-flex; align-items:center; background:#fff; color:var(--black); font-size:0.78rem; font-weight:800; padding:0.18rem 0.6rem; border-radius:4px; transition:background 0.8s, color 0.8s; }
+.resource-cta-btn:hover .resource-cta-badge { background:var(--black); color:#fff; }
+@media(max-width:767px){
+  .resource-cta { padding:3rem 1.2rem; }
+  .resource-cta-title { font-size:1.3rem; }
+  .resource-cta-sub { font-size:0.9rem; }
+  .resource-cta-slides { grid-template-columns:1fr; max-width:340px; }
+}
+
 /* Results */
 .results { background:var(--gray-50); padding-top:3rem; }
 .results-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-.result-card { background:var(--white); border-radius:20px; padding:2.5rem 2rem; text-align:center; border:2.5px solid var(--black); }
+.result-card { background:var(--white); border-radius:16px; padding:2.5rem 2rem; text-align:center; border:2.5px solid var(--black); }
 .result-label { font-size:0.9rem; font-weight:700; margin-bottom:1.5rem; color:var(--gray-700); }
 .result-metric { display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-bottom:0.6rem; }
 .result-metric-badge { background:var(--black); color:var(--white); padding:0.25rem 0.7rem; border-radius:4px; font-size:0.88rem; font-weight:700; letter-spacing:0.03em; }
 .result-metric-val { font-family:var(--font-display); font-size:1.3rem; font-weight:900; color:var(--black); }
 .result-arrow { font-size:0.8rem; color:var(--gray-300); margin-bottom:0.5rem; }
-.result-after { font-family:var(--font-display); font-size:3rem; font-weight:900; color:#2563eb; margin-bottom:0.8rem; line-height:1.1; }
+.result-after { font-family:var(--font-display); font-size:3rem; font-weight:900; color:#007aff; margin-bottom:0.8rem; line-height:1.1; }
 .result-after span { font-size:1.2rem; font-weight:700; }
-.result-badge { display:inline-block; background:#2563eb; color:var(--white); padding:0.4rem 1.2rem; border-radius:8px; font-weight:800; font-size:0.9rem; font-family:var(--font-display); }
+.result-badge { display:inline-block; background:#007aff; color:var(--white); padding:0.4rem 1.2rem; border-radius:8px; font-weight:800; font-size:0.9rem; font-family:var(--font-display); }
 
 /* Download CTA */
 .download-cta { background:linear-gradient(160deg, #0a0a0a 0%, #161616 40%, #1e1e1e 70%, #252525 100%); color:var(--white); text-align:center; }
@@ -392,22 +450,22 @@ ul { list-style: none; }
 .final-hero { background:linear-gradient(160deg, #000 0%, #111 40%, #1a1a1a 70%, #222 100%); color:var(--white); text-align:center; padding:6rem 2rem; }
 
 /* Agency Support */
-.agency-section { background:linear-gradient(160deg, #000 0%, #0a0a0a 20%, #0f0f0f 50%, #1a1a1a 80%, #0a0a0a 100%); color:var(--white); }
-.agency-hero { background:linear-gradient(135deg, #0a0a0a 0%, #111111 25%, #1a1a1a 50%, #111111 75%, #0a0a0a 100%); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:0; text-align:left; position:relative; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
-.agency-hero-visual { position:relative; display:flex; align-items:center; justify-content:center; padding:3rem; }
+.agency-section { background:var(--white); color:var(--black); }
+.agency-hero { background:#fafafa; border:1px solid rgba(0,0,0,0.08); border-radius:24px; padding:0; text-align:left; position:relative; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
+.agency-hero-visual { position:relative; display:flex; align-items:center; justify-content:center; padding:3rem; background:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
 .agency-hero-visual canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
 .agency-hero-visual-text { position:relative; z-index:1; font-family:var(--font-display); font-size:1.5rem; font-weight:900; color:rgba(255,255,255,0.9); text-align:center; line-height:1.5; letter-spacing:-0.02em; text-shadow:0 2px 20px rgba(0,0,0,0.5); }
 .agency-hero-inner { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; padding:3rem; }
-.agency-hero-badge { display:inline-block; background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.25); font-size:0.88rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:4px; margin-bottom:1.2rem; letter-spacing:0.05em; width:fit-content; }
-.agency-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:900; margin-bottom:0.8rem; line-height:1.45; }
-.agency-hero-desc { font-size:0.88rem; color:rgba(255,255,255,0.6); margin-bottom:1.2rem; line-height:1.7; }
+.agency-hero-badge { display:inline-block; background:var(--black); color:#fff; border:1px solid var(--black); font-size:0.88rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:4px; margin-bottom:1.2rem; letter-spacing:0.05em; width:fit-content; }
+.agency-hero-title { font-family:var(--font-body); font-size:1.8rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.8rem; }
+.agency-hero-desc { font-size:0.88rem; color:rgba(0,0,0,0.65); margin-bottom:1.2rem; line-height:1.7; }
 .agency-hero-features { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.8rem; }
-.agency-hero-feat { display:flex; gap:0.7rem; align-items:flex-start; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:0.9rem; }
-.agency-hero-feat-num { font-family:var(--font-display); font-size:0.8rem; font-weight:800; color:rgba(255,255,255,0.25); flex-shrink:0; margin-top:0.1rem; }
-.agency-hero-feat-title { font-size:0.95rem; font-weight:800; color:rgba(255,255,255,0.9); margin-bottom:0.2rem; }
-.agency-hero-feat-desc { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.5; }
-.agency-hero-btn { display:inline-flex; align-items:center; gap:0.5rem; background:#fff; color:#0a0a0a; padding:0.9rem 2.2rem; border-radius:40px; font-size:0.95rem; font-weight:800; transition:transform 0.2s, box-shadow 0.2s; width:fit-content; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
-.agency-hero-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.4); }
+.agency-hero-feat { display:flex; gap:0.7rem; align-items:flex-start; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:10px; padding:0.9rem; }
+.agency-hero-feat-num { font-family:var(--font-display); font-size:0.8rem; font-weight:800; color:rgba(0,0,0,0.35); flex-shrink:0; margin-top:0.1rem; }
+.agency-hero-feat-title { font-size:0.95rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; color:var(--black); margin-bottom:0.2rem; }
+.agency-hero-feat-desc { font-size:0.88rem; color:rgba(0,0,0,0.6); line-height:1.5; }
+.agency-hero-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:0.9rem 2.2rem; border-radius:40px; font-size:0.95rem; font-weight:800; transition:transform 0.2s, box-shadow 0.2s; width:fit-content; box-shadow:0 4px 20px rgba(0,0,0,0.15); }
+.agency-hero-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.25); }
 @media(max-width:767px){
   .agency-hero { grid-template-columns:1fr; min-height:auto; }
   .agency-hero-visual { min-height:280px; }
@@ -419,12 +477,12 @@ ul { list-style: none; }
   .agency-hero-title { font-size:1.6rem; }
 }
 .agency-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:2.5rem; }
-.agency-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:2rem; position:relative; }
-.agency-card-num { font-family:var(--font-display); font-size:0.92rem; font-weight:800; color:rgba(255,255,255,0.45); margin-bottom:0.8rem; }
-.agency-card-title { font-size:1.05rem; font-weight:800; margin-bottom:0.5rem; }
-.agency-card-desc { font-size:0.92rem; color:rgba(255,255,255,0.55); line-height:1.7; }
+.agency-card { background:#fafafa; border:1px solid rgba(0,0,0,0.08); border-radius:16px; padding:2rem; position:relative; }
+.agency-card-num { font-family:var(--font-display); font-size:0.92rem; font-weight:800; color:rgba(0,0,0,0.4); margin-bottom:0.8rem; }
+.agency-card-title { font-size:1.05rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.5rem; }
+.agency-card-desc { font-size:0.92rem; color:rgba(0,0,0,0.6); line-height:1.7; }
 .agency-cta { text-align:center; }
-.agency-cta-link { font-size:1rem; font-weight:700; color:#fff; text-decoration:underline; text-underline-offset:4px; transition:opacity 0.2s; }
+.agency-cta-link { font-size:1rem; font-weight:700; color:var(--black); text-decoration:underline; text-underline-offset:4px; transition:opacity 0.2s; }
 .agency-cta-link:hover { opacity:0.7; }
 .final-hero-msg { font-family:var(--font-body); font-size:2.8rem; font-weight:900; line-height:1.5; margin-bottom:1.5rem; }
 .final-hero-msg .box { display:inline-block; background:var(--white); color:var(--black); padding:0.1rem 0.6rem; border-radius:6px; }
@@ -436,7 +494,7 @@ ul { list-style: none; }
 .support-inner { display:grid; grid-template-columns:1fr 1.4fr; gap:3rem; align-items:start; }
 .support-left { position:static; }
 .support-badge { display:inline-block; background:var(--black); color:var(--white); font-size:0.88rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:4px; margin-bottom:1.2rem; letter-spacing:0.05em; }
-.support-heading { font-family:var(--font-body); font-size:2.6rem; font-weight:900; color:var(--black); line-height:1.4; margin-bottom:1rem; }
+.support-heading { font-family:var(--font-body); font-size:2.6rem; font-weight:700; letter-spacing:0.04em; color:var(--black); line-height:1.55; margin-bottom:1rem; }
 .support-desc { font-size:1.05rem; color:var(--gray-500); line-height:1.8; margin-bottom:2.5rem; }
 .support-btns { display:flex; flex-direction:column; gap:0.8rem; }
 .support-btn { display:flex; align-items:center; justify-content:space-between; background:var(--black); color:var(--white); padding:1rem 1.8rem; border-radius:14px; font-size:0.95rem; font-weight:700; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; }
@@ -448,7 +506,7 @@ ul { list-style: none; }
 .support-card:hover { border-color:var(--gray-300); box-shadow:0 4px 20px rgba(0,0,0,0.04); }
 .support-card-icon { width:56px; height:56px; display:flex; align-items:center; justify-content:center; }
 .support-card-icon svg { width:44px; height:44px; }
-.support-card-title { font-size:1.2rem; font-weight:800; color:var(--black); margin-bottom:0.5rem; }
+.support-card-title { font-size:1.2rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; color:var(--black); margin-bottom:0.5rem; }
 .support-card-text { font-size:0.95rem; color:var(--gray-500); line-height:1.8; }
 .support-card-note { font-size:0.92rem; color:var(--gray-300); margin-top:0.3rem; }
 @media(max-width:767px){
@@ -486,7 +544,7 @@ ul { list-style: none; }
 }
 .sticky-cta-btn:hover { transform:translateY(-2px); }
 .sticky-cta-primary {
-  background:linear-gradient(135deg, #2563eb 0%, #1a4fd6 100%);
+  background:linear-gradient(135deg, #007aff 0%, #1a4fd6 100%);
   color:#fff;
   box-shadow:0 6px 24px rgba(37,99,235,0.35);
   flex-direction:column; align-items:stretch; padding:0;
@@ -516,8 +574,8 @@ ul { list-style: none; }
 }
 /* Secondary CTA */
 .sticky-cta-secondary {
-  background:#fff; color:#1e40af;
-  border:2px solid #2563eb;
+  background:#fff; color:#185abc;
+  border:2px solid #007aff;
   flex-direction:column; align-items:stretch; padding:0;
   box-shadow:0 2px 12px rgba(37,99,235,0.08);
 }
@@ -529,7 +587,7 @@ ul { list-style: none; }
 }
 .sticky-cta-secondary-badge {
   display:inline-flex; align-items:center;
-  font-size:0.68rem; background:#eff6ff; color:#2563eb;
+  font-size:0.68rem; background:#eff6ff; color:#007aff;
   padding:0.2rem 0.7rem; border-radius:4px; font-weight:700;
   letter-spacing:0.03em; white-space:nowrap;
 }
@@ -563,8 +621,8 @@ ul { list-style: none; }
 .contact-sec { background:var(--gray-50); text-align:center; }
 .contact-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:3.5rem; }
 .contact-block { background:#fff; border-radius:16px; padding:2.5rem; box-shadow:0 2px 16px rgba(0,0,0,0.05); text-align:center; }
-.contact-block-title { font-size:1.3rem; font-weight:800; margin-bottom:0.5rem; color:var(--black); }
-.contact-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.7; }
+.contact-block-title { font-size:1.3rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.5rem; color:var(--black); }
+.contact-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.8; }
 .contact-calendar-btn { display:inline-flex; align-items:center; gap:0.6rem; background:var(--black); color:#fff; padding:1rem 2rem; border-radius:10px; font-weight:700; font-size:1rem; text-decoration:none; transition:background 0.2s, transform 0.15s; }
 .contact-calendar-btn:hover { background:#333; transform:translateY(-1px); }
 .contact-calendar-btn svg { width:20px; height:20px; flex-shrink:0; }
@@ -576,6 +634,7 @@ ul { list-style: none; }
 .form-group.has-error input, .form-group.has-error textarea { border-color:#e53e3e; }
 .form-group.has-error .form-error { display:block; }
 .form-group input, .form-group textarea, .form-group select { width:100%; padding:0.8rem 1rem; border:1px solid var(--gray-200); border-radius:8px; font-size:0.95rem; font-family:var(--font-body); background:#fff; transition:border-color 0.2s; box-sizing:border-box; }
+.form-group select { appearance:none; -webkit-appearance:none; -moz-appearance:none; padding-right:2.5rem; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 4.5l3 3 3-3' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>"); background-repeat:no-repeat; background-position:right 1rem center; background-size:12px 12px; cursor:pointer; }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline:none; border-color:var(--black); }
 .form-group textarea { resize:none; min-height:100px; }
 .form-group.is-hidden { display:none; }
@@ -589,8 +648,8 @@ ul { list-style: none; }
 .download-sec { background:#fff; text-align:center; }
 .download-inner { max-width:600px; margin:0 auto; margin-top:3.5rem; }
 .download-block { background:var(--gray-50); border-radius:16px; padding:2.5rem; border:1px solid var(--gray-100); text-align:center; }
-.download-block-title { font-size:1.3rem; font-weight:800; margin-bottom:0.5rem; color:var(--black); text-align:center; }
-.download-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.7; text-align:center; }
+.download-block-title { font-size:1.3rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.5rem; color:var(--black); text-align:center; }
+.download-block-desc { font-size:0.92rem; color:var(--gray-500); margin-bottom:1.5rem; line-height:1.8; text-align:center; }
 .download-link { display:none; text-align:center; margin-top:1.5rem; }
 .download-link.show { display:block; }
 .download-link a { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 2rem; border-radius:10px; font-weight:700; font-size:1rem; text-decoration:none; transition:background 0.2s, transform 0.15s; }
@@ -632,9 +691,9 @@ ul { list-style: none; }
 @media (max-width:767px) {
   .nav { display:none; }
   .mobile-menu { display:block; }
-  .header-inner { padding:0.6rem 1rem; justify-content:space-between; }
+  .header-inner { padding:0.9rem 1rem; justify-content:space-between; }
   .header-inner > a { margin-right:auto; }
-  .header-inner > a svg { height:44px; }
+  .header-inner > a svg { height:48px; }
   .hero { padding:4.5rem 1.2rem 2rem; }
   .hero-inner { gap:1.5rem; }
   .hero-inner > * { min-width:0; overflow:hidden; }
@@ -767,6 +826,185 @@ ul { list-style: none; }
   .footer { padding:2.5rem 1.2rem 1.5rem; }
   .footer-logo { font-size:1.3rem; }
 }
+
+/* ===== Hero Medal Badges (金メダル風 実績訴求) ===== */
+/* TODO: 後で再表示するときは下の display:none を消す */
+.hero-medals { display:none; }
+.hero-medals--show { display:flex; justify-content:flex-start; align-items:center; gap:1.5rem; flex-wrap:wrap; margin-top:2.2rem; }
+.hero-medal { position:relative; width:140px; height:140px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 25%, #fff8dc 0%, #f5d77a 18%, #e6b837 45%, #c89324 70%, #8a6314 100%);
+  box-shadow:
+    inset 0 -10px 20px rgba(110,75,8,0.45),
+    inset 0 8px 20px rgba(255,250,205,0.5),
+    inset 0 0 0 2px rgba(184,134,11,0.45),
+    0 12px 28px rgba(160,110,20,0.35),
+    0 4px 10px rgba(0,0,0,0.18);
+  border:6px solid #b8851a;
+  font-family:'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  color:#3d2806;
+}
+.hero-medal::before { content:''; position:absolute; inset:8px; border-radius:50%; border:1.5px solid rgba(110,75,8,0.4); pointer-events:none; }
+.hero-medal::after { content:''; position:absolute; top:12%; left:18%; width:35%; height:25%; border-radius:50%; background:radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, transparent 70%); pointer-events:none; }
+.hero-medal-label { font-size:0.8rem; font-weight:700; letter-spacing:0.08em; margin-bottom:0.3rem; position:relative; z-index:1; color:#3d2806; }
+.hero-medal-num { font-size:2rem; font-weight:900; line-height:1; letter-spacing:0.02em; position:relative; z-index:1; color:#2a1c04; }
+.hero-medal-num small { font-size:0.5em; font-weight:700; margin-left:0.08em; }
+.hero-medal-sub { font-size:0.65rem; font-weight:700; margin-top:0.2rem; letter-spacing:0.1em; position:relative; z-index:1; color:#3d2806; }
+@media(max-width:767px){
+  .hero-medals { justify-content:center; gap:1rem; margin-top:1.8rem; }
+  .hero-medal { width:120px; height:120px; border-width:4px; }
+  .hero-medal-label { font-size:0.72rem; }
+  .hero-medal-num { font-size:1.7rem; }
+  .hero-medal-sub { font-size:0.6rem; }
+}
+
+/* ===== FAQ (kashika-style: simple ruled lines) ===== */
+.faq-sec { background:var(--white); }
+.faq-list { max-width:1280px; margin:0 auto; text-align:left; border-top:1px solid rgba(0,0,0,0.1); }
+.faq-item { border-bottom:1px solid rgba(0,0,0,0.1); transition:background 0.2s ease; }
+.faq-item > .faq-answer { display:grid !important; }
+.faq-item summary { display:grid; grid-template-columns:auto 1fr; align-items:start; gap:0.8rem; padding:1.8rem 0.2rem; font-size:clamp(1rem, 1.25vw, 1.3rem); font-weight:700; color:var(--primary-blue); cursor:pointer; list-style:none; line-height:1.7; letter-spacing:0.02em; position:relative; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary .faq-q-label { color:var(--primary-blue); font-weight:700; font-family:var(--font-display); margin-right:0.3rem; flex-shrink:0; }
+.faq-item summary .faq-q-text { color:var(--primary-blue); font-weight:700; }
+.faq-item summary .faq-toggle { display:none; }
+.faq-answer { display:grid; grid-template-columns:auto 1fr; gap:0.8rem; padding:0 0.2rem; font-size:clamp(0.92rem, 1.05vw, 1.1rem); line-height:1.9; color:var(--black); letter-spacing:0.02em; max-height:0; overflow:hidden; opacity:0; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.4,0,0.2,1); }
+.faq-answer .faq-a-label { color:var(--black); font-weight:700; font-family:var(--font-display); margin-right:0.3rem; flex-shrink:0; }
+.faq-item.is-open .faq-answer { max-height:1000px; opacity:1; padding:0 0.2rem 1.5rem; }
+@media(max-width:767px){
+  .faq-item summary { font-size:0.95rem; padding:1.2rem 0.2rem; gap:0.5rem; }
+  .faq-answer { font-size:0.88rem; padding:0 0.2rem 1.2rem; gap:0.5rem; }
+}
+
+/* ===== kashika-inspired Button Override (all primary CTAs unified) ===== */
+.btn-primary,
+.problems-solution-cta,
+.steps-cta-btn,
+.resource-cta-btn,
+.agency-hero-btn,
+.aif-btn,
+.contact-calendar-btn,
+.form-submit,
+.support-btn,
+.float-cta-btn,
+.nav-cta {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:0.5rem !important;
+  background:var(--primary-blue) !important;
+  color:#fff !important;
+  padding:0 24px !important;
+  height:44px !important;
+  border-radius:5px !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  text-decoration:none !important;
+  cursor:pointer !important;
+  border:none !important;
+  transition:background 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+  position:relative !important;
+  overflow:hidden !important;
+  letter-spacing:0.02em !important;
+  width:auto !important;
+}
+/* メインCTA（セクション末尾の主要アクション）を B2B向けに大型化 */
+.btn-primary,
+.problems-solution-cta,
+.steps-cta-btn,
+.resource-cta-btn,
+.agency-hero-btn,
+.contact-calendar-btn {
+  padding:0 44px !important;
+  height:58px !important;
+  font-size:16px !important;
+  border-radius:6px !important;
+  letter-spacing:0.05em !important;
+}
+@media screen and (max-width:800px) {
+  .btn-primary,
+  .problems-solution-cta,
+  .steps-cta-btn,
+  .resource-cta-btn,
+  .agency-hero-btn,
+  .contact-calendar-btn {
+    padding:0 32px !important;
+    height:52px !important;
+    font-size:15px !important;
+  }
+}
+.btn-primary:hover,
+.problems-solution-cta:hover,
+.steps-cta-btn:hover,
+.resource-cta-btn:hover,
+.agency-hero-btn:hover,
+.aif-btn:hover,
+.contact-calendar-btn:hover,
+.form-submit:hover,
+.support-btn:hover,
+.float-cta-btn:hover,
+.nav-cta:hover {
+  background:var(--primary-blue-hover) !important;
+  box-shadow:var(--shadow-btn-hover) !important;
+  color:#fff !important;
+  transform:none !important;
+  opacity:1 !important;
+}
+.btn-primary::before,
+.problems-solution-cta::before,
+.steps-cta-btn::before,
+.resource-cta-btn::before,
+.contact-calendar-btn::before,
+.support-btn::before {
+  display:none !important;
+}
+.btn-primary:hover::before,
+.problems-solution-cta:hover::before,
+.steps-cta-btn:hover::before,
+.resource-cta-btn:hover::before {
+  width:0 !important;
+}
+/* "無料" バッジ（青ベースに合わせて白枠の上に青文字）*/
+.resource-cta-badge {
+  background:#fff !important;
+  color:var(--primary-blue) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  padding:0.18rem 0.6rem !important;
+  border-radius:4px !important;
+  transition:none !important;
+}
+.resource-cta-btn:hover .resource-cta-badge {
+  background:#fff !important;
+  color:var(--primary-blue-hover) !important;
+}
+/* float-cta-btn は黒パネルの中で目立たせるため白背景・黒文字に */
+.float-cta-btn {
+  background:#fff !important;
+  color:var(--black) !important;
+}
+.float-cta-btn:hover {
+  background:#f5f5f5 !important;
+  color:var(--black) !important;
+  box-shadow:0 4px 12px rgba(0,0,0,0.25) !important;
+}
+@media screen and (max-width:800px) {
+  .btn-primary,
+  .problems-solution-cta,
+  .steps-cta-btn,
+  .resource-cta-btn,
+  .agency-hero-btn,
+  .aif-btn,
+  .contact-calendar-btn,
+  .form-submit,
+  .support-btn,
+  .float-cta-btn,
+  .nav-cta {
+    padding:0 20px !important;
+    height:40px !important;
+    font-size:12px !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -774,11 +1012,11 @@ ul { list-style: none; }
 <header class="header" id="header">
   <div class="header-inner">
     <a href="#" style="display:flex;align-items:center;text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="42" style="display:block;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="56" style="display:block;">
         <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
         <text x="600" y="225" text-anchor="middle" dominant-baseline="middle"
               font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
-              fill="#ffffff" letter-spacing="-2">UGC Maker</text>
+              fill="#1A1A1A" letter-spacing="-2">UGC Maker</text>
       </svg>
     </a>
     <nav class="nav">
@@ -786,8 +1024,9 @@ ul { list-style: none; }
       <a href="#cases">導入事例</a>
       <!-- <a href="#pricing">料金プラン</a> -->
       <a href="#steps">導入方法</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">お問い合わせ</a>
-      <a href="#download">資料請求</a>
+      <a href="#download" class="nav-cta-secondary">資料請求する</a>
       <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="nav-cta">導入相談する</a>
     </nav>
     <div class="mobile-menu" id="mobileMenu">☰</div>
@@ -798,7 +1037,7 @@ ul { list-style: none; }
   <div class="hero-inner">
     <div class="hero-left">
       <h1 class="hero-h1">
-        UGC動画広告を<br>
+        動画広告を<br>
         <span class="big">数分</span>で大量生成<br>
         <span class="box">1本あたり約500円</span>
       </h1>
@@ -808,6 +1047,17 @@ ul { list-style: none; }
         <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
           無料で導入相談する ›
         </a>
+      </div>
+      <div class="hero-medals">
+        <div class="hero-medal">
+          <div class="hero-medal-label">累計生成本数</div>
+          <div class="hero-medal-num">1<small>万本</small></div>
+          <div class="hero-medal-sub">以上</div>
+        </div>
+        <div class="hero-medal">
+          <div class="hero-medal-label">継続率</div>
+          <div class="hero-medal-num">98.2<small>%</small></div>
+        </div>
       </div>
     </div>
     <div>
@@ -835,13 +1085,6 @@ ul { list-style: none; }
     </div>
   </div>
 </section>
-
-<div class="scroll-tags">
-  <div class="scroll-tags-track">
-    <span>#家事・育児</span><span>#Vlog</span><span>#ダイエット</span><span>#美容</span><span>#ヘアケア</span><span>#脱毛</span><span>#人材</span><span>#シニア</span><span>#不動産・住宅</span><span>#金融</span><span>#D2C</span><span>#EC</span><span>#SaaS</span><span>#アプリ</span><span>#副業・転職</span>
-    <span>#家事・育児</span><span>#Vlog</span><span>#ダイエット</span><span>#美容</span><span>#ヘアケア</span><span>#脱毛</span><span>#人材</span><span>#シニア</span><span>#不動産・住宅</span><span>#金融</span><span>#D2C</span><span>#EC</span><span>#SaaS</span><span>#アプリ</span><span>#副業・転職</span>
-  </div>
-</div>
 
 <section class="trust sec" id="trust">
   <div class="sec-inner">
@@ -872,21 +1115,33 @@ ul { list-style: none; }
     <h2 class="sec-title anim" style="margin-bottom:3rem;">こんなお悩みがあれば、<br>私たちが解決します</h2>
     <div class="problems-grid">
       <div class="problem-card anim">
-        <div class="problem-card-title">UGC動画を作りたいが<br>コストが高すぎる</div>
+        <div class="problem-card-icon"><img src="lp-videos/problem-cost.png" alt="コストが高すぎる"></div>
+        <div class="problem-card-title">動画広告を作りたいが<br>コストが高すぎる</div>
         <div class="problem-card-desc">撮影・キャスティング・編集を外注すると1本数十万円。量産なんてとても無理だった</div>
       </div>
       <div class="problem-card anim">
+        <div class="problem-card-icon"><img src="lp-videos/problem-ai.png" alt="AI動画ツール"></div>
         <div class="problem-card-title">AI動画ツールを試したが<br>クオリティが低かった</div>
         <div class="problem-card-desc">既存のAIツールでは不自然さが目立ち、広告として使えるレベルに達していなかった</div>
       </div>
       <div class="problem-card anim">
+        <div class="problem-card-icon"><img src="lp-videos/problem-inhouse.png" alt="内製化したい"></div>
         <div class="problem-card-title">広告クリエイティブの<br>制作を内製化したい</div>
         <div class="problem-card-desc">制作ノウハウだけでなく、内製化する方法も一緒に考えアドバイスをして欲しい</div>
       </div>
       <div class="problem-card anim">
+        <div class="problem-card-icon"><img src="lp-videos/problem-volume.png" alt="ABテスト用の動画を大量に"></div>
         <div class="problem-card-title">ABテスト用の動画を<br>大量に回したい</div>
         <div class="problem-card-desc">勝ちクリエイティブを見つけるには大量のABテストが必要。でも制作本数に限界があり、検証スピードが出せなかった</div>
       </div>
+    </div>
+    <div class="problems-solution anim">
+      <p class="problems-solution-msg">
+        そのお悩み、<br>
+        <span class="problems-solution-logo">UGC Maker</span>
+        <em>で解決できます！</em>
+      </p>
+      <a href="#download" class="problems-solution-cta">無料で資料請求する</a>
     </div>
   </div>
 </section>
@@ -900,18 +1155,18 @@ ul { list-style: none; }
   <div class="sec-inner">
     <div class="sec-center">
       <div class="sec-label anim" style="color:var(--gray-500)">FEATURES</div>
-      <h2 class="sec-title anim" style="color:#fff;">おすすめ機能紹介</h2>
-      <p class="sec-sub anim" style="color:rgba(255,255,255,0.5)">UGC Makerの主要機能をご紹介します</p>
+      <h2 class="sec-title anim">おすすめ機能紹介</h2>
+      <p class="sec-sub anim" style="color:rgba(0,0,0,0.6)">UGC Makerの主要機能をご紹介します</p>
     </div>
 
     <!-- Hero Feature -->
     <div class="aif-hero anim">
       <div class="aif-hero-text">
-        <h3 class="aif-hero-title">超リアルなAIアクター</h3>
-        <p class="aif-hero-desc">お手持ちの演者画像を指定するだけでAI動画を生成。演者がいない場合は、AIアクターを自動生成することも可能です。</p>
+        <h3 class="aif-hero-title">超リアルなAIキャスト</h3>
+        <p class="aif-hero-desc">お手持ちのキャスト画像を指定するだけでAI動画を生成。キャストがいない場合は、AIキャストを自動生成することも可能です。</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;">
-        <img src="lp-videos/actor-grid.png" style="width:100%;border-radius:12px;" alt="AIアクター一覧">
+        <img src="lp-videos/actor-grid.png" style="width:100%;border-radius:12px;" alt="AIキャスト一覧">
       </div>
     </div>
 
@@ -943,8 +1198,8 @@ ul { list-style: none; }
         <div class="aif-card-visual" style="position:relative;">
           <span style="position:absolute;top:0.6rem;left:0.6rem;z-index:2;display:inline-block;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);color:#4ade80;font-size:0.75rem;font-weight:800;padding:0.2rem 0.6rem;border-radius:20px;letter-spacing:0.05em;">リリース予定</span>
           <div class="aif-card-placeholder">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M7 15h4M7 12h8"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M7 15h4M7 12h8"/></svg>
           </div>
         </div>
         <h4 class="aif-card-title">BGMとテロップを自動追加</h4>
@@ -976,7 +1231,7 @@ ul { list-style: none; }
         <div class="voice-col">
           <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
           <p class="voice-col-summary">月100本以上を量産、制作コスト90%以上削減</p>
-          <p class="voice-col-text">導入初月から月100本以上のUGC動画を量産。<strong>制作コストは従来比90%以上削減</strong>しながら、広告パフォーマンスも維持。浮いた予算で<strong>配信量を大幅に拡大</strong>でき、来期の予算増額も決定しました。</p>
+          <p class="voice-col-text">導入初月から月100本以上の動画広告を量産。<strong>制作コストは従来比90%以上削減</strong>しながら、広告パフォーマンスも維持。浮いた予算で<strong>配信量を大幅に拡大</strong>でき、来期の予算増額も決定しました。</p>
         </div>
       </div>
     </div>
@@ -1102,19 +1357,19 @@ ul { list-style: none; }
   <div class="sec-inner">
     <div class="sec-center">
       <div class="sec-label anim">SCALE</div>
-      <h2 class="sec-title anim">圧倒的な大量生産力で、広告検証のスピードを変える</h2>
+      <h2 class="sec-title anim">圧倒的な生産力で、広告検証のスピードを変える</h2>
       <p class="sec-sub anim">従来の100倍のクリエイティブを、コスト1/10で生成</p>
     </div>
     <div class="mass-grid">
       <div class="mass-card anim">
         <div class="mass-num">100本 <span>/ 日</span></div>
         <div class="mass-label">動画生成能力</div>
-        <p class="mass-desc">1日で100本以上のUGC動画を生成可能。従来の撮影では月5本が限界だった制作本数を劇的に改善。</p>
+        <p class="mass-desc">1日で100本以上の動画広告を生成可能。従来の撮影では月5本が限界だった制作本数を劇的に改善。</p>
       </div>
       <div class="mass-card anim">
         <div class="mass-num">制限なし</div>
         <div class="mass-label">クリエイティブの組み合わせ</div>
-        <p class="mass-desc">アクター × スクリプト × フック × 訴求軸。変数を掛け合わせて無限のバリエーションを生成。</p>
+        <p class="mass-desc">キャスト × スクリプト × フック × 訴求軸。変数を掛け合わせて無限のバリエーションを生成。</p>
       </div>
       <div class="mass-card anim">
         <div class="mass-num">10倍 <span>速い</span></div>
@@ -1242,7 +1497,7 @@ ul { list-style: none; }
             <div class="plan-item ok">クレジット: 21,000</div>
             <div class="plan-item ok">動画本数: 月10本</div>
             <div class="plan-item ok">動画の長さ: 30秒</div>
-            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">AIキャスト選択</div>
             <div class="plan-item ok">スクリプト自動生成</div>
             <div class="plan-item no">A/Bテスト一括生成</div>
             <div class="plan-item no">優先サポート</div>
@@ -1267,7 +1522,7 @@ ul { list-style: none; }
             <div class="plan-item ok">クレジット: 62,000</div>
             <div class="plan-item ok">動画本数: 月30本</div>
             <div class="plan-item ok">動画の長さ: 30秒</div>
-            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">AIキャスト選択</div>
             <div class="plan-item ok">スクリプト自動生成</div>
             <div class="plan-item ok">A/Bテスト一括生成</div>
             <div class="plan-item ok">優先サポート</div>
@@ -1291,7 +1546,7 @@ ul { list-style: none; }
             <div class="plan-item ok">カスタムクレジット数</div>
             <div class="plan-item ok">カスタム動画生成数</div>
             <div class="plan-item ok">動画の長さ: カスタム</div>
-            <div class="plan-item ok">AIアクター選択</div>
+            <div class="plan-item ok">AIキャスト選択</div>
             <div class="plan-item ok">スクリプト自動生成</div>
             <div class="plan-item ok">A/Bテスト一括生成</div>
             <div class="plan-item ok">優先サポート</div>
@@ -1323,8 +1578,8 @@ ul { list-style: none; }
             <div class="plan-initial-item-desc">貴社ブランドに最適化したAI設定を実施</div>
           </div>
           <div class="plan-initial-item">
-            <div class="plan-initial-item-title">AIアクター選定</div>
-            <div class="plan-initial-item-desc">ターゲットに刺さるアクター提案</div>
+            <div class="plan-initial-item-title">AIキャスト選定</div>
+            <div class="plan-initial-item-desc">ターゲットに刺さるキャスト提案</div>
           </div>
           <div class="plan-initial-item">
             <div class="plan-initial-item-title">初期クリエイティブ制作</div>
@@ -1345,15 +1600,93 @@ ul { list-style: none; }
 <section class="sec" id="steps">
   <div class="sec-inner sec-center">
     <div class="sec-label anim">HOW IT WORKS</div>
-    <h2 class="sec-title anim">簡単3ステップ</h2>
-    <p class="sec-sub anim">導入までの流れ</p>
+    <h2 class="sec-title anim">たった<span class="sec-title-num">5</span><span class="sec-title-unit">分</span>で<br>1本の動画が完成</h2>
+    <p class="sec-sub anim">動画ができるまでの流れ</p>
     <div class="steps-cards anim">
-      <div class="step-card"><div class="step-badge">STEP 01</div><div class="step-title">商品画像・情報を<br>アップロード</div><div class="step-desc">商品写真とアピールポイントを<br>入力するだけ</div></div>
-      <div class="step-arrow-between">→</div>
-      <div class="step-card"><div class="step-badge">STEP 02</div><div class="step-title">UGC動画を<br>自動生成</div><div class="step-desc">多様なクリエイターが<br>複数パターンの動画を作成</div></div>
-      <div class="step-arrow-between">→</div>
-      <div class="step-card"><div class="step-badge">STEP 03</div><div class="step-title">そのまま広告配信<br>すぐに成果検証</div><div class="step-desc">Meta・TikTok等の広告に<br>そのまま入稿できます</div></div>
+      <div class="step-card">
+        <span class="step-num">1</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="アップロード">
+            <circle cx="100" cy="100" r="78" fill="#007aff"/>
+            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
+              <rect x="58" y="68" width="84" height="80" rx="6"/>
+              <path d="M76 90h32M76 104h48M76 118h40M76 132h28" stroke="#1A1A1A" fill="none" stroke-width="3"/>
+            </g>
+            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
+              <path d="M138 56l-22 22 14 0 0 22 16 0 0-22 14 0z" transform="translate(2 -10)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-body">
+          <div class="step-title">人物画像、商品画像やトークスクリプトをアップロード</div>
+          <div class="step-desc">人物画像・商品画像・トークスクリプトをアップロードするだけ。専門知識は不要です。</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">2</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="動画自動生成">
+            <circle cx="100" cy="100" r="78" fill="#007aff"/>
+            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
+              <rect x="50" y="64" width="100" height="68" rx="6"/>
+              <path d="M88 80l28 18-28 18z" fill="#1A1A1A"/>
+            </g>
+            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
+              <circle cx="146" cy="140" r="16"/>
+              <path d="M141 140l3 4 6-8" stroke="#1A1A1A" fill="none" stroke-width="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-body">
+          <div class="step-title">動画広告を自動生成</div>
+          <div class="step-desc">多様なクリエイターが複数パターンの動画を作成。数分で完成します。</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">3</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="広告配信">
+            <circle cx="100" cy="100" r="78" fill="#007aff"/>
+            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
+              <rect x="52" y="68" width="96" height="76" rx="6"/>
+              <path d="M62 132l18-26 16 18 16-30 26 28" stroke="#1A1A1A" fill="none" stroke-width="3.5"/>
+              <circle cx="62" cy="132" r="3.5" fill="#1A1A1A"/>
+              <circle cx="80" cy="106" r="3.5" fill="#1A1A1A"/>
+              <circle cx="96" cy="124" r="3.5" fill="#1A1A1A"/>
+              <circle cx="112" cy="94" r="3.5" fill="#1A1A1A"/>
+              <circle cx="138" cy="122" r="3.5" fill="#1A1A1A"/>
+            </g>
+            <g stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" fill="none">
+              <path d="M130 78l16-16M146 62l-10 0M146 62l0 10"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-body">
+          <div class="step-title">そのまま広告配信、すぐに成果検証</div>
+          <div class="step-desc">Meta・TikTok等の広告にそのまま入稿できます。</div>
+        </div>
+      </div>
     </div>
+    <div class="steps-cta-wrap anim">
+      <p class="steps-cta-msg">難しい作業は一切なし。すぐに動画生成をスタートできます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Resource Download CTA (AnyGift-inspired) ===== -->
+<section class="resource-cta sec">
+  <div class="resource-cta-inner anim">
+    <h2 class="resource-cta-title">動画広告の制作効率化・コスト削減に<br>ご興味のある方へ</h2>
+    <p class="resource-cta-sub">現状のご状況や、他社様の実績・成功事例について<br>お気軽にお問い合わせください。</p>
+    <div class="resource-cta-slides">
+      <div class="resource-slide"><img src="lp-videos/slide-service.png" alt="UGC Maker サービス概要"></div>
+      <div class="resource-slide"><img src="lp-videos/slide-workflow.png" alt="80%以上のコストカット"></div>
+      <div class="resource-slide"><img src="lp-videos/slide-quality.png" alt="ハイクオリティ動画生成 ワークフロー"></div>
+    </div>
+    <a href="#download" class="resource-cta-btn">
+      <span class="resource-cta-badge">無料</span>
+      資料ダウンロード
+    </a>
   </div>
 </section>
 
@@ -1363,12 +1696,12 @@ ul { list-style: none; }
     <div class="agency-hero anim">
       <div class="agency-hero-visual">
         <canvas id="particleCanvas"></canvas>
-        <div class="agency-hero-visual-text">UGC Maker<br>Ad Support</div>
+        <div class="agency-hero-visual-text">UGC Maker<br>Creative Production</div>
       </div>
       <div class="agency-hero-inner">
-        <div class="agency-hero-badge">Ad Support</div>
-        <h3 class="agency-hero-title">"勝てるコンテンツ"を一緒につくる</h3>
-        <p class="agency-hero-desc">AIツールの提供だけではありません。広告戦略から運用まで、まるっとサポートします。</p>
+        <div class="agency-hero-badge">クリエイティブ制作/運用</div>
+        <h3 class="agency-hero-title">クリエイティブ制作も運用も<br>すべて丸投げしたい方はこちら</h3>
+        <p class="agency-hero-desc">動画制作・運用にリソースを割けない方向けの代行サービス。<br>企画から改善まで、専任チームが一気通貫でサポートします。</p>
         <div class="agency-hero-features">
           <div class="agency-hero-feat">
             <span class="agency-hero-feat-num">01</span>
@@ -1401,16 +1734,6 @@ ul { list-style: none; }
         </div>
         <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="agency-hero-btn">まずは相談する ></a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="download-cta sec">
-  <div class="sec-inner anim">
-    <div class="download-msg">UGC動画広告を<br><span class="big">数分</span>で大量生成<br><span class="box">1本あたり約500円</span></div>
-    <p style="font-size:0.88rem;color:var(--gray-500);">※アカウント作成後、即日動画生成が可能</p>
-    <div class="download-tags">
-      <span>#20代vlog系</span><span>#キッズ</span><span>#シニア</span><span>#美容</span><span>#ダイエット</span><span>#歯・口臭</span><span>#80代以上</span><span>#副業・転職・人材</span><span>#ヘアケア</span><span>#金融</span><span>#生活暮らし</span><span>#脱毛</span><span>#体型別</span><span>#カップル</span><span>その他30以上！</span>
     </div>
   </div>
 </section>
@@ -1467,6 +1790,48 @@ ul { list-style: none; }
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-sec sec" id="faq">
+  <div class="sec-inner sec-center">
+    <h2 class="sec-title anim">よくある質問</h2>
+    <p class="sec-sub anim">UGC Makerを実際にご利用いただいたお客様からのよくあるご質問を掲載しています。</p>
+    <div class="faq-list anim">
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">動画1本の制作にどのくらい時間がかかりますか？</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>素材をアップロードしてから、最短5分で1本の動画が完成します。複数本を同時並列で生成することも可能なため、1日100本以上の量産にも対応できます。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">動画制作の専門知識やデザインスキルは必要ですか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>不要です。人物画像・商品画像・トークスクリプトをアップロードするだけで、AIが自動で動画広告を生成します。専門スタッフがいなくても、社内のリソースで運用可能です。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">料金プランはどのようになっていますか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>動画1本あたり約500円から始められます。月間の生成本数や利用機能に応じたプランをご用意しています。詳しくは資料をダウンロードいただくか、お問い合わせください。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">生成した動画の商用利用は可能ですか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>はい、生成された動画はMeta広告・TikTok広告・YouTube広告などの各種広告媒体およびSNSコンテンツとして商用利用いただけます。著作権はご利用企業様に帰属します。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">無料トライアルはありますか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>はい、ご導入を検討中の企業様には、貴社専用のデモ動画を無料で作成します。「無料で導入相談する」よりお気軽にお申し込みください。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">法人契約までの流れを教えてください</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>①お問い合わせ ②オンラインミーティング・要件ヒアリング ③お見積もり提示 ④契約締結 ⑤アカウント発行・運用開始、という流れです。最短で当日のアカウント発行も可能です。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">解約や契約変更はいつでも可能ですか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>はい、月単位で契約のアップグレード・ダウングレード・解約が可能です。契約期間の縛りはございません。詳細は契約時にご説明いたします。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-q-label">Q.</span><span class="faq-q-text">動画の修正・チューニングはお願いできますか?</span><span class="faq-toggle"></span></summary>
+        <div class="faq-answer"><span class="faq-a-label">A.</span><span>はい、生成後の動画はトークスクリプトや構成を変更して再生成できます。クリエイティブ制作・運用までまるっと代行するプランもご用意していますので、丸投げしたい場合もご相談ください。</span></div>
+      </details>
     </div>
   </div>
 </section>
@@ -1605,7 +1970,7 @@ ul { list-style: none; }
 <!-- HIDDEN: final-heroセクション -->
 <section class="final-hero" id="final" style="display:none">
   <div class="sec-inner anim">
-    <h2 class="final-hero-msg">UGC Makerなら<br>UGC動画広告を<span class="box">大量生産</span><br><span class="box">数分</span>で何本でも生成可能<br>撮影・編集は完全不要</h2>
+    <h2 class="final-hero-msg">UGC Makerなら<br>動画広告を<span class="box">大量生産</span><br><span class="box">数分</span>で何本でも生成可能<br>撮影・編集は完全不要</h2>
     <a href="https://www.ugcmaker.jp/onboarding/login" class="btn-primary" style="font-size:1.1rem;padding:1.2rem 2.8rem;text-decoration:none;">今すぐ無料で動画を生成する ›</a>
   </div>
 </section>
@@ -1919,6 +2284,21 @@ floatClose.addEventListener('click',()=>{
 </div>
 
 <script>!function(){var e=document.getElementById("stickyCta");if(e)window.addEventListener("scroll",function(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;s>400&&s<d-200?e.classList.add("show"):e.classList.remove("show")})}();</script>
+<script>
+// FAQ smooth toggle (force open attr so content stays visible, animate via .is-open)
+(function(){
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var summary = item.querySelector('summary');
+    if (!summary) return;
+    // Always keep <details open> so the answer block is rendered; we animate with .is-open class
+    item.setAttribute('open', '');
+    summary.addEventListener('click', function(e){
+      e.preventDefault();
+      item.classList.toggle('is-open');
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   function tryPlay(v){
