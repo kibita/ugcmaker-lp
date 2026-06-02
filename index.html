@@ -1071,18 +1071,24 @@ ul { list-style: none; }
   .nav a:hover { color:var(--primary-blue) !important; }
 
   /* SP: hide secondary CTA "導入相談する" — keep only one prominent button */
-  .nav-cta { display:none !important; }
+  .nav .nav-cta,
+  .nav a.nav-cta,
+  body .nav-cta { display:none !important; visibility:hidden !important; }
 
   /* Drawer single CTA "資料請求する" (kashika-style: blue solid + white text) */
-  .nav-cta-secondary {
+  .nav .nav-cta-secondary,
+  .nav a.nav-cta-secondary {
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
     width:100% !important;
-    margin-left:0 !important;
-    margin-top:1.8rem !important;
+    max-width:100% !important;
+    margin:1.8rem 0 0 0 !important;
     height:54px !important;
     font-size:15px !important;
     font-weight:600 !important;
     letter-spacing:0.05em !important;
-    padding:0 !important;
+    padding:0 1rem !important;
     text-align:center !important;
     border:none !important;
     border-bottom:none !important;
@@ -1092,13 +1098,15 @@ ul { list-style: none; }
     color:#FFFFFF !important;
     box-shadow:0 4px 14px rgba(0,122,255,0.25) !important;
     transition:background 0.2s, box-shadow 0.2s !important;
+    flex-shrink:0 !important;
   }
-  .nav-cta-secondary:hover, .nav-cta-secondary:active {
+  .nav .nav-cta-secondary:hover, .nav .nav-cta-secondary:active {
     background:var(--primary-blue-hover) !important;
     box-shadow:0 6px 18px rgba(0,122,255,0.35) !important;
+    color:#FFFFFF !important;
   }
   /* Drawer item text - readable solid black */
-  .nav a {
+  .nav a:not(.nav-cta-secondary):not(.nav-cta) {
     color:#222 !important;
     font-weight:500 !important;
   }
@@ -1157,8 +1165,8 @@ ul { list-style: none; }
     padding:1.4rem 1.2rem !important;
     gap:1rem !important;
   }
-  .step-num { width:28px !important; height:28px !important; font-size:0.82rem !important; left:1.2rem !important; top:1.4rem !important; border-radius:5px; box-shadow:0 0 0 6px #fff !important; }
-  .step-card { padding-top:3.8rem !important; }
+  .step-num { width:28px !important; height:28px !important; font-size:0.82rem !important; left:1.2rem !important; top:1.6rem !important; border-radius:5px; box-shadow:0 0 0 8px #fff !important; }
+  .step-card { padding-top:4rem !important; }
   .step-icon { height:64px !important; width:64px !important; }
   .step-title { font-size:1rem !important; line-height:1.5 !important; }
   .step-desc { font-size:0.85rem !important; }
