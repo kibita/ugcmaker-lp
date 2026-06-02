@@ -1070,30 +1070,37 @@ ul { list-style: none; }
   }
   .nav a:hover { color:var(--primary-blue) !important; }
 
-  /* Mobile drawer CTA buttons (kashika-style: blue solid + white text + lighter font) */
-  .nav-cta-secondary, .nav-cta {
+  /* SP: hide secondary CTA "導入相談する" — keep only one prominent button */
+  .nav-cta { display:none !important; }
+
+  /* Drawer single CTA "資料請求する" (kashika-style: blue solid + white text) */
+  .nav-cta-secondary {
     width:100% !important;
     margin-left:0 !important;
-    margin-top:0.6rem !important;
-    height:50px !important;
-    font-size:14px !important;
-    font-weight:500 !important;
-    letter-spacing:0.04em !important;
+    margin-top:1.8rem !important;
+    height:54px !important;
+    font-size:15px !important;
+    font-weight:600 !important;
+    letter-spacing:0.05em !important;
     padding:0 !important;
     text-align:center !important;
     border:none !important;
     border-bottom:none !important;
-    border-radius:6px !important;
+    border-radius:8px !important;
     box-sizing:border-box !important;
-    box-shadow:none !important;
-    color:#FFFFFF !important;
-  }
-  .nav-cta-secondary {
-    margin-top:1.6rem !important;
     background:var(--primary-blue) !important;
+    color:#FFFFFF !important;
+    box-shadow:0 4px 14px rgba(0,122,255,0.25) !important;
+    transition:background 0.2s, box-shadow 0.2s !important;
   }
-  .nav-cta {
+  .nav-cta-secondary:hover, .nav-cta-secondary:active {
     background:var(--primary-blue-hover) !important;
+    box-shadow:0 6px 18px rgba(0,122,255,0.35) !important;
+  }
+  /* Drawer item text - readable solid black */
+  .nav a {
+    color:#222 !important;
+    font-weight:500 !important;
   }
 
   /* Hero */
