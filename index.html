@@ -1022,8 +1022,11 @@ ul { list-style: none; }
     height:100dvh;
     width:82%;
     max-width:340px;
-    background:#fff !important;
-    box-shadow:8px 0 30px rgba(0,0,0,0.15);
+    background:#FFFFFF !important;
+    opacity:1 !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    box-shadow:8px 0 40px rgba(0,0,0,0.25);
     padding:5.5rem 1.4rem 2rem !important;
     transform:translateX(-100%);
     transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);
@@ -1069,14 +1072,25 @@ ul { list-style: none; }
     width:100% !important;
     margin-left:0 !important;
     margin-top:0.8rem !important;
-    height:50px !important;
-    font-size:14px !important;
+    height:52px !important;
+    font-size:15px !important;
     padding:0 !important;
     text-align:center !important;
     border-bottom:none !important;
     border-radius:6px !important;
+    box-sizing:border-box !important;
   }
-  .nav-cta-secondary { margin-top:1.5rem !important; }
+  .nav-cta-secondary {
+    margin-top:1.5rem !important;
+    background:#FFFFFF !important;
+    color:var(--primary-blue) !important;
+    border:2px solid var(--primary-blue) !important;
+  }
+  .nav-cta {
+    background:var(--primary-blue) !important;
+    color:#FFFFFF !important;
+    border:2px solid var(--primary-blue) !important;
+  }
 
   /* Hero */
   .hero { padding:7rem 6vw 3rem; }
@@ -1181,7 +1195,7 @@ ul { list-style: none; }
       <a href="#cases">導入事例</a>
       <!-- <a href="#pricing">料金プラン</a> -->
       <a href="#steps">導入方法</a>
-      <a href="#faq">FAQ</a>
+      <a href="#faq">よくある質問</a>
       <a href="#contact">お問い合わせ</a>
       <a href="#download" class="nav-cta-secondary">資料請求する</a>
       <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="nav-cta">導入相談する</a>
