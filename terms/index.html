@@ -31,15 +31,18 @@
   }
 
   /* Header */
-  .header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,30,30,0.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,0.06); transition:background 0.3s; }
-  .header.scrolled { background:rgba(30,30,30,0.75); }
-  .header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.85rem 2rem; }
-  .nav { display:flex; align-items:center; gap:2rem; }
-  .nav a { font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.7); transition:color 0.2s; text-decoration:none; }
-  .nav a:hover { color:#fff; }
-  .nav-cta { background:rgba(255,255,255,0.12)!important; color:#fff!important; padding:0.55rem 1.5rem; border-radius:8px; font-size:0.88rem!important; font-weight:700!important; transition:background 0.2s, transform 0.2s; border:1px solid rgba(255,255,255,0.15); }
-  .nav-cta:hover { background:rgba(255,255,255,0.2)!important; transform:translateY(-1px); }
-  .mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#fff; }
+  .header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; }
+  .header.scrolled { background:rgba(255,255,255,0.95); }
+  .header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 2rem; }
+  .nav { display:flex; align-items:center; gap:1.5rem; }
+  .nav a { font-size:0.92rem; font-weight:600; color:rgba(0,0,0,0.85); transition:color 0.2s; text-decoration:none; letter-spacing:0.02em; }
+  .nav a:hover { color:#000; }
+  .nav-cta-secondary { display:inline-flex; align-items:center; justify-content:center; background:#fff; color:#007aff; padding:0 20px; height:44px; border:2px solid #007aff; border-radius:5px; font-size:13px; font-weight:700; transition:background 0.2s, color 0.2s; letter-spacing:0.02em; }
+  .nav-cta-secondary:hover { background:#007aff; color:#fff; }
+  .nav-cta-secondary + .nav-cta { margin-left:-0.7rem; }
+  .nav-cta { display:inline-flex; align-items:center; justify-content:center; background:#007aff; color:#fff; padding:0 24px; height:44px; border-radius:5px; font-size:13px; font-weight:700; transition:background 0.2s, box-shadow 0.2s; letter-spacing:0.02em; }
+  .nav-cta:hover { background:#185abc; box-shadow:0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); }
+  .mobile-menu { display:none; cursor:pointer; font-size:1.5rem; color:#1A1A1A; }
 
   .back-link { color:var(--gray-600); text-decoration:none; position:relative; padding-bottom:4px; transition:color 0.3s; }
   .back-link::after { content:''; position:absolute; left:50%; bottom:0; width:0; height:1px; background:var(--black); transition:width 0.3s ease, left 0.3s ease; }
@@ -287,20 +290,20 @@
 <header class="header" id="header">
   <div class="header-inner">
     <a href="https://service.ugcmaker.jp" style="display:flex;align-items:center;text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="42" style="display:block;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="56" style="display:block;">
         <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
         <text x="600" y="225" text-anchor="middle" dominant-baseline="middle"
               font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
-              fill="#ffffff" letter-spacing="-2">UGC Maker</text>
+              fill="#1A1A1A" letter-spacing="-2">UGC Maker</text>
       </svg>
     </a>
     <nav class="nav">
       <a href="https://service.ugcmaker.jp/#features">機能紹介</a>
       <a href="https://service.ugcmaker.jp/#cases">導入事例</a>
-      <a href="https://service.ugcmaker.jp/#steps">導入方法</a>
+      <a href="https://service.ugcmaker.jp/#faq">よくある質問</a>
       <a href="https://service.ugcmaker.jp/#contact">お問い合わせ</a>
-      <a href="https://service.ugcmaker.jp/#download">資料請求</a>
       <a href="https://corp.ugcmaker.jp/" target="_blank" rel="noopener">運営会社</a>
+      <a href="https://service.ugcmaker.jp/#download" class="nav-cta-secondary">資料請求する</a>
       <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="nav-cta">導入相談する</a>
     </nav>
     <div class="mobile-menu" id="mobileMenu">☰</div>
