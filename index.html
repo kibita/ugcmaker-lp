@@ -1008,10 +1008,13 @@ ul { list-style: none; }
 
 /* ===== SP (Mobile) Responsive Pass ===== */
 @media (max-width:767px) {
-  /* Header */
+  /* Header - sit ABOVE menu so logo is always visible */
+  .header { z-index:1200 !important; }
   .header-inner { padding:0.7rem 1.2rem; }
   .logo-img { height:40px; }
-  .mobile-menu { display:block !important; padding:0.3rem 0.5rem; font-size:1.6rem !important; line-height:1; z-index:1200; position:relative; }
+  .mobile-menu { display:block !important; padding:0.3rem 0.5rem; font-size:1.6rem !important; line-height:1; z-index:1210; position:relative; }
+  /* When menu is open, force header to solid white (no transparency / grey tint) */
+  body.menu-open .header { background:#FFFFFF !important; }
 
   /* Left-slide drawer menu (kashika-style) */
   .nav {
@@ -1027,7 +1030,7 @@ ul { list-style: none; }
     backdrop-filter:none !important;
     -webkit-backdrop-filter:none !important;
     box-shadow:8px 0 40px rgba(0,0,0,0.25);
-    padding:5.5rem 1.4rem 2rem !important;
+    padding:6rem 1.4rem 2rem !important;
     transform:translateX(-100%);
     transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);
     z-index:1100;
@@ -1146,8 +1149,8 @@ ul { list-style: none; }
     padding:1.4rem 1.2rem !important;
     gap:1rem !important;
   }
-  .step-num { width:26px !important; height:26px !important; font-size:0.78rem !important; left:1rem !important; top:1rem !important; border-radius:4px; box-shadow:0 0 0 3px #fff; }
-  .step-card { padding-top:3.2rem !important; }
+  .step-num { width:28px !important; height:28px !important; font-size:0.82rem !important; left:1.2rem !important; top:1.4rem !important; border-radius:5px; box-shadow:0 0 0 6px #fff !important; }
+  .step-card { padding-top:3.8rem !important; }
   .step-icon { height:64px !important; width:64px !important; }
   .step-title { font-size:1rem !important; line-height:1.5 !important; }
   .step-desc { font-size:0.85rem !important; }
@@ -2199,7 +2202,7 @@ document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
 const hdr=document.getElementById('header');
 window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
 const mm=document.getElementById('mobileMenu'),nv=document.querySelector('.nav'),ov=document.getElementById('navOverlay');let open=false;
-function setOpen(v){open=v;if(open){nv.classList.add('is-open');ov.classList.add('is-open');mm.textContent='✕';document.body.style.overflow='hidden';}else{nv.classList.remove('is-open');ov.classList.remove('is-open');mm.textContent='☰';document.body.style.overflow='';}}
+function setOpen(v){open=v;if(open){nv.classList.add('is-open');ov.classList.add('is-open');mm.textContent='✕';document.body.classList.add('menu-open');document.body.style.overflow='hidden';}else{nv.classList.remove('is-open');ov.classList.remove('is-open');mm.textContent='☰';document.body.classList.remove('menu-open');document.body.style.overflow='';}}
 mm.addEventListener('click',()=>setOpen(!open));
 ov.addEventListener('click',()=>setOpen(false));
 nv.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)setOpen(false);}));
