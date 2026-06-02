@@ -1155,14 +1155,45 @@ ul { list-style: none; }
     font-weight:500 !important;
   }
 
-  /* Hero */
-  .hero { padding:7rem 6vw 3rem; }
-  .hero-inner { grid-template-columns:1fr !important; gap:2rem; }
-  .hero-h1 { font-size:2rem !important; line-height:1.5 !important; }
-  .hero-h1 .big { font-size:2.4rem !important; }
-  .hero-h1 .box { font-size:1.6rem !important; padding:0.15rem 0.5rem; }
-  .hero-sub { font-size:1rem !important; }
-  .hero-cta-deco { font-size:0.88rem !important; letter-spacing:0.04em !important; }
+  /* Hero - optimized for SP (centered, balanced typography) */
+  .hero { padding:6rem 6vw 2.8rem !important; }
+  .hero-inner { grid-template-columns:1fr !important; gap:1.6rem !important; text-align:center; }
+  .hero-left { text-align:center !important; align-items:center !important; display:flex !important; flex-direction:column !important; }
+  .hero-h1 {
+    font-size:1.95rem !important;
+    line-height:1.55 !important;
+    letter-spacing:0.04em !important;
+    margin-bottom:0.8rem !important;
+  }
+  .hero-h1 .big { font-size:2.5rem !important; }
+  .hero-h1 .box {
+    font-size:1.45rem !important;
+    padding:0.18rem 0.7rem !important;
+    border-radius:5px !important;
+    margin-top:0.35rem !important;
+    display:inline-block !important;
+  }
+  .hero-sub {
+    font-size:0.95rem !important;
+    margin-bottom:1.2rem !important;
+    line-height:1.7 !important;
+    color:rgba(0,0,0,0.7) !important;
+  }
+  .hero-cta-deco {
+    font-size:0.85rem !important;
+    letter-spacing:0.04em !important;
+    margin-bottom:0.3rem !important;
+  }
+  .hero-ctas {
+    align-items:center !important;
+    width:100% !important;
+    margin:0 auto !important;
+  }
+  /* Compress 8-video grid on SP - 2 columns for compactness */
+  .ugc-grid-wrap { max-height:none; margin-top:0.5rem; }
+  .ugc-grid { gap:0.5rem !important; }
+  .ugc-card { aspect-ratio:9/14; }
+  .hero-tags { justify-content:center !important; margin-top:1.2rem !important; }
 
   /* Main CTA buttons - large for thumb tap */
   .btn-primary,
