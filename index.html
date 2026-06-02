@@ -828,7 +828,9 @@ ul { list-style: none; }
 }
 
 /* ===== Hero Award Badges (laurel wreath / ranking style) ===== */
-.hero-medals { display:flex; justify-content:flex-start; align-items:center; gap:1.2rem; flex-wrap:wrap; margin-top:2.2rem; }
+/* TODO: 復活させる場合は display:none を消す */
+.hero-medals { display:none; }
+.hero-medals--show { display:flex; justify-content:flex-start; align-items:center; gap:1.2rem; flex-wrap:wrap; margin-top:2.2rem; }
 .hero-medal {
   position:relative; flex-shrink:0;
   display:grid; grid-template-columns:auto auto auto;
