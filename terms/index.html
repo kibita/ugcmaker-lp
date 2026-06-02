@@ -270,12 +270,81 @@
     .footer-inner { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:767px) {
-    .nav { display:none; }
-    .mobile-menu { display:block; }
-    .header-inner { padding:0.6rem 1rem; justify-content:space-between; }
+    /* Header - same as main LP */
+    .header { z-index:1200 !important; }
+    .header-inner { padding:0.7rem 1.2rem; justify-content:space-between; }
     .header-inner > a { margin-right:auto; }
-    .header-inner > a svg { height:44px; }
-    .hero { padding:60px 20px 48px; margin-top:56px; }
+    .header-inner > a svg { height:40px; }
+    .mobile-menu { display:block !important; padding:0.3rem 0.5rem; font-size:1.6rem !important; line-height:1; z-index:1210; position:relative; }
+    body.menu-open .header { background:#FFFFFF !important; }
+
+    /* Left-slide drawer menu */
+    .nav {
+      position:fixed !important; top:0; left:0;
+      height:100vh; height:100dvh;
+      width:82%; max-width:340px;
+      background:#FFFFFF !important;
+      opacity:1 !important;
+      backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+      box-shadow:8px 0 40px rgba(0,0,0,0.25);
+      padding:6rem 1.4rem 2rem !important;
+      transform:translateX(-100%);
+      transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);
+      z-index:1100;
+      display:flex !important; flex-direction:column;
+      align-items:stretch !important; gap:0 !important;
+      overflow-y:auto; visibility:hidden;
+    }
+    .nav.is-open { transform:translateX(0); visibility:visible; }
+    .nav-overlay {
+      position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.35); z-index:1090;
+      opacity:0; pointer-events:none;
+      transition:opacity 0.3s ease;
+    }
+    .nav-overlay.is-open { opacity:1; pointer-events:auto; }
+
+    /* Drawer items */
+    .nav a:not(.nav-cta-secondary):not(.nav-cta) {
+      width:100%; text-align:left !important;
+      padding:1rem 0.4rem !important;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      font-size:1rem !important;
+      color:#222 !important;
+      font-weight:500 !important;
+      display:block !important; height:auto !important;
+    }
+
+    /* SP: hide secondary CTA in drawer (single button only) */
+    .nav .nav-cta, body .nav-cta { display:none !important; visibility:hidden !important; }
+
+    /* Drawer single CTA */
+    .nav .nav-cta-secondary, .nav a.nav-cta-secondary {
+      display:flex !important; align-items:center !important; justify-content:center !important;
+      width:100% !important; max-width:100% !important;
+      margin:1.8rem 0 0 0 !important;
+      height:54px !important;
+      font-size:15px !important; font-weight:600 !important;
+      letter-spacing:0.05em !important;
+      padding:0 1rem !important;
+      text-align:center !important;
+      border:none !important; border-bottom:none !important;
+      border-radius:8px !important;
+      box-sizing:border-box !important;
+      background:#007aff !important;
+      color:#FFFFFF !important;
+      box-shadow:0 4px 14px rgba(0,122,255,0.25) !important;
+      transition:background 0.2s, box-shadow 0.2s !important;
+      flex-shrink:0 !important;
+    }
+    .nav .nav-cta-secondary:hover, .nav .nav-cta-secondary:active {
+      background:#185abc !important;
+      box-shadow:0 6px 18px rgba(0,122,255,0.35) !important;
+      color:#FFFFFF !important;
+    }
+
+    /* Page content */
+    .hero { padding:100px 20px 48px; }
     .container { padding: 0 20px; }
     .toc ol { columns: 1; }
     .section-body { padding-left: 0; }
@@ -309,6 +378,7 @@
     <div class="mobile-menu" id="mobileMenu">☰</div>
   </div>
 </header>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <div class="hero">
   <div class="container">
@@ -574,8 +644,11 @@
 const hdr=document.getElementById('header');
 window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
 const mm=document.getElementById('mobileMenu'),nv=document.querySelector('.nav');let open=false;
-mm.addEventListener('click',()=>{open=!open;if(open){nv.style.cssText='display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(30,30,30,0.97);padding:1.5rem 2rem;box-shadow:0 10px 30px rgba(0,0,0,0.3);gap:1rem;backdrop-filter:blur(16px);';}else{nv.removeAttribute('style');}});
-nv.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{if(open){open=false;nv.removeAttribute('style');}});});
+const ov=document.getElementById('navOverlay');
+function setOpen(v){open=v;if(open){nv.classList.add('is-open');if(ov)ov.classList.add('is-open');mm.textContent='✕';document.body.classList.add('menu-open');document.body.style.overflow='hidden';}else{nv.classList.remove('is-open');if(ov)ov.classList.remove('is-open');mm.textContent='☰';document.body.classList.remove('menu-open');document.body.style.overflow='';}}
+mm.addEventListener('click',()=>setOpen(!open));
+if(ov)ov.addEventListener('click',()=>setOpen(false));
+nv.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(open)setOpen(false);}));
 </script>
 </body>
 </html>
