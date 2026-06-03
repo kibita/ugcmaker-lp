@@ -201,6 +201,8 @@ ul { list-style: none; }
 .trust-logos { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
 
 /* ===== Logo Marquee (kashika-style horizontal scroll) ===== */
+/* data-local-only is set on page load; JS removes it on non-production hostnames */
+.logo-marquee[data-local-only] { display:none !important; }
 .logo-marquee { margin-top:3rem; overflow:hidden; position:relative; padding:2rem 0; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
 .logo-marquee-track { display:flex; gap:1rem; width:max-content; animation:logo-scroll 40s linear infinite; will-change:transform; }
 .logo-marquee:hover .logo-marquee-track { animation-play-state:paused; }
@@ -1410,8 +1412,8 @@ ul { list-style: none; }
       </div>
     </div>
   </div>
-  <!-- Logo Marquee (kashika-style) -->
-  <div class="logo-marquee anim">
+  <!-- Logo Marquee (kashika-style) - LOCAL ONLY (hidden on production) -->
+  <div class="logo-marquee anim" id="logoMarquee" data-local-only>
     <div class="logo-marquee-track">
       <div class="logo-item">Company A</div>
       <div class="logo-item">Brand B</div>
@@ -2617,6 +2619,16 @@ floatClose.addEventListener('click',()=>{
 </div>
 
 <script>!function(){var e=document.getElementById("stickyCta");if(e)window.addEventListener("scroll",function(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;s>400&&s<d-200?e.classList.add("show"):e.classList.remove("show")})}();</script>
+<script>
+// Logo marquee: show on local/preview only, hide on production
+(function(){
+  var lm=document.getElementById('logoMarquee');
+  if(!lm)return;
+  var host=location.hostname;
+  var isProduction = host === 'service.ugcmaker.jp' || host === 'www.service.ugcmaker.jp';
+  if(!isProduction) lm.removeAttribute('data-local-only');
+})();
+</script>
 <script>
 // FAQ smooth toggle (force open attr so content stays visible, animate via .is-open)
 (function(){
