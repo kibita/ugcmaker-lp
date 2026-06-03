@@ -871,19 +871,51 @@ ul { list-style: none; }
   display:flex; align-items:center; justify-content:center;
   border-radius:50%;
   background:
-    radial-gradient(circle at 30% 25%, #fff8dc 0%, #f5d77a 18%, #e6b837 45%, #c89324 70%, #8a6314 100%);
+    radial-gradient(circle at 32% 22%,
+      #FFFEF0 0%,
+      #FFF1A8 8%,
+      #FFE372 18%,
+      #F7C935 36%,
+      #DCA017 58%,
+      #A87311 82%,
+      #5A3D08 100%);
   box-shadow:
-    inset 0 -10px 20px rgba(110,75,8,0.45),
-    inset 0 8px 20px rgba(255,250,205,0.5),
-    inset 0 0 0 2px rgba(184,134,11,0.45),
-    0 12px 28px rgba(160,110,20,0.35),
-    0 4px 10px rgba(0,0,0,0.18);
-  border:6px solid #b8851a;
+    /* 内側の上ハイライト(光が当たる部分) */
+    inset 0 12px 22px rgba(255,250,210,0.7),
+    /* 内側の下シャドウ(凹み感) */
+    inset 0 -14px 22px rgba(70,45,5,0.65),
+    /* 縁の濃い金属感 */
+    inset 0 0 0 2px rgba(140,90,12,0.55),
+    /* 外側に落ちる強い影 */
+    0 18px 36px rgba(140,95,15,0.5),
+    0 8px 16px rgba(60,40,5,0.35),
+    0 2px 4px rgba(0,0,0,0.25);
+  border:7px solid #9a6e10;
   font-family:'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
   color:#3d2806;
 }
-.hero-medal::before { content:''; position:absolute; inset:8px; border-radius:50%; border:1.5px solid rgba(110,75,8,0.4); pointer-events:none; }
-.hero-medal::after { content:''; position:absolute; top:12%; left:18%; width:35%; height:25%; border-radius:50%; background:radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, transparent 70%); pointer-events:none; }
+/* 内側の二重リング(深み) */
+.hero-medal::before {
+  content:''; position:absolute; inset:6px;
+  border-radius:50%;
+  border:1.5px solid rgba(80,55,8,0.55);
+  box-shadow:inset 0 0 0 2px rgba(255,235,150,0.25);
+  pointer-events:none;
+}
+/* 強いハイライト(光沢) */
+.hero-medal::after {
+  content:''; position:absolute;
+  top:9%; left:14%;
+  width:48%; height:32%;
+  border-radius:50%;
+  background:radial-gradient(ellipse at 30% 30%,
+    rgba(255,255,255,0.92) 0%,
+    rgba(255,255,255,0.45) 25%,
+    rgba(255,255,255,0.15) 50%,
+    transparent 75%);
+  filter:blur(0.5px);
+  pointer-events:none;
+}
 .hero-medal-inner { text-align:center; position:relative; z-index:1; padding:0 0.4rem; }
 .hero-medal-label { font-size:0.85rem; font-weight:700; letter-spacing:0.04em; color:#3d2806; margin-bottom:0.25rem; line-height:1.2; }
 .hero-medal-num { font-size:2rem; font-weight:900; line-height:1; letter-spacing:0.01em; color:#2a1c04; }
