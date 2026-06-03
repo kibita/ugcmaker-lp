@@ -863,9 +863,9 @@ ul { list-style: none; }
 }
 
 /* ===== Hero Award Badges (laurel wreath / ranking style) ===== */
-/* TODO: 復活させる場合は display:none を消す */
-.hero-medals { display:none; }
-.hero-medals--show { display:flex; justify-content:flex-start; align-items:center; gap:1.2rem; flex-wrap:wrap; margin-top:2.2rem; }
+/* data-local-only で本番非表示・ローカル/プレビュー表示の切替 */
+.hero-medals { display:flex; justify-content:flex-start; align-items:center; gap:1.2rem; flex-wrap:wrap; margin-top:2.2rem; }
+.hero-medals[data-local-only] { display:none !important; }
 .hero-medal {
   position:relative; flex-shrink:0;
   display:grid; grid-template-columns:auto auto auto;
@@ -1351,7 +1351,7 @@ ul { list-style: none; }
           無料で導入相談する ›
         </a>
       </div>
-      <div class="hero-medals">
+      <div class="hero-medals" id="heroMedals" data-local-only>
         <div class="hero-medal">
           <div class="hero-medal-inner">
             <div class="hero-medal-label">累計生成本数</div>
@@ -2620,13 +2620,14 @@ floatClose.addEventListener('click',()=>{
 
 <script>!function(){var e=document.getElementById("stickyCta");if(e)window.addEventListener("scroll",function(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;s>400&&s<d-200?e.classList.add("show"):e.classList.remove("show")})}();</script>
 <script>
-// Logo marquee: show on local/preview only, hide on production
+// Local-only elements: hide on production, show on local/preview
 (function(){
-  var lm=document.getElementById('logoMarquee');
-  if(!lm)return;
   var host=location.hostname;
   var isProduction = host === 'service.ugcmaker.jp' || host === 'www.service.ugcmaker.jp';
-  if(!isProduction) lm.removeAttribute('data-local-only');
+  if(isProduction) return;
+  document.querySelectorAll('[data-local-only]').forEach(function(el){
+    el.removeAttribute('data-local-only');
+  });
 })();
 </script>
 <script>
