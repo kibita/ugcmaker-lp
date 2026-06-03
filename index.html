@@ -208,30 +208,37 @@ ul { list-style: none; }
 .logo-marquee:hover .logo-marquee-track { animation-play-state:paused; }
 .logo-item {
   flex-shrink:0;
-  min-width:180px;
-  height:80px;
+  width:220px;
+  height:110px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:#fff;
-  border:1px solid rgba(0,0,0,0.06);
-  border-radius:12px;
-  padding:0 1.5rem;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:14px;
+  padding:1.2rem 1.6rem;
   font-family:'Nunito Sans', 'Noto Sans JP', sans-serif;
   font-size:1rem;
   font-weight:700;
   color:rgba(0,0,0,0.5);
   letter-spacing:0.02em;
   white-space:nowrap;
-  transition:color 0.25s, border-color 0.25s, box-shadow 0.25s;
+  transition:border-color 0.25s, box-shadow 0.25s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.03);
 }
-.logo-item img { max-width:100%; max-height:50px; object-fit:contain; filter:grayscale(100%); opacity:0.6; transition:filter 0.25s, opacity 0.25s; }
-.logo-item:hover { color:var(--primary-blue); border-color:rgba(0,122,255,0.25); box-shadow:0 6px 18px rgba(0,0,0,0.06); }
-.logo-item:hover img { filter:grayscale(0); opacity:1; }
+.logo-item img {
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  transition:filter 0.25s, opacity 0.25s;
+}
+.logo-item:hover { border-color:rgba(0,122,255,0.25); box-shadow:0 8px 20px rgba(0,0,0,0.08); }
 @keyframes logo-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 @media(max-width:767px){
   .logo-marquee { margin-top:2rem; padding:1.2rem 0; }
-  .logo-item { min-width:140px; height:64px; font-size:0.88rem; padding:0 1rem; }
+  .logo-item { width:160px; height:84px; padding:0.8rem 1rem; border-radius:10px; }
   .logo-marquee-track { gap:0.7rem; animation-duration:30s; }
 }
 .trust-logo-item { background:var(--white); border-radius:10px; padding:1.8rem 1.2rem; text-align:center; font-weight:700; font-size:0.88rem; color:var(--gray-700); border:1px solid var(--gray-100); transition:transform 0.25s, border-color 0.25s; }
@@ -1446,27 +1453,29 @@ ul { list-style: none; }
   <!-- Logo Marquee (kashika-style) - LOCAL ONLY (hidden on production) -->
   <div class="logo-marquee anim" id="logoMarquee" data-local-only>
     <div class="logo-marquee-track">
-      <div class="logo-item">Company A</div>
-      <div class="logo-item">Brand B</div>
-      <div class="logo-item">株式会社 C</div>
-      <div class="logo-item">Service D</div>
-      <div class="logo-item">Studio E</div>
-      <div class="logo-item">Co. F</div>
-      <div class="logo-item">G Inc.</div>
-      <div class="logo-item">株式会社 H</div>
-      <div class="logo-item">Brand I</div>
-      <div class="logo-item">Group J</div>
+      <div class="logo-item"><img src="lp-videos/logo-01.svg" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-02.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-03.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-04.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-05.jpg" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-06.webp" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-07.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-08.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-09.webp" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-10.webp" alt="日本ECサービス株式会社"></div>
+      <div class="logo-item"><img src="lp-videos/logo-11.jpeg" alt="導入企業"></div>
       <!-- duplicate for seamless loop -->
-      <div class="logo-item">Company A</div>
-      <div class="logo-item">Brand B</div>
-      <div class="logo-item">株式会社 C</div>
-      <div class="logo-item">Service D</div>
-      <div class="logo-item">Studio E</div>
-      <div class="logo-item">Co. F</div>
-      <div class="logo-item">G Inc.</div>
-      <div class="logo-item">株式会社 H</div>
-      <div class="logo-item">Brand I</div>
-      <div class="logo-item">Group J</div>
+      <div class="logo-item"><img src="lp-videos/logo-01.svg" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-02.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-03.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-04.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-05.jpg" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-06.webp" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-07.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-08.png" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-09.webp" alt="導入企業"></div>
+      <div class="logo-item"><img src="lp-videos/logo-10.webp" alt="日本ECサービス株式会社"></div>
+      <div class="logo-item"><img src="lp-videos/logo-11.jpeg" alt="導入企業"></div>
     </div>
   </div>
 </section>
