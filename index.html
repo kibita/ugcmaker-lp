@@ -199,6 +199,39 @@ ul { list-style: none; }
 .trust-stat-num .unit { font-size:1.5rem; font-weight:700; letter-spacing:0; line-height:1; margin-left:0.35em; }
 .trust-stat-label { font-size:0.85rem; color:rgba(255,255,255,0.4); line-height:1.8; max-width:280px; margin:0 auto; }
 .trust-logos { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+
+/* ===== Logo Marquee (kashika-style horizontal scroll) ===== */
+.logo-marquee { margin-top:3rem; overflow:hidden; position:relative; padding:2rem 0; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
+.logo-marquee-track { display:flex; gap:1rem; width:max-content; animation:logo-scroll 40s linear infinite; will-change:transform; }
+.logo-marquee:hover .logo-marquee-track { animation-play-state:paused; }
+.logo-item {
+  flex-shrink:0;
+  min-width:180px;
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:12px;
+  padding:0 1.5rem;
+  font-family:'Nunito Sans', 'Noto Sans JP', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  color:rgba(0,0,0,0.5);
+  letter-spacing:0.02em;
+  white-space:nowrap;
+  transition:color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.logo-item img { max-width:100%; max-height:50px; object-fit:contain; filter:grayscale(100%); opacity:0.6; transition:filter 0.25s, opacity 0.25s; }
+.logo-item:hover { color:var(--primary-blue); border-color:rgba(0,122,255,0.25); box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+.logo-item:hover img { filter:grayscale(0); opacity:1; }
+@keyframes logo-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@media(max-width:767px){
+  .logo-marquee { margin-top:2rem; padding:1.2rem 0; }
+  .logo-item { min-width:140px; height:64px; font-size:0.88rem; padding:0 1rem; }
+  .logo-marquee-track { gap:0.7rem; animation-duration:30s; }
+}
 .trust-logo-item { background:var(--white); border-radius:10px; padding:1.8rem 1.2rem; text-align:center; font-weight:700; font-size:0.88rem; color:var(--gray-700); border:1px solid var(--gray-100); transition:transform 0.25s, border-color 0.25s; }
 .trust-logo-item:hover { }
 
@@ -1375,6 +1408,32 @@ ul { list-style: none; }
         <div class="trust-stat-num">1<span class="unit">万本以上</span></div>
         <div class="trust-stat-label">年間1万本以上の動画を生成<br>圧倒的な量産体制を実現</div>
       </div>
+    </div>
+  </div>
+  <!-- Logo Marquee (kashika-style) -->
+  <div class="logo-marquee anim">
+    <div class="logo-marquee-track">
+      <div class="logo-item">Company A</div>
+      <div class="logo-item">Brand B</div>
+      <div class="logo-item">株式会社 C</div>
+      <div class="logo-item">Service D</div>
+      <div class="logo-item">Studio E</div>
+      <div class="logo-item">Co. F</div>
+      <div class="logo-item">G Inc.</div>
+      <div class="logo-item">株式会社 H</div>
+      <div class="logo-item">Brand I</div>
+      <div class="logo-item">Group J</div>
+      <!-- duplicate for seamless loop -->
+      <div class="logo-item">Company A</div>
+      <div class="logo-item">Brand B</div>
+      <div class="logo-item">株式会社 C</div>
+      <div class="logo-item">Service D</div>
+      <div class="logo-item">Studio E</div>
+      <div class="logo-item">Co. F</div>
+      <div class="logo-item">G Inc.</div>
+      <div class="logo-item">株式会社 H</div>
+      <div class="logo-item">Brand I</div>
+      <div class="logo-item">Group J</div>
     </div>
   </div>
 </section>
