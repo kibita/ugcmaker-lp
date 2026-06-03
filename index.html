@@ -205,19 +205,19 @@ ul { list-style: none; }
 .logo-marquee[data-local-only] { display:none !important; }
 .trust-hide-on-local { display:block; }
 body.is-local .trust-hide-on-local { display:none !important; }
-.logo-marquee { margin-top:0; overflow:hidden; position:relative; padding:2rem 0; background:#eef0f2; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
-.logo-marquee-track { display:flex; gap:1rem; width:max-content; animation:logo-scroll 36s linear infinite; will-change:transform; }
+.logo-marquee { margin-top:0; overflow:hidden; position:relative; padding:2rem 0; background:#f3f4f6; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
+.logo-marquee-track { display:flex; gap:0.75rem; width:max-content; animation:logo-scroll 36s linear infinite; will-change:transform; }
 .logo-item {
   flex-shrink:0;
-  width:265px;
-  height:98px;
+  width:240px;
+  height:80px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:#fff;
   border:none;
   border-radius:10px;
-  padding:1rem 1.4rem;
+  padding:1rem 2rem;
   font-family:'Nunito Sans', 'Noto Sans JP', sans-serif;
   font-size:1rem;
   font-weight:700;
@@ -229,7 +229,7 @@ body.is-local .trust-hide-on-local { display:none !important; }
 }
 .logo-item img {
   max-width:100%;
-  max-height:68px;
+  max-height:44px;
   width:auto;
   height:auto;
   object-fit:contain;
