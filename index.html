@@ -60,9 +60,9 @@ ul { list-style: none; }
 .anim.visible { opacity:1; transform:translateY(0); }
 
 /* Header */
-.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; }
+.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; padding:0 7vw; }
 .header.scrolled { background:rgba(255,255,255,0.95); }
-.header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 2rem; }
+.header-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 0; }
 .logo-img { height:56px; }
 .logo-img text { fill:#1A1A1A; }
 .nav { display:flex; align-items:center; gap:1.5rem; }
@@ -1125,11 +1125,9 @@ body.is-local .trust-hide-on-local { display:none !important; }
 }
 
 /* ===== SP (Mobile) Responsive Pass ===== */
-@media (max-width:767px) {
+@media (max-width:1024px) {
   /* Header - sit ABOVE menu so logo is always visible */
   .header { z-index:1200 !important; }
-  .header-inner { padding:0.7rem 1.2rem; }
-  .logo-img { height:40px; }
   .mobile-menu { display:block !important; padding:0.3rem 0.5rem; font-size:1.6rem !important; line-height:1; z-index:1210; position:relative; }
   /* When menu is open, force header to solid white (no transparency / grey tint) */
   body.menu-open .header { background:#FFFFFF !important; }
@@ -1228,6 +1226,12 @@ body.is-local .trust-hide-on-local { display:none !important; }
     color:#222 !important;
     font-weight:500 !important;
   }
+}
+
+@media (max-width:767px) {
+  .header { padding:0 !important; }
+  .header-inner { padding:0.7rem 1.2rem; }
+  .logo-img { height:40px; }
 
   /* Hero - optimized for SP (centered, balanced typography) */
   .hero { padding:6rem 6vw 2.8rem !important; }
@@ -1353,7 +1357,7 @@ body.is-local .trust-hide-on-local { display:none !important; }
 <header class="header" id="header">
   <div class="header-inner">
     <a href="#" style="display:flex;align-items:center;text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="56" style="display:block;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" height="68" style="display:block;">
         <defs><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&amp;display=swap');</style></defs>
         <text x="600" y="225" text-anchor="middle" dominant-baseline="middle"
               font-family="'Nunito Sans', sans-serif" font-weight="900" font-size="130"
@@ -2079,28 +2083,24 @@ body.is-local .trust-hide-on-local { display:none !important; }
             <span class="agency-hero-feat-num">01</span>
             <div>
               <h4 class="agency-hero-feat-title">広告戦略の設計</h4>
-              <p class="agency-hero-feat-desc">ターゲット選定、媒体選び、予算配分まで最適な戦略をゼロから設計</p>
             </div>
           </div>
           <div class="agency-hero-feat">
             <span class="agency-hero-feat-num">02</span>
             <div>
               <h4 class="agency-hero-feat-title">クリエイティブ企画・制作</h4>
-              <p class="agency-hero-feat-desc">訴求軸の設計からスクリプト作成・構成提案まで専任チームが伴走</p>
             </div>
           </div>
           <div class="agency-hero-feat">
             <span class="agency-hero-feat-num">03</span>
             <div>
               <h4 class="agency-hero-feat-title">広告運用・改善</h4>
-              <p class="agency-hero-feat-desc">Meta・TikTok・YouTube等の運用代行。データに基づくPDCAで成果最大化</p>
             </div>
           </div>
           <div class="agency-hero-feat">
             <span class="agency-hero-feat-num">04</span>
             <div>
               <h4 class="agency-hero-feat-title">月次レポート・定例会</h4>
-              <p class="agency-hero-feat-desc">数値分析と月1回の定例会でトレンド共有・改善提案を実施</p>
             </div>
           </div>
         </div>
