@@ -203,8 +203,7 @@ ul { list-style: none; }
 /* ===== Logo Marquee (kashika-style horizontal scroll) ===== */
 /* data-local-only is set on page load; JS removes it on non-production hostnames */
 .logo-marquee[data-local-only] { display:none !important; }
-.trust-hide-on-local { display:block; }
-body.is-local .trust-hide-on-local { display:none !important; }
+.trust-hide-on-local { display:none !important; }
 .logo-marquee { margin-top:0; overflow:hidden; position:relative; padding:2rem 0; background:#f3f4f6; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
 .logo-marquee-track { display:flex; gap:1.5rem; width:max-content; animation:logo-scroll 36s linear infinite; will-change:transform; }
 .logo-item {
