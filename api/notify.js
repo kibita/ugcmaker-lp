@@ -77,7 +77,7 @@ export default async function handler(req, res) {
     if (type === 'contact') {
       headerText = '📮 お問い合わせがありました 📮';
       blocks = [
-        { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
+        { type: 'section', text: { type: 'mrkdwn', text: `*${headerText}*` } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
         { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('知ったきっかけ', referral) ] },
       ];
@@ -89,7 +89,7 @@ export default async function handler(req, res) {
     } else if (type === 'download') {
       headerText = '📥 資料のダウンロード依頼がありました 📥';
       blocks = [
-        { type: 'header', text: { type: 'plain_text', text: headerText, emoji: true } },
+        { type: 'section', text: { type: 'mrkdwn', text: `*${headerText}*` } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
         { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
         { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
@@ -104,7 +104,7 @@ export default async function handler(req, res) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         attachments: [
-          { color: '#2563eb', blocks },
+          { color: '#22c55e', blocks },
         ],
       }),
     });
