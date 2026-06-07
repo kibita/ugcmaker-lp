@@ -60,9 +60,9 @@ ul { list-style: none; }
 .anim.visible { opacity:1; transform:translateY(0); }
 
 /* Header */
-.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; }
+.header { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); transition:background 0.3s; padding:0 7vw; }
 .header.scrolled { background:rgba(255,255,255,0.95); }
-.header-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 2rem; }
+.header-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:1.3rem 0; }
 .logo-img { height:56px; }
 .logo-img text { fill:#1A1A1A; }
 .nav { display:flex; align-items:center; gap:1.5rem; }
@@ -124,6 +124,27 @@ ul { list-style: none; }
 .btn-primary::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
 .btn-primary:hover { color:var(--black); }
 .btn-primary:hover::before { width:100%; }
+
+/* Hero CTA layout & secondary button */
+.hero-cta-row { display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center; }
+.btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#fff; color:var(--black); padding:1rem 2.4rem; border-radius:10px; font-weight:800; font-size:1rem; border:2px solid var(--black); cursor:pointer; font-family:var(--font-body); text-decoration:none; transition:background 0.2s, color 0.2s; }
+.btn-secondary:hover { background:var(--black); color:#fff; }
+
+/* Risk-reduction trust points */
+.hero-trust-points { list-style:none; display:flex; flex-wrap:wrap; gap:0.55rem 1.2rem; margin-top:0.9rem; padding:0; }
+.hero-trust-points li { font-size:0.86rem; color:rgba(0,0,0,0.72); font-weight:600; display:inline-flex; align-items:center; gap:0.35rem; letter-spacing:0.02em; }
+.hero-trust-points li::before { content:'✓'; color:var(--primary-blue); font-weight:900; font-size:0.95em; }
+
+/* Modern stats display (replaces gold medals) */
+.hero-stats { display:flex; gap:0; margin-top:2rem; align-items:flex-end; }
+.hero-stat { display:flex; flex-direction:column; gap:0.35rem; padding:0 1.6rem; }
+.hero-stat:first-child { padding-left:0; }
+.hero-stat + .hero-stat { border-left:1px solid rgba(0,0,0,0.1); }
+.hero-stat-num { font-family:var(--font-display); font-size:2.6rem; font-weight:900; color:var(--black); line-height:1; display:flex; align-items:baseline; gap:0.05em; letter-spacing:-0.01em; }
+.hero-stat-num .num { color:var(--primary-blue); }
+.hero-stat-num .unit { font-size:0.5em; color:var(--gray-700); font-weight:800; }
+.hero-stat-num .plus { font-size:0.55em; color:var(--primary-blue); font-weight:900; margin-left:0.05em; }
+.hero-stat-label { font-size:0.82rem; color:var(--gray-700); font-weight:700; letter-spacing:0.06em; }
 .hero-tags { margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.4rem; }
 .hero-tags span { font-size:0.88rem; color:var(--gray-700); background:rgba(0,0,0,0.05); padding:0.2rem 0.6rem; border-radius:20px; }
 .hero-tags .label { color:var(--black); font-weight:700; font-size:0.8rem; background:none; padding:0; }
@@ -1268,6 +1289,13 @@ ul { list-style: none; }
     width:100% !important;
     margin:0 auto !important;
   }
+  .hero-cta-row { flex-direction:column !important; width:100% !important; align-items:center !important; gap:0.7rem !important; }
+  .hero-trust-points { justify-content:center !important; gap:0.4rem 0.9rem !important; margin-top:0.8rem !important; }
+  .hero-trust-points li { font-size:0.78rem !important; }
+  .hero-stats { justify-content:center !important; margin-top:1.6rem !important; gap:0 !important; }
+  .hero-stat { padding:0 1.1rem !important; }
+  .hero-stat-num { font-size:2rem !important; }
+  .hero-stat-label { font-size:0.72rem !important; }
   /* Compress 8-video grid on SP - 2 columns for compactness */
   .ugc-grid-wrap { max-height:none; margin-top:0.5rem; }
   .ugc-grid { gap:0.5rem !important; }
@@ -1388,27 +1416,32 @@ ul { list-style: none; }
         <span class="big">画像1枚</span>から大量生成<br>
         <span class="box">1本あたり約500円</span>
       </h1>
-      <p class="hero-sub">キャスティング・撮影・編集いっさい不要</p>
+      <p class="hero-sub">画像1枚＋テキスト指示だけ。AIが構成〜出演者〜編集まで全自動。</p>
       <div class="hero-ctas">
         <p class="hero-cta-deco">＼ 貴社専用のデモ動画を作成します！ ／</p>
-        <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
-          無料で導入相談する ›
-        </a>
-      </div>
-      <div class="hero-medals" id="heroMedals" data-local-only>
-        <div class="hero-medal">
-          <div class="hero-medal-inner">
-            <div class="hero-medal-label">累計生成本数</div>
-            <div class="hero-medal-num">1<small>万本</small></div>
-            <div class="hero-medal-sub">以上</div>
-          </div>
+        <div class="hero-cta-row">
+          <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
+            無料で導入相談する ›
+          </a>
+          <a href="#download" class="btn-secondary">
+            資料ダウンロード
+          </a>
         </div>
-        <div class="hero-medal">
-          <div class="hero-medal-inner">
-            <div class="hero-medal-label">継続率</div>
-            <div class="hero-medal-num">98.2<small>%</small></div>
-            <div class="hero-medal-sub" aria-hidden="true">&nbsp;</div>
-          </div>
+        <ul class="hero-trust-points">
+          <li>初期費用0円</li>
+          <li>クレカ不要</li>
+          <li>30秒で完了</li>
+          <li>営業電話なし</li>
+        </ul>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="num">1</span><span class="unit">万本</span><span class="plus">＋</span></div>
+          <div class="hero-stat-label">累計生成本数</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="num">98.2</span><span class="unit">%</span></div>
+          <div class="hero-stat-label">継続率</div>
         </div>
       </div>
     </div>
