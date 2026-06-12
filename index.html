@@ -103,7 +103,7 @@ ul { list-style: none; }
 .sec-center { text-align:center; }
 
 /* Hero */
-.hero { background:linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 60%); color:var(--black); padding:10.5rem 7vw 4.5rem; position:relative; overflow:hidden; }
+.hero { background:linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 60%); color:var(--black); padding:11rem 7vw 5rem; position:relative; overflow:hidden; }
 .hero-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
 .hero-left { animation:fadeInUp 0.7s ease forwards; }
 .hero-ctas { display:flex; flex-direction:column; gap:0.8rem; align-items:center; width:fit-content; }
@@ -113,9 +113,9 @@ ul { list-style: none; }
 .hero-dl-main { font-size:0.95rem; font-weight:700; color:var(--black); }
 .campaign-banner { background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.08); border-radius:10px; padding:0.9rem 1.3rem; margin-bottom:2rem; font-size:0.92rem; line-height:1.6; color:rgba(0,0,0,0.78); }
 .campaign-banner .hl { display:inline-block; background:var(--black); color:var(--white); padding:0.1rem 0.5rem; border-radius:4px; font-weight:700; margin:0 0.1rem; }
-.hero-h1 { font-family:var(--font-body); font-size:3.4rem; font-weight:900; line-height:1.4; letter-spacing:0.04em; margin-bottom:0.6rem; color:var(--black); word-break:keep-all; }
-.hero-h1 .big { font-size:4.6rem; color:var(--primary-blue); letter-spacing:0.04em; }
-.hero-h1 .box { display:inline-block; background:var(--black); color:var(--white); padding:0.25rem 0.85rem; border-radius:6px; font-size:2.4rem; margin-top:0.4rem; }
+.hero-h1 { font-family:var(--font-body); font-size:3.2rem; font-weight:900; line-height:1.45; letter-spacing:0.04em; margin-bottom:0.8rem; color:var(--black); word-break:keep-all; }
+.hero-h1 .big { font-size:4rem; color:var(--primary-blue); letter-spacing:0.04em; }
+.hero-h1 .box { display:inline-block; background:var(--black); color:var(--white); padding:0.25rem 0.85rem; border-radius:6px; font-size:2.2rem; margin-top:0.5rem; }
 .hero-note { font-size:0.88rem; color:var(--gray-500); margin-bottom:1.5rem; }
 .hero-sub { font-size:1.1rem; color:rgba(0,0,0,0.7); margin-bottom:1.5rem; line-height:1.8; }
 .hero-checks { margin-bottom:1.5rem; display:flex; flex-direction:column; gap:0.4rem; }
@@ -125,29 +125,74 @@ ul { list-style: none; }
 .btn-primary:hover { color:var(--black); }
 .btn-primary:hover::before { width:100%; }
 
-/* Hero CTA layout & secondary button */
-.hero-cta-row { display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center; }
-.btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#fff; color:var(--black); padding:1rem 2.4rem; border-radius:10px; font-weight:800; font-size:1rem; border:2px solid var(--black); cursor:pointer; font-family:var(--font-body); text-decoration:none; transition:background 0.2s, color 0.2s; }
-.btn-secondary:hover { background:var(--black); color:#fff; }
-.btn-secondary[data-local-only] { display:none !important; }
+/* Laurel wreath award badges (light hero awards) - local-only */
+.hero-awards[data-local-only] { display:none !important; }
+.hero-awards {
+  display:flex; gap:10px; margin-top:1.5rem;
+  align-items:center; justify-content:flex-start; flex-wrap:nowrap;
+  width:fit-content; max-width:100%;
+}
+.hero-award {
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  width:200px; height:108px;
+  padding:0 38px;
+  box-sizing:border-box;
+  flex-shrink:0;
+}
+.hero-award::before, .hero-award::after {
+  content:''; position:absolute; top:50%; transform:translateY(-50%);
+  width:36px; height:95px;
+  background-repeat:no-repeat; background-size:contain; background-position:center;
+  opacity:0.85;
+}
+.hero-award::before {
+  left:6px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 180' fill='%23C9BFA3'><path d='M26 178C14 140 12 60 28 6' stroke='%23C9BFA3' stroke-width='1.4' fill='none' stroke-linecap='round'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(16 18) rotate(-58)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(10 38) rotate(-75)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(7 60) rotate(-90)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(7 82) rotate(-100)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(9 104) rotate(-112)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(13 126) rotate(-125)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(19 148) rotate(-140)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(28 168) rotate(-158)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(32 28) rotate(-30)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(32 50) rotate(-45)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(32 72) rotate(-60)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(32 94) rotate(-75)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(33 116) rotate(-90)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(37 138) rotate(-105)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(43 158) rotate(-122)'/></svg>");
+}
+.hero-award::after {
+  right:6px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 180' fill='%23C9BFA3'><path d='M44 178C56 140 58 60 42 6' stroke='%23C9BFA3' stroke-width='1.4' fill='none' stroke-linecap='round'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(54 18) rotate(58)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(60 38) rotate(75)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(63 60) rotate(90)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(63 82) rotate(100)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(61 104) rotate(112)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(57 126) rotate(125)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(51 148) rotate(140)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(42 168) rotate(158)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(38 28) rotate(30)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(38 50) rotate(45)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(38 72) rotate(60)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(38 94) rotate(75)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(37 116) rotate(90)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(33 138) rotate(105)'/><path d='M0 -11C2 -8 3.5 -3 3.5 0C3.5 3 2 8 0 11C-2 8 -3.5 3 -3.5 0C-3.5 -3 -2 -8 0 -11Z' transform='translate(27 158) rotate(122)'/></svg>");
+}
+.hero-award-inner {
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:var(--black);
+}
+.hero-award-label {
+  font-size:11px; font-weight:700; color:rgba(0,0,0,0.6);
+  letter-spacing:0.04em; line-height:1.4; margin-bottom:3px;
+  white-space:nowrap;
+}
+.hero-award-num {
+  font-family:var(--font-body);
+  font-size:34px; font-weight:900; color:var(--black);
+  line-height:1; letter-spacing:0;
+  display:inline-flex; align-items:baseline; justify-content:center; gap:2px;
+  font-style:normal;
+}
+.hero-award-num .num { color:var(--black); font-family:var(--font-body); }
+.hero-award-num small { font-size:12px; font-weight:800; color:var(--gray-700); font-family:var(--font-body); }
+.hero-award-num .plus { font-size:20px; color:var(--primary-blue); font-weight:900; line-height:1; font-family:var(--font-display); }
+@media(max-width:767px){
+  .hero-awards {
+    gap:8px; padding:14px 14px;
+    margin-top:1.4rem; width:fit-content; max-width:100%; box-sizing:border-box;
+  }
+  .hero-award {
+    width:160px; height:100px; padding:0 34px;
+  }
+  .hero-award::before, .hero-award::after {
+    width:32px; height:85px;
+  }
+  .hero-award::before { left:2px; }
+  .hero-award::after { right:2px; }
+  .hero-award-label { font-size:10px; margin-bottom:3px; }
+  .hero-award-num { font-size:28px; }
+  .hero-award-num small { font-size:11px; }
+  .hero-award-num .plus { font-size:16px; }
+}
 
-/* Risk-reduction trust points */
-.hero-trust-points[data-local-only] { display:none !important; }
-.hero-trust-points { list-style:none; display:flex; flex-wrap:wrap; gap:0.55rem 1.2rem; margin-top:0.9rem; padding:0; }
-.hero-trust-points li { font-size:0.86rem; color:rgba(0,0,0,0.72); font-weight:600; display:inline-flex; align-items:center; gap:0.35rem; letter-spacing:0.02em; }
-.hero-trust-points li::before { content:'✓'; color:var(--primary-blue); font-weight:900; font-size:0.95em; }
-
-/* Modern stats display (replaces gold medals) */
-.hero-stats[data-local-only] { display:none !important; }
-.hero-stats { display:flex; gap:0; margin-top:2rem; align-items:flex-end; }
-.hero-stat { display:flex; flex-direction:column; gap:0.35rem; padding:0 1.6rem; }
-.hero-stat:first-child { padding-left:0; }
-.hero-stat + .hero-stat { border-left:1px solid rgba(0,0,0,0.1); }
-.hero-stat-num { font-family:var(--font-display); font-size:2.6rem; font-weight:900; color:var(--black); line-height:1; display:flex; align-items:baseline; gap:0.05em; letter-spacing:-0.01em; }
-.hero-stat-num .num { color:var(--primary-blue); }
-.hero-stat-num .unit { font-size:0.5em; color:var(--gray-700); font-weight:800; }
-.hero-stat-num .plus { font-size:0.55em; color:var(--primary-blue); font-weight:900; margin-left:0.05em; }
-.hero-stat-label { font-size:0.82rem; color:var(--gray-700); font-weight:700; letter-spacing:0.06em; }
 .hero-tags { margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.4rem; }
 .hero-tags span { font-size:0.88rem; color:var(--gray-700); background:rgba(0,0,0,0.05); padding:0.2rem 0.6rem; border-radius:20px; }
 .hero-tags .label { color:var(--black); font-weight:700; font-size:0.8rem; background:none; padding:0; }
@@ -1267,7 +1312,7 @@ ul { list-style: none; }
     margin-bottom:0.8rem !important;
     word-break:keep-all !important;
   }
-  .hero-h1 .big { font-size:2.6rem !important; letter-spacing:0.04em !important; }
+  .hero-h1 .big { font-size:2.3rem !important; letter-spacing:0.04em !important; }
   .hero-h1 .box {
     font-size:1.45rem !important;
     padding:0.18rem 0.7rem !important;
@@ -1291,13 +1336,6 @@ ul { list-style: none; }
     width:100% !important;
     margin:0 auto !important;
   }
-  .hero-cta-row { flex-direction:column !important; width:100% !important; align-items:center !important; gap:0.7rem !important; }
-  .hero-trust-points { justify-content:center !important; gap:0.4rem 0.9rem !important; margin-top:0.8rem !important; }
-  .hero-trust-points li { font-size:0.78rem !important; }
-  .hero-stats { justify-content:center !important; margin-top:1.6rem !important; gap:0 !important; }
-  .hero-stat { padding:0 1.1rem !important; }
-  .hero-stat-num { font-size:2rem !important; }
-  .hero-stat-label { font-size:0.72rem !important; }
   /* Compress 8-video grid on SP - 2 columns for compactness */
   .ugc-grid-wrap { max-height:none; margin-top:0.5rem; }
   .ugc-grid { gap:0.5rem !important; }
@@ -1421,29 +1459,22 @@ ul { list-style: none; }
       <p class="hero-sub">キャスティング・撮影・編集いっさい不要</p>
       <div class="hero-ctas">
         <p class="hero-cta-deco">＼ 貴社専用のデモ動画を作成します！ ／</p>
-        <div class="hero-cta-row">
-          <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
-            無料で導入相談する ›
-          </a>
-          <a href="#download" class="btn-secondary" data-local-only>
-            資料ダウンロード
-          </a>
-        </div>
-        <ul class="hero-trust-points" data-local-only>
-          <li>初期費用0円</li>
-          <li>クレカ不要</li>
-          <li>30秒で完了</li>
-          <li>営業電話なし</li>
-        </ul>
+        <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
+          無料で導入相談する ›
+        </a>
       </div>
-      <div class="hero-stats" data-local-only>
-        <div class="hero-stat">
-          <div class="hero-stat-num"><span class="num">1</span><span class="unit">万本</span><span class="plus">＋</span></div>
-          <div class="hero-stat-label">累計生成本数</div>
+      <div class="hero-awards">
+        <div class="hero-award">
+          <div class="hero-award-inner">
+            <div class="hero-award-label">累計生成本数</div>
+            <div class="hero-award-num"><span class="num">1</span><small>万本超</small></div>
+          </div>
         </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num"><span class="num">98.2</span><span class="unit">%</span></div>
-          <div class="hero-stat-label">継続率</div>
+        <div class="hero-award">
+          <div class="hero-award-inner">
+            <div class="hero-award-label">継続率</div>
+            <div class="hero-award-num"><span class="num">98.2</span><small>%</small></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2711,10 +2742,13 @@ floatClose.addEventListener('click',()=>{
 <script>!function(){var e=document.getElementById("stickyCta");if(e)window.addEventListener("scroll",function(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;s>400&&s<d-200?e.classList.add("show"):e.classList.remove("show")})}();</script>
 <script>
 // Local-only elements: hide on production, show on local/preview
+// To preview LOCAL view, add ?local to the URL (e.g., localhost:8765/?local)
+// Default: localhost behaves like production (everything data-local-only stays hidden)
 (function(){
   var host=location.hostname;
   var isProduction = host === 'service.ugcmaker.jp' || host === 'www.service.ugcmaker.jp';
-  if(isProduction) return;
+  var forceLocal = new URLSearchParams(location.search).has('local');
+  if(isProduction || !forceLocal) return;
   document.body.classList.add('is-local');
   document.querySelectorAll('[data-local-only]').forEach(function(el){
     el.removeAttribute('data-local-only');
