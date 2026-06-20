@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="240" height="180" role="img" aria-label="動画広告のコストが高すぎる">
+  <!-- background blobs (Google flat style) -->
+  <path d="M12 150 C 40 120, 90 168, 130 148 C 170 128, 210 158, 230 138 L 230 180 L 12 180 Z" fill="#D2E3FC"/>
+  <ellipse cx="120" cy="150" rx="104" ry="20" fill="#AECBFA" opacity="0.55"/>
+  <circle cx="44" cy="44" r="14" fill="#E8F0FE"/>
+  <circle cx="206" cy="40" r="9" fill="#FDE293"/>
+
+  <!-- video screen / creative -->
+  <g>
+    <rect x="40" y="46" width="108" height="74" rx="10" fill="#4285F4"/>
+    <rect x="48" y="54" width="92" height="50" rx="6" fill="#E8F0FE"/>
+    <!-- play triangle -->
+    <path d="M86 66 L106 79 L86 92 Z" fill="#1967D2"/>
+    <!-- timeline dots -->
+    <rect x="48" y="110" width="28" height="5" rx="2.5" fill="#AECBFA"/>
+    <rect x="80" y="110" width="16" height="5" rx="2.5" fill="#AECBFA"/>
+  </g>
+
+  <!-- coin stack -->
+  <g>
+    <ellipse cx="176" cy="140" rx="30" ry="10" fill="#F9AB00"/>
+    <rect x="146" y="122" width="60" height="18" fill="#FBBC04"/>
+    <ellipse cx="176" cy="122" rx="30" ry="10" fill="#FDD663"/>
+    <rect x="150" y="106" width="52" height="16" fill="#FBBC04"/>
+    <ellipse cx="176" cy="106" rx="26" ry="9" fill="#FDD663"/>
+    <ellipse cx="176" cy="106" rx="26" ry="9" fill="#FDD663"/>
+    <!-- top coin with yen -->
+    <ellipse cx="176" cy="92" rx="26" ry="9" fill="#FCC934"/>
+    <text x="176" y="97" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" font-weight="900" fill="#A36A00">¥</text>
+  </g>
+
+  <!-- rising cost arrow (alert) -->
+  <g transform="translate(206 78)">
+    <circle cx="0" cy="0" r="16" fill="#EA4335"/>
+    <path d="M0 -8 L7 1 L2.6 1 L2.6 8 L-2.6 8 L-2.6 1 L-7 1 Z" fill="#FFFFFF"/>
+  </g>
+</svg>

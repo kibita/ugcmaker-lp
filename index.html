@@ -20,9 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #222;
-  --black-soft: #1a1a1a;
-  --gray-900: #222;
+  --black: #1A1A1A;
+  --black-soft: #111111;
+  --gray-900: #1A1A1A;
   --gray-700: #444;
   --gray-500: #666;
   --gray-300: #bbb;
@@ -31,16 +31,25 @@
   --gray-50: #F9F9F9;
   --white: #ffffff;
   /* kashika-inspired palette */
-  --primary-blue: #007aff;
-  --primary-blue-hover: #185abc;
+  --primary-blue: #4285F4;
+  --primary-blue-hover: #1967D2;
   --primary-blue-soft: #e8f0fe;
   --text-main: #333;
   --text-strong: #1d1d1f;
   --text-sub: #a5a4a1;
-  --accent-yellow: #f1bf42;
+  --accent-yellow: #FBBC04;
   --shadow-btn-hover: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
   --font-display: 'Nunito Sans', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* type scale (P0) */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-body: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -96,16 +105,23 @@ ul { list-style: none; }
 .sec-inner { max-width:1280px; margin:0 auto; }
 @media(max-width:800px){ .sec { padding:3.5rem 6vw; } }
 .sec-label { display:none; }
-.sec-title { font-family:var(--font-body); font-size:clamp(2rem, 3.5vw, 4rem); font-weight:700; line-height:1.5; letter-spacing:0.04em; color:var(--black); margin-bottom:0.8rem; }
+.sec-title { font-family:var(--font-body); font-size:clamp(1.75rem, 3vw, 2.5rem); font-weight:700; line-height:1.5; letter-spacing:0.02em; color:var(--black); margin-bottom:0.8rem; }
 .sec-title .sec-title-num { font-family:var(--font-display); font-weight:900; font-size:1.4em; color:var(--primary-blue); letter-spacing:-0.02em; display:inline-block; vertical-align:baseline; margin:0 0.05em; line-height:1; }
 .sec-title .sec-title-unit { color:var(--primary-blue); font-weight:900; margin-right:0.1em; }
 .sec-sub { color:var(--gray-500); font-size:clamp(0.95rem, 1.15vw, 1.2rem); margin-bottom:3rem; line-height:1.8; }
 .sec-center { text-align:center; }
 
 /* Hero */
-.hero { background:linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 60%); color:var(--black); padding:11rem 7vw 5rem; position:relative; overflow:hidden; }
-.hero-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-.hero-left { animation:fadeInUp 0.7s ease forwards; }
+.hero { background:linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 60%); color:var(--black); padding:12.5rem 7vw 5rem; position:relative; overflow:hidden; }
+@media(max-width:430px){
+  .hero .hero-inner { grid-template-columns:1fr !important; }
+  .hero .hero-left { text-align:center !important; align-items:center !important; }
+  .hero .hero-h1 { font-size:1.55rem !important; line-height:1.5 !important; word-break:normal !important; overflow-wrap:anywhere !important; max-width:100% !important; }
+  .hero .hero-h1 .big { font-size:1.7rem !important; }
+  .hero .hero-h1 .box { font-size:1.2rem !important; white-space:normal !important; }
+}
+.hero-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:stretch; }
+.hero-left { animation:fadeInUp 0.7s ease forwards; display:flex; flex-direction:column; }
 .hero-ctas { display:flex; flex-direction:column; gap:0.8rem; align-items:center; width:fit-content; }
 .hero-cta-deco { font-size:0.95rem; font-weight:700; color:rgba(0,0,0,0.7); letter-spacing:0.08em; }
 .hero-dl-btn { display:none; text-decoration:none; }
@@ -128,10 +144,12 @@ ul { list-style: none; }
 /* Laurel wreath award badges (light hero awards) - local-only */
 .hero-awards[data-local-only] { display:none !important; }
 .hero-awards {
-  display:flex; gap:10px; margin-top:1.5rem;
+  display:flex; gap:14px; margin-top:auto;
   align-items:center; justify-content:flex-start; flex-wrap:nowrap;
   width:fit-content; max-width:100%;
 }
+.hero-award-img { height:135px; width:auto; display:block; }
+@media(max-width:767px){ .hero-award-img { height:104px; } }
 .hero-award {
   position:relative;
   display:flex; align-items:center; justify-content:center;
@@ -242,8 +260,8 @@ ul { list-style: none; }
 .aif-mini-avatar::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60%; height:40%; background:rgba(255,255,255,0.15); border-radius:50% 50% 0 0; }
 .lang-visual { gap:1rem; font-size:1.5rem; }
 .aif-soon { position:absolute; top:0.8rem; right:0.8rem; background:rgba(0,0,0,0.08); padding:0.15rem 0.6rem; border-radius:4px; font-size:0.88rem; font-weight:700; }
-.aif-card-title { font-size:1.15rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.4rem; }
-.aif-card-desc { font-size:0.95rem; color:rgba(0,0,0,0.6); line-height:1.7; }
+.aif-card-title { font-size:var(--fs-md); font-weight:700; letter-spacing:0.02em; line-height:1.55; margin-bottom:0.5rem; }
+.aif-card-desc { font-size:var(--fs-body); color:rgba(0,0,0,0.6); line-height:1.7; }
 
 /* Mass Production */
 .mass-section { background:var(--gray-50); }
@@ -305,6 +323,23 @@ ul { list-style: none; }
 }
 .logo-item.is-square img { max-height:68px; }
 @keyframes logo-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+/* Static client logo grid (replaces marquee) */
+.logos-sec { background:var(--gray-50); }
+.logos-title { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:0.55rem; font-family:var(--font-body); font-weight:700; font-size:clamp(1.2rem, 2.4vw, 1.75rem); letter-spacing:0.02em; line-height:1.5; color:var(--black); margin-bottom:2.8rem; }
+.logos-brand { display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--font-display); font-weight:900; letter-spacing:-0.01em; }
+.logos-mark { display:inline-flex; align-items:center; justify-content:center; width:1.45em; height:1.45em; background:var(--black); color:#fff; border-radius:0.34em; font-family:var(--font-display); font-weight:900; font-size:0.82em; line-height:1; }
+.logos-grid { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:1rem; max-width:1140px; margin:0 auto; }
+.logos-grid-item { width:174px; height:100px; display:flex; align-items:center; justify-content:center; padding:1rem 1.5rem; background:#fff; border:1px solid rgba(0,0,0,0.07); border-radius:14px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+.logos-grid-item img { max-width:100%; max-height:46px; width:auto; height:auto; object-fit:contain; }
+@media(max-width:800px){
+  .logos-grid { gap:0.7rem; }
+  .logos-grid-item { width:31%; max-width:160px; height:80px; padding:0.6rem 0.8rem; border-radius:12px; }
+  .logos-grid-item img { max-height:32px; }
+}
+@media(max-width:480px){
+  .logos-grid-item { width:46%; }
+}
 @media(max-width:767px){
   .logo-marquee { margin-top:0; padding:0.8rem 0; background:#f3f4f6; }
   .logo-item { width:108px; height:52px; padding:0.3rem 0.6rem; border-radius:6px; box-shadow:0 1px 2px rgba(0,0,0,0.04); }
@@ -320,8 +355,8 @@ ul { list-style: none; }
 .problem-card { background:var(--white); color:var(--black); padding:2.2rem 1.4rem; border-radius:16px; position:relative; overflow:hidden; min-height:240px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; border:1px solid rgba(0,0,0,0.08); box-shadow:0 4px 20px rgba(0,0,0,0.04); }
 .problem-card-icon { margin-bottom:1.1rem; line-height:1; height:110px; display:flex; align-items:center; justify-content:center; }
 .problem-card-icon img { max-height:100%; max-width:100%; object-fit:contain; }
-.problem-card-title { font-size:1.05rem; font-weight:700; letter-spacing:0.04em; line-height:1.6; margin-bottom:0.8rem; color:var(--black); }
-.problem-card-desc { font-size:0.9rem; color:rgba(0,0,0,0.65); line-height:1.8; font-weight:400; }
+.problem-card-title { font-size:var(--fs-md); font-weight:700; letter-spacing:0.02em; line-height:1.6; margin-bottom:0.8rem; color:var(--black); }
+.problem-card-desc { font-size:var(--fs-body); color:rgba(0,0,0,0.65); line-height:1.8; font-weight:400; }
 .problems-solution { margin-top:4rem; }
 .problems-solution-msg { font-size:2.2rem; font-weight:800; color:var(--black); line-height:1.6; margin-bottom:2rem; letter-spacing:0.04em; }
 .problems-solution-msg em { background:linear-gradient(transparent 65%, #ffe066 65%); font-style:normal; padding:0 0.2rem; }
@@ -341,21 +376,21 @@ ul { list-style: none; }
 .compare-table-sec { background:#f7f7f7; padding-bottom:2rem; }
 .stores-compare { display:grid; grid-template-columns:160px 1.4fr 1fr 1fr 1fr; margin-top:2.5rem; position:relative; padding-bottom:0; }
 .sc-corner { }
-.sc-brand-head { background:#007aff; color:var(--white); font-size:1.2rem; font-weight:900; text-align:center; padding:2.2rem 1.5rem; border-radius:16px 16px 0 0; line-height:1.4; border-left:3px solid #007aff; border-right:3px solid #007aff; border-top:3px solid #007aff; }
+.sc-brand-head { background:#4285F4; color:var(--white); font-size:1.2rem; font-weight:900; text-align:center; padding:2.2rem 1.5rem; border-radius:16px 16px 0 0; line-height:1.4; border-left:3px solid #4285F4; border-right:3px solid #4285F4; border-top:3px solid #4285F4; }
 .sc-comp-head { background:#666; color:var(--white); font-size:0.92rem; font-weight:700; text-align:center; padding:1.3rem 1rem; border-radius:12px 12px 0 0; margin-left:6px; align-self:end; }
 .sc-row-label { background:#f8f8f8; padding:0 1.4rem; font-size:0.9rem; font-weight:700; color:var(--gray-900); display:flex; align-items:center; border-bottom:1px solid #eee; min-height:110px; }
-.sc-row-brand { background:var(--white); padding:1.2rem 1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem; min-height:110px; border-left:3px solid #007aff; border-right:3px solid #007aff; border-bottom:1px solid rgba(37,99,235,0.12); }
+.sc-row-brand { background:var(--white); padding:1.2rem 1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem; min-height:110px; border-left:3px solid #4285F4; border-right:3px solid #4285F4; border-bottom:1px solid rgba(66,133,244,0.12); }
 .sc-row-brand-val { font-size:1.7rem; font-weight:900; color:#1e293b; line-height:1.2; }
 .sc-row-brand-val small { font-size:0.92rem; font-weight:500; }
-.sc-row-brand-sub { font-size:0.92rem; color:#007aff; line-height:1.4; }
-.sc-badge { display:inline-block; background:#007aff; color:var(--white); font-size:0.88rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:4px; }
+.sc-row-brand-sub { font-size:0.92rem; color:#4285F4; line-height:1.4; }
+.sc-badge { display:inline-block; background:#4285F4; color:var(--white); font-size:0.88rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:4px; }
 .sc-row-comp { background:var(--white); padding:1.2rem 1rem; text-align:center; border-bottom:1px solid #eee; margin-left:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3rem; min-height:110px; }
 .sc-row-comp-val { font-size:1.2rem; font-weight:800; color:var(--gray-800); line-height:1.2; }
 .sc-row-comp-val small { font-size:0.88rem; font-weight:500; }
 .sc-row-comp-sub { font-size:0.92rem; color:var(--gray-400); line-height:1.4; }
 .sc-row-comp-icon { font-size:1.4rem; color:var(--gray-300); line-height:1; }
-.sc-row-brand-icon { font-size:1.4rem; color:#007aff; line-height:1; }
-.sc-last .sc-row-brand { border-radius:0 0 16px 16px; border-bottom:3px solid #007aff; border-left:3px solid #007aff; border-right:3px solid #007aff; }
+.sc-row-brand-icon { font-size:1.4rem; color:#4285F4; line-height:1; }
+.sc-last .sc-row-brand { border-radius:0 0 16px 16px; border-bottom:3px solid #4285F4; border-left:3px solid #4285F4; border-right:3px solid #4285F4; }
 .sc-last .sc-row-comp { border-bottom:none; border-radius:0 0 8px 8px; }
 .sc-last .sc-row-label { border-bottom:none; border-radius:0 0 0 8px; }
 @media(max-width:768px){
@@ -380,14 +415,14 @@ ul { list-style: none; }
 .sc-slider-card { display:none; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,0.06); overflow:hidden; }
 .sc-slider-card.active { display:block; }
 .sc-slider-head { display:grid; grid-template-columns:1fr 1fr; border-radius:14px 14px 0 0; overflow:hidden; }
-.sc-slider-head-brand { background:linear-gradient(135deg, #185abc 0%, #007aff 100%); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:800; font-size:0.95rem; letter-spacing:0.03em; }
+.sc-slider-head-brand { background:linear-gradient(135deg, #1967D2 0%, #4285F4 100%); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:800; font-size:0.95rem; letter-spacing:0.03em; }
 .sc-slider-head-comp { background:var(--gray-700); color:#fff; padding:1rem 0.8rem; text-align:center; font-weight:700; font-size:0.95rem; }
 .sc-slider-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #f0f0f0; }
 .sc-slider-label { grid-column:1/-1; background:#f7f7f7; padding:0.7rem 1rem; font-size:0.8rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center; border-bottom:1px solid #eee; }
-.sc-slider-brand { background:#f0f5ff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; border-left:3px solid #007aff; }
+.sc-slider-brand { background:#f0f5ff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; border-left:3px solid #4285F4; }
 .sc-slider-comp { background:#fff; padding:1.1rem 0.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25rem; }
 .sc-slider-val { font-size:1.2rem; font-weight:900; color:#1e293b; line-height:1.3; }
-.sc-slider-val.brand { color:#007aff; }
+.sc-slider-val.brand { color:#4285F4; }
 .sc-slider-sub { font-size:0.75rem; color:var(--gray-500); line-height:1.4; }
 .sc-slider-row:last-child { border-bottom:none; border-radius:0 0 14px 14px; overflow:hidden; }
 .sc-slider-card > .sc-slider-row:last-child .sc-slider-brand { border-radius:0 0 0 14px; }
@@ -405,14 +440,14 @@ ul { list-style: none; }
 .cost-bar-short { height:80px; }
 .cost-bar-item { display:flex; align-items:center; justify-content:center; font-size:0.92rem; font-weight:600; color:var(--gray-700); background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:0.4rem; text-align:center; }
 .cost-bar-item:last-child { border-bottom:none; }
-.cost-bar-hl { background:linear-gradient(160deg, #185abc 0%, #007aff 50%, #007aff 100%); color:#fff; font-size:1rem; font-weight:800; border:none; height:100%; letter-spacing:0.03em; position:relative; overflow:hidden; text-shadow:0 1px 3px rgba(0,0,0,0.2); }
+.cost-bar-hl { background:linear-gradient(160deg, #1967D2 0%, #4285F4 50%, #4285F4 100%); color:#fff; font-size:1rem; font-weight:800; border:none; height:100%; letter-spacing:0.03em; position:relative; overflow:hidden; text-shadow:0 1px 3px rgba(0,0,0,0.2); }
 .cost-bar-hl::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%); }
 .cost-bar-hl::after { content:''; position:absolute; bottom:-20px; right:-20px; width:80px; height:80px; background:rgba(255,255,255,0.06); border-radius:50%; }
-.cost-col-hl .cost-bar { border:2.5px solid #007aff; box-shadow:0 0 0 4px rgba(37,99,235,0.15), 0 8px 24px rgba(37,99,235,0.2); border-radius:10px; }
-.cost-col-price-hl { color:#185abc; font-size:1.4rem; font-weight:900; }
+.cost-col-hl .cost-bar { border:2.5px solid #4285F4; box-shadow:0 0 0 4px rgba(66,133,244,0.15), 0 8px 24px rgba(66,133,244,0.2); border-radius:10px; }
+.cost-col-price-hl { color:#1967D2; font-size:1.4rem; font-weight:900; }
 .cost-col-label { font-size:0.92rem; font-weight:700; margin-top:0.8rem; color:var(--gray-900); }
-.cost-saving-badge { display:flex; flex-direction:column; align-items:center; gap:0.3rem; margin-bottom:0.6rem; font-size:0.82rem; font-weight:800; color:#185abc; letter-spacing:0.04em; }
-.cost-saving-circle { display:flex; align-items:baseline; justify-content:center; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#007aff,#185abc); color:#fff; font-family:var(--font-display); font-size:1.6rem; font-weight:900; line-height:64px; }
+.cost-saving-badge { display:flex; flex-direction:column; align-items:center; gap:0.3rem; margin-bottom:0.6rem; font-size:0.82rem; font-weight:800; color:#1967D2; letter-spacing:0.04em; }
+.cost-saving-circle { display:flex; align-items:baseline; justify-content:center; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#4285F4,#1967D2); color:#fff; font-family:var(--font-display); font-size:1.6rem; font-weight:900; line-height:64px; }
 .cost-saving-pct { font-size:0.9rem; font-weight:800; }
 .cost-points { display:flex; flex-direction:column; gap:1rem; justify-content:center; }
 .cost-point { font-size:0.95rem; line-height:1.7; color:var(--gray-700); padding-left:1.2rem; position:relative; }
@@ -467,8 +502,8 @@ ul { list-style: none; }
 .step-icon { line-height:1; text-align:center; height:96px; width:96px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .step-icon img, .step-icon svg { max-height:100%; max-width:100%; object-fit:contain; }
 .step-body { display:flex; flex-direction:column; }
-.step-title { font-size:1.2rem; font-weight:700; letter-spacing:0.04em; margin-bottom:0.5rem; line-height:1.55; color:var(--gray-900); }
-.step-desc { font-size:0.92rem; color:var(--gray-600); line-height:1.7; }
+.step-title { font-size:var(--fs-md); font-weight:700; letter-spacing:0.02em; margin-bottom:0.5rem; line-height:1.55; color:var(--gray-900); }
+.step-desc { font-size:var(--fs-body); color:var(--gray-600); line-height:1.7; }
 .steps-cta-wrap { margin-top:3rem; text-align:center; }
 .steps-cta-msg { font-size:1.5rem; font-weight:700; color:var(--black); margin-bottom:1.8rem; letter-spacing:0.04em; line-height:1.6; }
 .steps-cta-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 3rem; border-radius:10px; font-weight:800; font-size:1rem; text-decoration:none; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; border:1px solid var(--black); }
@@ -546,9 +581,9 @@ ul { list-style: none; }
 .result-metric-badge { background:var(--black); color:var(--white); padding:0.25rem 0.7rem; border-radius:4px; font-size:0.88rem; font-weight:700; letter-spacing:0.03em; }
 .result-metric-val { font-family:var(--font-display); font-size:1.3rem; font-weight:900; color:var(--black); }
 .result-arrow { font-size:0.8rem; color:var(--gray-300); margin-bottom:0.5rem; }
-.result-after { font-family:var(--font-display); font-size:3rem; font-weight:900; color:#007aff; margin-bottom:0.8rem; line-height:1.1; }
+.result-after { font-family:var(--font-display); font-size:3rem; font-weight:900; color:#4285F4; margin-bottom:0.8rem; line-height:1.1; }
 .result-after span { font-size:1.2rem; font-weight:700; }
-.result-badge { display:inline-block; background:#007aff; color:var(--white); padding:0.4rem 1.2rem; border-radius:8px; font-weight:800; font-size:0.9rem; font-family:var(--font-display); }
+.result-badge { display:inline-block; background:#4285F4; color:var(--white); padding:0.4rem 1.2rem; border-radius:8px; font-weight:800; font-size:0.9rem; font-family:var(--font-display); }
 
 /* Download CTA */
 .download-cta { background:linear-gradient(160deg, #0a0a0a 0%, #161616 40%, #1e1e1e 70%, #252525 100%); color:var(--white); text-align:center; }
@@ -635,11 +670,11 @@ ul { list-style: none; }
 .sticky-cta {
   position:fixed; bottom:0; left:0; right:0; z-index:998;
   background:#fff;
-  border-top:2px solid rgba(37,99,235,0.12);
+  border-top:2px solid rgba(66,133,244,0.12);
   padding:0.9rem 2rem;
   transform:translateY(100%);
   transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
-  box-shadow:0 -4px 32px rgba(37,99,235,0.08);
+  box-shadow:0 -4px 32px rgba(66,133,244,0.08);
 }
 .sticky-cta.show { transform:translateY(0); }
 .sticky-cta-inner {
@@ -656,12 +691,12 @@ ul { list-style: none; }
 }
 .sticky-cta-btn:hover { transform:translateY(-2px); }
 .sticky-cta-primary {
-  background:linear-gradient(135deg, #007aff 0%, #1a4fd6 100%);
+  background:linear-gradient(135deg, #4285F4 0%, #1967D2 100%);
   color:#fff;
-  box-shadow:0 6px 24px rgba(37,99,235,0.35);
+  box-shadow:0 6px 24px rgba(66,133,244,0.35);
   flex-direction:column; align-items:stretch; padding:0;
 }
-.sticky-cta-primary:hover { box-shadow:0 10px 36px rgba(37,99,235,0.45); }
+.sticky-cta-primary:hover { box-shadow:0 10px 36px rgba(66,133,244,0.45); }
 .sticky-cta-primary-inner {
   display:flex; align-items:center; justify-content:center;
   gap:0.6rem; padding:1rem 2rem;
@@ -675,7 +710,7 @@ ul { list-style: none; }
 }
 .sticky-cta-primary-badge::before {
   content:''; width:5px; height:5px; border-radius:50%;
-  background:#7dd3fc; animation:pulse-dot 2s infinite;
+  background:#fff; animation:pulse-dot 2s infinite;
   flex-shrink:0;
 }
 /* Arrow icon in primary button */
@@ -686,12 +721,12 @@ ul { list-style: none; }
 }
 /* Secondary CTA */
 .sticky-cta-secondary {
-  background:#fff; color:#185abc;
-  border:2px solid #007aff;
+  background:#fff; color:#1967D2;
+  border:2px solid #4285F4;
   flex-direction:column; align-items:stretch; padding:0;
-  box-shadow:0 2px 12px rgba(37,99,235,0.08);
+  box-shadow:0 2px 12px rgba(66,133,244,0.08);
 }
-.sticky-cta-secondary:hover { background:#eff6ff; box-shadow:0 6px 24px rgba(37,99,235,0.14); }
+.sticky-cta-secondary:hover { background:#e8f0fe; box-shadow:0 6px 24px rgba(66,133,244,0.14); }
 .sticky-cta-secondary-inner {
   display:flex; align-items:center; justify-content:center;
   gap:0.6rem; padding:1rem 2rem;
@@ -699,7 +734,7 @@ ul { list-style: none; }
 }
 .sticky-cta-secondary-badge {
   display:inline-flex; align-items:center;
-  font-size:0.68rem; background:#eff6ff; color:#007aff;
+  font-size:0.68rem; background:#e8f0fe; color:#4285F4;
   padding:0.2rem 0.7rem; border-radius:4px; font-weight:700;
   letter-spacing:0.03em; white-space:nowrap;
 }
@@ -758,6 +793,8 @@ ul { list-style: none; }
 .form-success-msg { font-size:1.1rem; font-weight:700; margin-bottom:0.4rem; }
 .form-success-sub { font-size:0.92rem; color:var(--gray-500); }
 .download-sec { background:#fff; text-align:center; }
+#download { scroll-margin-top:90px; }
+#column, #features, #steps, #faq, #contact { scroll-margin-top:90px; }
 .download-inner { max-width:600px; margin:0 auto; margin-top:3.5rem; }
 .download-block { background:var(--gray-50); border-radius:16px; padding:2.5rem; border:1px solid var(--gray-100); text-align:center; }
 .download-block-title { font-size:1.3rem; font-weight:700; letter-spacing:0.04em; line-height:1.55; margin-bottom:0.5rem; color:var(--black); text-align:center; }
@@ -1436,6 +1473,7 @@ ul { list-style: none; }
     <nav class="nav">
       <a href="#features">機能紹介</a>
       <a href="#cases">導入事例</a>
+      <a href="#column">お役立ちコラム</a>
       <!-- <a href="#pricing">料金プラン</a> -->
       <a href="#steps">導入方法</a>
       <a href="#faq">よくある質問</a>
@@ -1460,22 +1498,12 @@ ul { list-style: none; }
       <div class="hero-ctas">
         <p class="hero-cta-deco">＼ 貴社専用のデモ動画を作成します！ ／</p>
         <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">
-          無料で導入相談する ›
+          無料で導入相談する
         </a>
       </div>
       <div class="hero-awards">
-        <div class="hero-award">
-          <div class="hero-award-inner">
-            <div class="hero-award-label">累計生成本数</div>
-            <div class="hero-award-num"><span class="num">1</span><small>万本超</small></div>
-          </div>
-        </div>
-        <div class="hero-award">
-          <div class="hero-award-inner">
-            <div class="hero-award-label">継続率</div>
-            <div class="hero-award-num"><span class="num">98.2</span><small>%</small></div>
-          </div>
-        </div>
+        <img class="hero-award-img" src="lp-videos/award-volume.png" alt="累計生成本数 1万本突破">
+        <img class="hero-award-img" src="lp-videos/award-retention.png" alt="継続率 98.2%">
       </div>
     </div>
     <div>
@@ -1504,45 +1532,26 @@ ul { list-style: none; }
   </div>
 </section>
 
-<!-- Logo Marquee (kashika-style) - LOCAL ONLY (hidden on production) -->
-<div class="logo-marquee anim" id="logoMarquee">
-  <div class="logo-marquee-track">
-    <div class="logo-item"><img src="lp-videos/logo-01.svg" alt="導入企業"></div>
-    <div class="logo-item"><img src="lp-videos/logo-13.png" alt="サイバーエージェントグループ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-14.png" alt="KOSÉ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-15.png" alt="ALBION"></div>
-    <div class="logo-item"><img src="lp-videos/logo-16.png" alt="PAUL &amp; JOE"></div>
-    <div class="logo-item"><img src="lp-videos/logo-04.png" alt="株式会社オプト"></div>
-    <!-- TEMP HIDE: 後で戻す予定 -->
-    <!-- <div class="logo-item"><img src="lp-videos/logo-09.webp" alt="ECX"></div> -->
-    <div class="logo-item"><img src="lp-videos/logo-08.png" alt="デジタルホールディングス"></div>
-    <div class="logo-item"><img src="lp-videos/logo-05.jpg" alt="Digital Shift Wave"></div>
-    <div class="logo-item"><img src="lp-videos/logo-12.png" alt="HADO Inc."></div>
-    <div class="logo-item"><img src="lp-videos/logo-02.png" alt="エンジニアのミカタ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-03.png" alt="カンゲンエージェント"></div>
-    <!-- TEMP HIDE: 後で戻す予定 -->
-    <!-- <div class="logo-item"><img src="lp-videos/logo-10.webp" alt="ecMASTERS"></div> -->
-    <!-- <div class="logo-item is-square"><img src="lp-videos/logo-11.jpeg" alt="GREENWICH"></div> -->
-    <!-- duplicate for seamless loop -->
-    <div class="logo-item"><img src="lp-videos/logo-01.svg" alt="導入企業"></div>
-    <div class="logo-item"><img src="lp-videos/logo-13.png" alt="サイバーエージェントグループ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-14.png" alt="KOSÉ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-15.png" alt="ALBION"></div>
-    <div class="logo-item"><img src="lp-videos/logo-16.png" alt="PAUL &amp; JOE"></div>
-    <div class="logo-item"><img src="lp-videos/logo-04.png" alt="株式会社オプト"></div>
-    <!-- TEMP HIDE: 後で戻す予定 -->
-    <!-- <div class="logo-item"><img src="lp-videos/logo-09.webp" alt="ECX"></div> -->
-    <div class="logo-item"><img src="lp-videos/logo-08.png" alt="デジタルホールディングス"></div>
-    <div class="logo-item"><img src="lp-videos/logo-05.jpg" alt="Digital Shift Wave"></div>
-    <div class="logo-item"><img src="lp-videos/logo-12.png" alt="HADO Inc."></div>
-    <div class="logo-item"><img src="lp-videos/logo-02.png" alt="エンジニアのミカタ"></div>
-    <div class="logo-item"><img src="lp-videos/logo-03.png" alt="カンゲンエージェント"></div>
-    <!-- TEMP HIDE: 後で戻す予定 -->
-    <!-- <div class="logo-item"><img src="lp-videos/logo-10.webp" alt="ecMASTERS"></div> -->
-    <!-- <div class="logo-item is-square"><img src="lp-videos/logo-11.jpeg" alt="GREENWICH"></div> -->
-
+<section class="sec logos-sec" id="logos">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <h2 class="logos-title anim"><span class="logos-brand"><span class="logos-mark">U</span>UGC&nbsp;Maker</span>は多くのクライアントに導入いただいております</h2>
+    </div>
+    <div class="logos-grid anim">
+      <div class="logos-grid-item"><img src="lp-videos/logo-13.png" alt="サイバーエージェントグループ"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-15.png" alt="ALBION"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-16.png" alt="PAUL &amp; JOE"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-04.png" alt="株式会社オプト"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-08.png" alt="デジタルホールディングス"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-05.jpg" alt="Digital Shift Wave"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-12.png" alt="HADO Inc."></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-02.png" alt="エンジニアのミカタ"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-03.png" alt="カンゲンエージェント"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-01.svg" alt="U-GAKU English Camp"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-cklab.png" alt="CK-LAB"></div>
+    </div>
   </div>
-</div>
+</section>
 
 <section class="trust sec trust-hide-on-local" id="trust">
   <div class="sec-inner">
@@ -1570,36 +1579,28 @@ ul { list-style: none; }
 
   <div class="sec-inner sec-center">
     <div class="sec-label anim">PROBLEMS</div>
-    <h2 class="sec-title anim" style="margin-bottom:3rem;">こんなお悩みがあれば、<br>私たちが解決します</h2>
+    <h2 class="sec-title anim" style="margin-bottom:3rem;">こんなお悩みがあれば、私たちが解決します</h2>
     <div class="problems-grid">
       <div class="problem-card anim">
-        <div class="problem-card-icon"><img src="lp-videos/problem-cost.png" alt="コストが高すぎる"></div>
+        <div class="problem-card-icon"><img src="lp-videos/problem-cost-v2.svg" alt="コストが高すぎる"></div>
         <div class="problem-card-title">動画広告を作りたいが<br>コストが高すぎる</div>
         <div class="problem-card-desc">撮影・キャスティング・編集を外注すると1本数十万円。量産なんてとても無理だった</div>
       </div>
       <div class="problem-card anim">
-        <div class="problem-card-icon"><img src="lp-videos/problem-ai.png" alt="AI動画ツール"></div>
+        <div class="problem-card-icon"><img src="lp-videos/problem-ai-v2.svg" alt="AI動画ツール"></div>
         <div class="problem-card-title">AI動画ツールを試したが<br>クオリティが低かった</div>
         <div class="problem-card-desc">既存のAIツールでは不自然さが目立ち、広告として使えるレベルに達していなかった</div>
       </div>
       <div class="problem-card anim">
-        <div class="problem-card-icon"><img src="lp-videos/problem-inhouse.png" alt="内製化したい"></div>
+        <div class="problem-card-icon"><img src="lp-videos/problem-inhouse-v2.svg" alt="内製化したい"></div>
         <div class="problem-card-title">広告クリエイティブの<br>制作を内製化したい</div>
         <div class="problem-card-desc">制作ノウハウだけでなく、内製化する方法も一緒に考えアドバイスをして欲しい</div>
       </div>
       <div class="problem-card anim">
-        <div class="problem-card-icon"><img src="lp-videos/problem-volume.png" alt="ABテスト用の動画を大量に"></div>
+        <div class="problem-card-icon"><img src="lp-videos/problem-volume-v2.svg" alt="ABテスト用の動画を大量に"></div>
         <div class="problem-card-title">ABテスト用の動画を<br>大量に回したい</div>
         <div class="problem-card-desc">勝ちクリエイティブを見つけるには大量のABテストが必要。でも制作本数に限界があり、検証スピードが出せなかった</div>
       </div>
-    </div>
-    <div class="problems-solution anim">
-      <p class="problems-solution-msg">
-        そのお悩み、<br>
-        <span class="problems-solution-logo">UGC Maker</span>
-        <em>で解決できます！</em>
-      </p>
-      <a href="#download" class="problems-solution-cta">無料で資料請求する</a>
     </div>
   </div>
 </section>
@@ -1632,33 +1633,77 @@ ul { list-style: none; }
     <div class="aif-grid">
             
       <div class="aif-card anim">
-        <div class="aif-card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;">
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;">
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#667eea,#764ba2);"></div>
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#f093fb,#f5576c);"></div>
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#4facfe,#00f2fe);"></div>
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#43e97b,#38f9d7);"></div>
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#fa709a,#fee140);"></div>
-            <div style="width:48px;height:68px;border-radius:6px;background:linear-gradient(145deg,#a18cd1,#fbc2eb);"></div>
-          </div>
+        <div class="aif-card-visual">
+          <svg viewBox="0 0 320 200" style="width:100%;height:100%;display:block" xmlns="http://www.w3.org/2000/svg" aria-label="大量クリエイティブを一括生成">
+            <rect width="320" height="200" fill="#C3D6F9"/>
+            <rect x="60" y="70" width="150" height="48" rx="9" fill="#FFFFFF" opacity="0.7"/>
+            <rect x="30" y="44" width="160" height="52" rx="10" fill="#FFFFFF"/>
+            <circle cx="56" cy="70" r="15" fill="#DCE7FB"/>
+            <circle cx="56" cy="65" r="6" fill="#EA4335"/>
+            <path d="M45 80 C 45 70, 67 70, 67 80 Z" fill="#EA4335"/>
+            <rect x="80" y="58" width="86" height="7" rx="3.5" fill="#AECBFA"/>
+            <rect x="80" y="71" width="66" height="6" rx="3" fill="#E2E8F4"/>
+            <rect x="80" y="82" width="76" height="6" rx="3" fill="#E2E8F4"/>
+            <rect x="186" y="170" width="120" height="3" rx="1.5" fill="#9CB6E8"/>
+            <rect x="196" y="138" width="16" height="32" rx="4" fill="#EA4335"/><rect x="196" y="138" width="16" height="12" rx="4" fill="#4285F4"/>
+            <rect x="220" y="124" width="16" height="46" rx="4" fill="#EA4335"/><rect x="220" y="124" width="16" height="15" rx="4" fill="#4285F4"/>
+            <rect x="244" y="108" width="16" height="62" rx="4" fill="#EA4335"/><rect x="244" y="108" width="16" height="18" rx="4" fill="#4285F4"/>
+            <rect x="268" y="88" width="16" height="82" rx="4" fill="#EA4335"/><rect x="268" y="88" width="16" height="22" rx="4" fill="#4285F4"/>
+            <rect x="292" y="66" width="16" height="104" rx="4" fill="#EA4335"/><rect x="292" y="66" width="16" height="26" rx="4" fill="#4285F4"/>
+          </svg>
         </div>
         <h4 class="aif-card-title">大量クリエイティブを一括生成</h4>
         <p class="aif-card-desc">クリエイター×スクリプト×フックの組み合わせで、数十本の動画を一度に生成。A/Bテストを高速で回せます。</p>
       </div>
       <div class="aif-card anim">
-        <div class="aif-card-visual" style="display:flex;align-items:center;justify-content:center;padding:1rem;">
-          <img src="lp-videos/script-ui.png" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);" alt="AIスクリプト生成UI">
+        <div class="aif-card-visual">
+          <svg viewBox="0 0 320 200" style="width:100%;height:100%;display:block" xmlns="http://www.w3.org/2000/svg" aria-label="AIがスクリプトを自動生成">
+            <rect width="320" height="200" fill="#C3D6F9"/>
+            <rect x="34" y="36" width="252" height="138" rx="14" fill="#AEC4EE" opacity="0.55"/>
+            <rect x="30" y="30" width="252" height="138" rx="14" fill="#FFFFFF"/>
+            <circle cx="48" cy="48" r="4" fill="#EA4335"/>
+            <circle cx="62" cy="48" r="4" fill="#FBBC04"/>
+            <circle cx="76" cy="48" r="4" fill="#34A853"/>
+            <rect x="92" y="44" width="80" height="8" rx="4" fill="#C3D6F9"/>
+            <rect x="30" y="64" width="252" height="2" fill="#EDF2FB"/>
+            <rect x="50" y="80" width="196" height="8" rx="4" fill="#E2E8F4"/>
+            <rect x="50" y="98" width="212" height="8" rx="4" fill="#E2E8F4"/>
+            <rect x="50" y="116" width="150" height="9" rx="4.5" fill="#AECBFA"/>
+            <path d="M214 114 l2.2 5 5 2.2 -5 2.2 -2.2 5 -2.2 -5 -5 -2.2 5 -2.2 Z" fill="#4285F4"/>
+            <rect x="50" y="136" width="176" height="8" rx="4" fill="#E2E8F4"/>
+            <rect x="214" y="148" width="56" height="22" rx="11" fill="#4285F4"/>
+            <text x="242" y="163" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">生成</text>
+          </svg>
         </div>
         <h4 class="aif-card-title">AIがスクリプトを自動生成</h4>
         <p class="aif-card-desc">商品情報を入力するだけで、広告効果の高い台本をAIが複数パターン作成。フック・訴求軸・CTAまで自動最適化。</p>
       </div>
       <div class="aif-card anim" style="position:relative;">
         <div class="aif-card-visual" style="position:relative;">
-          <span style="position:absolute;top:0.6rem;left:0.6rem;z-index:2;display:inline-block;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);color:#4ade80;font-size:0.75rem;font-weight:800;padding:0.2rem 0.6rem;border-radius:20px;letter-spacing:0.05em;">リリース予定</span>
-          <div class="aif-card-placeholder">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M7 15h4M7 12h8"/></svg>
-          </div>
+          <span style="position:absolute;top:0.7rem;left:0.7rem;z-index:2;display:inline-flex;align-items:center;gap:0.4rem;background:rgba(27,42,69,0.92);color:#FFFFFF;font-size:0.72rem;font-weight:700;padding:0.32rem 0.7rem 0.32rem 0.6rem;border-radius:8px;letter-spacing:0.06em;box-shadow:0 4px 12px rgba(27,42,69,0.18);backdrop-filter:blur(2px);"><span style="width:6px;height:6px;border-radius:50%;background:#FBBC04;box-shadow:0 0 0 3px rgba(251,188,4,0.25);"></span>リリース予定</span>
+          <svg viewBox="0 0 320 200" style="width:100%;height:100%;display:block" xmlns="http://www.w3.org/2000/svg" aria-label="BGMとテロップを自動追加">
+            <defs>
+              <linearGradient id="bgmBgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CEDEFB"/><stop offset="1" stop-color="#BFD3F7"/></linearGradient>
+              <linearGradient id="bgmScrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF1FD"/><stop offset="1" stop-color="#D7E4FB"/></linearGradient>
+            </defs>
+            <rect width="320" height="200" fill="url(#bgmBgG)"/>
+            <rect x="40" y="48" width="240" height="114" rx="16" fill="#A9C0EC" opacity="0.45"/>
+            <rect x="40" y="44" width="240" height="114" rx="16" fill="#FFFFFF"/>
+            <rect x="54" y="56" width="212" height="90" rx="9" fill="url(#bgmScrG)"/>
+            <path d="M150 76 L176 90 L150 104 Z" fill="#4285F4"/>
+            <rect x="100" y="118" width="120" height="18" rx="6" fill="#1B2A45" opacity="0.88"/>
+            <rect x="111" y="125" width="50" height="4" rx="2" fill="#FFFFFF"/>
+            <rect x="167" y="125" width="42" height="4" rx="2" fill="#FFFFFF" opacity="0.65"/>
+            <rect x="198" y="132" width="76" height="34" rx="17" fill="#9BB6E8" opacity="0.45"/>
+            <rect x="196" y="128" width="76" height="34" rx="17" fill="#FFFFFF"/>
+            <g fill="#4285F4">
+              <rect x="212" y="141" width="5" height="8" rx="2.5"/>
+              <rect x="222" y="136" width="5" height="18" rx="2.5"/>
+              <rect x="232" y="132" width="5" height="26" rx="2.5"/>
+              <rect x="242" y="138" width="5" height="14" rx="2.5"/>
+              <rect x="252" y="143" width="5" height="9" rx="2.5"/>
+            </g>
+          </svg>
         </div>
         <h4 class="aif-card-title">BGMとテロップを自動追加</h4>
         <p class="aif-card-desc">生成した動画にBGMとテロップを自動で追加。編集作業ゼロでSNS投稿可能な完成動画を出力。</p>
@@ -2058,75 +2103,188 @@ ul { list-style: none; }
 <section class="sec" id="steps">
   <div class="sec-inner sec-center">
     <div class="sec-label anim">HOW IT WORKS</div>
-    <h2 class="sec-title anim">たった<span class="sec-title-num">5</span><span class="sec-title-unit">分</span>で<br>1本の動画が完成</h2>
+    <h2 class="sec-title anim">たった<span class="sec-title-num">5</span><span class="sec-title-unit">分</span>で1本の動画が完成</h2>
     <p class="sec-sub anim">動画ができるまでの流れ</p>
-    <div class="steps-cards anim">
-      <div class="step-card">
-        <span class="step-num">1</span>
-        <div class="step-icon">
+    <style>
+    .flow-cards { display:flex; flex-direction:column; gap:1.5rem; max-width:1000px; margin:0 auto; text-align:left; }
+    .flow-card { display:grid; grid-template-columns:1fr 340px; gap:2.5rem; align-items:center; background:#fff; border:1px solid rgba(0,0,0,0.06); border-radius:18px; box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.05); padding:2.5rem 2.75rem; }
+    .flow-steps { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.4rem; flex-wrap:wrap; }
+    .flow-step { font-size:var(--fs-xs); font-weight:700; color:var(--gray-500); border:1px solid #dcdfe5; border-radius:6px; padding:0.32rem 0.75rem; }
+    .flow-step.is-active { background:var(--black); color:#fff; border-color:var(--black); }
+    .flow-step-arrow { color:#c0c4cc; font-size:0.85rem; }
+    .flow-title { font-size:var(--fs-xl); font-weight:700; line-height:1.55; letter-spacing:0.02em; color:var(--black); margin-bottom:0.8rem; }
+    .flow-sub { font-size:var(--fs-sm); color:var(--gray-500); line-height:1.8; margin-bottom:1.3rem; }
+    .flow-list { display:flex; flex-direction:column; }
+    .flow-list li { display:flex; align-items:flex-start; gap:0.7rem; padding:0.8rem 0; border-bottom:1px solid #f0f0f0; font-size:var(--fs-sm); color:var(--text-main); line-height:1.6; }
+    .flow-list li:last-child { border-bottom:none; }
+    .flow-check { flex-shrink:0; width:20px; height:20px; margin-top:1px; }
+    .flow-card-visual { background:#EAF1FE; border-radius:14px; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; padding:1.8rem; }
+    .flow-card-visual svg { width:auto; height:100%; max-width:100%; }
+    @media(max-width:860px){
+      .flow-card { grid-template-columns:1fr; gap:1.4rem; padding:1.8rem 1.5rem; }
+      .flow-card-visual { order:-1; aspect-ratio:16/9; padding:1.2rem; }
+      .flow-card-visual svg { height:auto; max-height:150px; }
+    }
+    </style>
+    <div class="flow-cards anim">
+
+      <article class="flow-card">
+        <div class="flow-card-main">
+          <div class="flow-steps">
+            <span class="flow-step is-active">アップロード</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step">生成</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step">配信</span>
+          </div>
+          <h3 class="flow-title">人物画像・商品画像・<br>トークスクリプトをアップロード</h3>
+          <p class="flow-sub">専門知識は不要。お手持ちの素材をアップロードするだけで準備完了です。</p>
+          <ul class="flow-list">
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>人物画像・商品画像のアップロード</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>トークスクリプトの入力（AIで自動生成も可能）</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>音声・尺などの簡単な設定</li>
+          </ul>
+        </div>
+        <div class="flow-card-visual">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="アップロード">
-            <circle cx="100" cy="100" r="78" fill="#007aff"/>
-            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
-              <rect x="58" y="68" width="84" height="80" rx="6"/>
-              <path d="M76 90h32M76 104h48M76 118h40M76 132h28" stroke="#1A1A1A" fill="none" stroke-width="3"/>
-            </g>
-            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
-              <path d="M138 56l-22 22 14 0 0 22 16 0 0-22 14 0z" transform="translate(2 -10)"/>
-            </g>
+            <circle cx="100" cy="100" r="78" fill="#4285F4"/>
+            <rect x="60" y="62" width="74" height="86" rx="9" fill="#FFFFFF"/>
+            <g fill="#AECBFA"><rect x="72" y="82" width="36" height="6" rx="3"/><rect x="72" y="97" width="50" height="6" rx="3"/><rect x="72" y="112" width="44" height="6" rx="3"/><rect x="72" y="127" width="30" height="6" rx="3"/></g>
+            <g transform="translate(132 68)"><circle r="21" fill="#FBBC04"/><path d="M0 -10 L9 1 L3.5 1 L3.5 10 L-3.5 10 L-3.5 1 L-9 1 Z" fill="#FFFFFF"/></g>
           </svg>
         </div>
-        <div class="step-body">
-          <div class="step-title">人物画像、商品画像やトークスクリプトをアップロード</div>
-          <div class="step-desc">人物画像・商品画像・トークスクリプトをアップロードするだけ。専門知識は不要です。</div>
+      </article>
+
+      <article class="flow-card">
+        <div class="flow-card-main">
+          <div class="flow-steps">
+            <span class="flow-step">アップロード</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step is-active">生成</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step">配信</span>
+          </div>
+          <h3 class="flow-title">AIが動画広告を自動生成</h3>
+          <p class="flow-sub">画像1枚からAIが動画化。リップシンクして1本数分程度で完成します。</p>
+          <ul class="flow-list">
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>画像1枚からAIが動画を生成</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>リップシンク・音声合成を自動処理</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>複数パターンを一括生成しABテストに活用</li>
+          </ul>
         </div>
-      </div>
-      <div class="step-card">
-        <span class="step-num">2</span>
-        <div class="step-icon">
+        <div class="flow-card-visual">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="動画自動生成">
-            <circle cx="100" cy="100" r="78" fill="#007aff"/>
-            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
-              <rect x="50" y="64" width="100" height="68" rx="6"/>
-              <path d="M88 80l28 18-28 18z" fill="#1A1A1A"/>
-            </g>
-            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
-              <circle cx="146" cy="140" r="16"/>
-              <path d="M141 140l3 4 6-8" stroke="#1A1A1A" fill="none" stroke-width="3"/>
-            </g>
+            <circle cx="100" cy="100" r="78" fill="#4285F4"/>
+            <rect x="52" y="66" width="96" height="66" rx="10" fill="#FFFFFF"/>
+            <path d="M88 84 L118 99 L88 114 Z" fill="#4285F4"/>
+            <g transform="translate(140 134)"><circle r="18" fill="#34A853"/><path d="M-7 0 L-2 5 L7 -5.5" stroke="#FFFFFF" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
           </svg>
         </div>
-        <div class="step-body">
-          <div class="step-title">動画広告を自動生成</div>
-          <div class="step-desc">リップシンクをして動画化、1本数分程度で完成します。</div>
+      </article>
+
+      <article class="flow-card">
+        <div class="flow-card-main">
+          <div class="flow-steps">
+            <span class="flow-step">アップロード</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step">生成</span>
+            <span class="flow-step-arrow">→</span>
+            <span class="flow-step is-active">配信</span>
+          </div>
+          <h3 class="flow-title">そのまま広告配信、<br>すぐに成果検証</h3>
+          <p class="flow-sub">Meta・TikTok等にそのまま入稿。配信結果をもとにすぐ改善できます。</p>
+          <ul class="flow-list">
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>Meta / TikTok 等へそのまま入稿</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>ABテストで勝ちパターンを検証</li>
+            <li><svg class="flow-check" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.8 2.8 5.2-6"/></svg>成果データをもとに高速で改善</li>
+          </ul>
         </div>
-      </div>
-      <div class="step-card">
-        <span class="step-num">3</span>
-        <div class="step-icon">
+        <div class="flow-card-visual">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="広告配信">
-            <circle cx="100" cy="100" r="78" fill="#007aff"/>
-            <g stroke="#1A1A1A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="#fff">
-              <rect x="52" y="68" width="96" height="76" rx="6"/>
-              <path d="M62 132l18-26 16 18 16-30 26 28" stroke="#1A1A1A" fill="none" stroke-width="3.5"/>
-              <circle cx="62" cy="132" r="3.5" fill="#1A1A1A"/>
-              <circle cx="80" cy="106" r="3.5" fill="#1A1A1A"/>
-              <circle cx="96" cy="124" r="3.5" fill="#1A1A1A"/>
-              <circle cx="112" cy="94" r="3.5" fill="#1A1A1A"/>
-              <circle cx="138" cy="122" r="3.5" fill="#1A1A1A"/>
-            </g>
-            <g stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" fill="none">
-              <path d="M130 78l16-16M146 62l-10 0M146 62l0 10"/>
-            </g>
+            <circle cx="100" cy="100" r="78" fill="#4285F4"/>
+            <rect x="56" y="60" width="88" height="80" rx="10" fill="#FFFFFF"/>
+            <path d="M68 124 L90 100 L106 116 L128 86" fill="none" stroke="#4285F4" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <g fill="#1967D2"><circle cx="68" cy="124" r="4.6"/><circle cx="90" cy="100" r="4.6"/><circle cx="106" cy="116" r="4.6"/><circle cx="128" cy="86" r="4.6"/></g>
+            <g transform="translate(140 72)"><circle r="19" fill="#FBBC04"/><path d="M-6 6 L6 -6 M0 -6 L6 -6 L6 0" stroke="#FFFFFF" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
           </svg>
         </div>
-        <div class="step-body">
-          <div class="step-title">そのまま広告配信、すぐに成果検証</div>
-          <div class="step-desc">Meta・TikTok等の広告にそのまま入稿できます。</div>
-        </div>
-      </div>
+      </article>
+
     </div>
     <div class="steps-cta-wrap anim">
       <p class="steps-cta-msg">難しい作業は一切なし。すぐに動画生成をスタートできます。</p>
+      <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">無料で導入相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お役立ちコラム ===== -->
+<style>
+.column-sec { background:var(--gray-50); }
+.column-more { text-align:center; margin-top:3rem; }
+.column-more-btn { display:inline-flex; align-items:center; gap:0.5rem; background:#fff; color:var(--primary-blue); border:2px solid var(--primary-blue); font-weight:700; font-size:var(--fs-body); padding:0.9rem 2.4rem; border-radius:10px; text-decoration:none; transition:background 0.2s,color 0.2s; }
+.column-more-btn:hover { background:var(--primary-blue); color:#fff; }
+.column-more-arrow { font-weight:700; }
+.column-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; align-items:stretch; }
+.column-card { display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.05); text-decoration:none; color:inherit; transition:transform 0.25s ease, box-shadow 0.25s ease; }
+.column-card:hover { transform:translateY(-5px); box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 18px 44px rgba(0,0,0,0.11); }
+.column-thumb { position:relative; aspect-ratio:1200/630; overflow:hidden; background:#eef1f6; }
+.column-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.column-badge { position:absolute; bottom:0; right:0; background:#1f7a4d; color:#fff; font-size:var(--fs-xs); font-weight:700; letter-spacing:0.04em; padding:0.4rem 1.1rem; border-top-left-radius:8px; }
+.column-thumb-ph { display:flex; flex-direction:column; justify-content:center; padding:1.6rem 1.7rem; position:relative; overflow:hidden; }
+.column-thumb-ph.ph-a { background:linear-gradient(135deg,#1c6fe0 0%,#2f8fd6 100%); }
+.column-thumb-ph.ph-b { background:linear-gradient(135deg,#e8556b 0%,#f08a4b 100%); }
+.column-thumb-ph.ph-c { background:linear-gradient(135deg,#0ea5d8 0%,#1c6fe0 100%); }
+.column-thumb-ph::after { content:''; position:absolute; top:-30%; right:-12%; width:55%; height:160%; background:rgba(255,255,255,0.10); transform:rotate(25deg); }
+.column-thumb-ph .ph-mark { position:absolute; top:1.1rem; right:1.3rem; font-family:var(--font-display); font-weight:900; font-size:0.8rem; color:#fff; letter-spacing:0.02em; z-index:1; }
+.column-thumb-ph .ph-label { position:relative; z-index:1; font-size:var(--fs-xs); font-weight:700; color:rgba(255,255,255,0.92); margin-bottom:0.6rem; }
+.column-thumb-ph .ph-title { position:relative; z-index:1; font-size:1.15rem; font-weight:900; line-height:1.55; color:#fff; letter-spacing:0.02em; }
+.column-body { display:flex; flex-direction:column; gap:1rem; padding:1.6rem 1.5rem 1.75rem; flex:1; }
+.column-title { font-size:var(--fs-md); font-weight:700; line-height:1.6; letter-spacing:0.02em; color:var(--black); }
+.column-desc { font-size:var(--fs-sm); color:rgba(0,0,0,0.6); line-height:1.8; flex:1; }
+.column-meta { display:flex; align-items:center; gap:0.4rem; font-size:var(--fs-xs); color:var(--gray-500); font-weight:700; letter-spacing:0.02em; }
+.column-btn { margin-top:0.4rem; text-align:center; background:var(--primary-blue); color:#fff; font-weight:700; font-size:var(--fs-body); padding:0.9rem 1rem; border-radius:8px; transition:background 0.2s; }
+.column-card:hover .column-btn { background:var(--primary-blue-hover); }
+@media(max-width:900px){ .column-grid { grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+</style>
+<section class="sec column-sec" id="column">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim">COLUMN</div>
+      <h2 class="sec-title anim">お役立ちコラム</h2>
+      <p class="sec-sub anim">動画広告・クリエイティブ運用のノウハウをお届けします</p>
+    </div>
+    <div class="column-grid anim">
+      <a class="column-card" href="column-4">
+        <div class="column-thumb"><img src="lp-videos/col4-ogp.png" alt="勝てる動画クリエイティブの「型」。冒頭2秒で決まる構成設計"></div>
+        <div class="column-body">
+          <h3 class="column-title">勝てる動画クリエイティブの「型」。冒頭2秒で決まる構成設計</h3>
+          <p class="column-desc">成果を出す動画広告に共通する「型」を解説。冒頭フックの4つの型と、フック→本編→CTAの構成設計を具体的に紹介します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約13分</div>
+          <span class="column-btn">記事を読む</span>
+        </div>
+      </a>
+      <a class="column-card" href="column-5">
+        <div class="column-thumb"><img src="lp-videos/col5-ogp.png" alt="クリエイティブ疲弊とABテスト。成果を伸ばし続ける改善の回し方"></div>
+        <div class="column-body">
+          <h3 class="column-title">クリエイティブ疲弊とABテスト。成果を伸ばし続ける改善の回し方</h3>
+          <p class="column-desc">クリエイティブ疲弊の仕組みと差し替えのサイン、成果を伸ばし続けるABテストの回し方を、データとともに解説します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約12分</div>
+          <span class="column-btn">記事を読む</span>
+        </div>
+      </a>
+      <a class="column-card" href="column-6">
+        <div class="column-thumb"><img src="lp-videos/col6-ogp.png" alt="生成AIは動画広告をどう変えるか。これからのクリエイティブ制作"></div>
+        <div class="column-body">
+          <h3 class="column-title">生成AIは動画広告をどう変えるか。これからのクリエイティブ制作</h3>
+          <p class="column-desc">生成AIが動画広告の制作をどう変えているのか。市場規模・活用率・企業事例と、これからの人とAIの役割分担を紹介します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約13分</div>
+          <span class="column-btn">記事を読む</span>
+        </div>
+      </a>
+    </div>
+    <div class="column-more">
+      <a class="column-more-btn" href="columns">コラム一覧を見る</a>
     </div>
   </div>
 </section>
@@ -2425,7 +2583,7 @@ ul { list-style: none; }
 <section class="final-hero" id="final" style="display:none">
   <div class="sec-inner anim">
     <h2 class="final-hero-msg">UGC Makerなら<br>動画広告を<span class="box">大量生産</span><br><span class="box">数分</span>で何本でも生成可能<br>撮影・編集は完全不要</h2>
-    <a href="https://www.ugcmaker.jp/onboarding/login" class="btn-primary" style="font-size:1.1rem;padding:1.2rem 2.8rem;text-decoration:none;">今すぐ無料で動画を生成する ›</a>
+    <a href="https://www.ugcmaker.jp/onboarding/login" class="btn-primary" style="font-size:1.1rem;padding:1.2rem 2.8rem;text-decoration:none;">今すぐ無料で動画を生成する</a>
   </div>
 </section>
 
@@ -2727,7 +2885,7 @@ floatClose.addEventListener('click',()=>{
       <div class="sticky-cta-primary-inner">
         <span class="sticky-cta-primary-badge">無料相談受付中</span>
         <span>無料で導入相談する</span>
-        <span class="sticky-cta-arrow">→</span>
+        
       </div>
     </a>
     <a href="#download" class="sticky-cta-btn sticky-cta-secondary">
