@@ -329,7 +329,7 @@ ul { list-style: none; }
 .logos-title { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:0.55rem; font-family:var(--font-body); font-weight:700; font-size:clamp(1.2rem, 2.4vw, 1.75rem); letter-spacing:0.02em; line-height:1.5; color:var(--black); margin-bottom:2.8rem; }
 .logos-brand { display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--font-display); font-weight:900; letter-spacing:-0.01em; }
 .logos-mark { display:inline-flex; align-items:center; justify-content:center; width:1.45em; height:1.45em; background:var(--black); color:#fff; border-radius:0.34em; font-family:var(--font-display); font-weight:900; font-size:0.82em; line-height:1; }
-.logos-grid { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:1rem; max-width:1240px; margin:0 auto; box-sizing:border-box; }
+.logos-grid { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:1rem; max-width:1050px; margin:0 auto; box-sizing:border-box; }
 .logos-grid-item { box-sizing:border-box; width:160px; height:100px; display:flex; align-items:center; justify-content:center; padding:1rem 1.2rem; background:#fff; border:1px solid rgba(0,0,0,0.07); border-radius:14px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
 .logos-grid-item img { max-width:100%; max-height:46px; width:auto; height:auto; object-fit:contain; }
 @media(max-width:800px){
@@ -544,6 +544,45 @@ ul { list-style: none; }
 .voice-col:last-child .voice-col-text strong { color:#15803d; font-weight:800; background:linear-gradient(transparent 60%, #dcfce7 60%); padding:0 2px; }
 .voice-col:first-child .voice-col-summary { color:#b91c1c; }
 .voice-col:last-child .voice-col-summary { color:#15803d; }
+/* お客様の声: 横スライド(カルーセル) */
+.voice-track { display:flex; gap:1.5rem; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding:0.5rem 2px 1rem; -ms-overflow-style:none; scrollbar-width:none; }
+.voice-track::-webkit-scrollbar { display:none; }
+.voice-sec .voice-card { flex:0 0 min(384px, 82%); scroll-snap-align:start; margin-bottom:0; }
+.voice-controls { display:flex; align-items:center; gap:1.5rem; margin-top:1.8rem; }
+.voice-arrows { display:flex; gap:0.8rem; flex-shrink:0; }
+.voice-arrow { width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(0,0,0,0.18); background:#fff; color:#111; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
+.voice-arrow:hover:not(:disabled) { border-color:#111; background:#111; color:#fff; }
+.voice-arrow:disabled { opacity:0.3; cursor:default; }
+.voice-arrow svg { width:20px; height:20px; }
+.voice-progress { flex:1; height:4px; background:rgba(0,0,0,0.09); border-radius:4px; overflow:hidden; }
+.voice-progress-fill { height:100%; background:#111; border-radius:4px; width:40%; transition:width 0.15s ease; }
+@media (max-width:768px){ .voice-sec .voice-card { flex:0 0 86%; } .voice-controls { gap:1rem; } .voice-arrow { width:44px; height:44px; } }
+/* Case Study カード（内野風: サムネ＋ロゴ＋社名/業種＋説明＋タグ） */
+.voice-sec .voice-card.case-card { border:none; box-shadow:none; background:transparent; overflow:visible; border-radius:0; display:flex; flex-direction:column; }
+/* 説明文の行数差でカード下部に空きが出るため、タグを下端に揃えて高さを合わせる */
+.voice-sec .voice-card.case-card .case-tags { margin-top:auto; }
+.case-thumb { aspect-ratio:16/10; border-radius:16px; margin-bottom:1.5rem; display:flex; align-items:flex-end; padding:1.4rem 1.6rem; background:linear-gradient(135deg, var(--c1,#94a3b8), var(--c2,#475569)); position:relative; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.10); }
+.case-thumb::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 75% 15%, rgba(255,255,255,0.20), transparent 55%); pointer-events:none; }
+.case-thumb-label { position:relative; z-index:1; color:#fff; font-weight:800; font-size:clamp(0.85rem,1.3vw,1rem); line-height:1.5; text-shadow:0 2px 12px rgba(0,0,0,0.30); }
+.case-meta { display:flex; align-items:center; gap:0.85rem; margin-bottom:0.95rem; }
+.case-logo { width:60px; height:60px; padding:7px; flex-shrink:0; border:1px solid rgba(0,0,0,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; background:#fff; color:#9ca3af; }
+.case-logo svg { width:28px; height:28px; }
+.case-company { font-size:1.12rem; font-weight:800; color:#111; line-height:1.35; }
+.case-industry { font-size:0.85rem; color:#6b7280; margin-top:0.2rem; }
+.case-desc { font-size:0.92rem; color:#374151; line-height:1.7; margin:0 0 1.1rem; }
+.case-tags { display:flex; flex-wrap:wrap; gap:0.4rem 1rem; }
+.case-tags span { font-size:0.82rem; color:#9ca3af; font-weight:600; }
+@media (max-width:768px){ .voice-sec .voice-card { flex:0 0 82%; } .case-company { font-size:1.05rem; } }
+/* クリック可能な事例カード（詳細インタビューへ遷移） */
+a.voice-card.case-card { text-decoration:none; color:inherit; }
+.voice-sec .case-thumb { overflow:hidden; transition:filter 0.25s ease; }
+.voice-sec .case-company { transition:color 0.2s ease; }
+.case-thumb.has-img { padding:0; display:block; background:#f0f0f0; }
+.case-thumb.has-img img { width:100%; height:100%; object-fit:cover; display:block; }
+/* ホバー: 画像を少し暗く＋社名が淡いグレーに（ecforce風） */
+a.voice-card.case-card:hover .case-thumb { filter:brightness(0.9); }
+a.voice-card.case-card:hover .case-company { color:#9197B1; }
+.case-logo img { max-width:100%; max-height:100%; object-fit:contain; }
 
 /* Resource CTA (UGC Maker style) */
 .resource-cta { background:var(--gray-50); padding:5rem 2rem; }
@@ -1544,12 +1583,12 @@ ul { list-style: none; }
       <div class="logos-grid-item"><img src="lp-videos/logo-15.png" alt="ALBION"></div>
       <div class="logos-grid-item"><img src="lp-videos/logo-16.png" alt="PAUL &amp; JOE"></div>
       <div class="logos-grid-item"><img src="lp-videos/logo-05.jpg" alt="Digital Shift Wave"></div>
-      <div class="logos-grid-item"><img src="lp-videos/logo-12.png" alt="HADO Inc."></div>
       <div class="logos-grid-item"><img src="lp-videos/logo-17.png" alt="EC MASTERS"></div>
+      <div class="logos-grid-item"><img src="lp-videos/logo-12.png" alt="HADO Inc."></div>
       <div class="logos-grid-item"><img src="lp-videos/logo-03.png" alt="カンゲンエージェント"></div>
-      <!-- 一時非表示(エンジニアのミカタ): <div class="logos-grid-item"><img src="lp-videos/logo-02.png" alt="エンジニアのミカタ"></div> -->
       <div class="logos-grid-item"><img src="lp-videos/logo-01.svg" alt="U-GAKU English Camp"></div>
       <div class="logos-grid-item"><img src="lp-videos/logo-cklab.png" alt="CK-LAB"></div>
+      <!-- 一時非表示(エンジニアのミカタ): <div class="logos-grid-item"><img src="lp-videos/logo-02.png" alt="エンジニアのミカタ"></div> -->
     </div>
   </div>
 </section>
@@ -1611,6 +1650,66 @@ ul { list-style: none; }
 
 
 <!-- ===== AI Features Grid (Arcads-style) ===== -->
+<section class="voice-sec sec" id="cases">
+  <div class="sec-inner">
+    <div class="sec-center" style="margin-bottom:3rem;">
+      <div class="sec-label anim">VOICE</div>
+      <h2 class="sec-title anim">お客様の声</h2>
+    </div>
+
+    <div class="voice-track" id="voiceTrack">
+    <!-- Case 1: デジタルシフトウェーブ（詳細インタビューへ遷移） -->
+    <a class="voice-card case-card" href="case.html">
+      <div class="case-thumb has-img"><img src="lp-videos/case-dsw-share.png" alt="デジタルシフトウェーブ 導入事例"></div>
+      <div class="case-meta">
+        <div class="case-logo"><img src="lp-videos/logo-05.jpg" alt="Digital Shift Wave"></div>
+        <div>
+          <div class="case-company">デジタルシフトウェーブ 様</div>
+          <div class="case-industry">メディア</div>
+        </div>
+      </div>
+      <p class="case-desc">DXメディア「DXマガジン」の動画発信を内製化支援。投稿数を週1本→週10本（10倍）に、制作時間を約80%削減。</p>
+      <div class="case-tags"><span>#ショート動画</span><span>#内製化</span></div>
+    </a>
+
+    <!-- Case 2 -->
+    <a class="voice-card case-card" href="case-2.html">
+      <div class="case-thumb has-img"><img src="lp-videos/case-2-share.png" alt="造花ドットコム 導入事例"></div>
+      <div class="case-meta">
+        <div class="case-logo"><img src="lp-videos/logo-zouka-full.png" alt="造花ドットコム"></div>
+        <div>
+          <div class="case-company">造花ドットコム 様</div>
+          <div class="case-industry">EC・D2C（インテリア）</div>
+        </div>
+      </div>
+      <p class="case-desc">光触媒フェイクグリーンのEC。商品画像1枚から動画広告を量産して内製化し、ROAS約1.5倍・CPA約30%・CPO約25%を改善。外注コストも月100万円以上削減。</p>
+      <div class="case-tags"><span>#商品動画</span><span>#内製化</span></div>
+    </a>
+
+    <!-- Case 3 -->
+    <a class="voice-card case-card" href="case-3.html">
+      <div class="case-thumb has-img"><img src="lp-videos/case-3-share.png" alt="東大コーチ 導入事例"></div>
+      <div class="case-meta">
+        <div class="case-logo"><img src="lp-videos/logo-toudai-square.png" alt="東大コーチ"></div>
+        <div>
+          <div class="case-company">東大コーチ 様</div>
+          <div class="case-industry">教育（オンライン家庭教師）</div>
+        </div>
+      </div>
+      <p class="case-desc">難関大受験に特化したオンライン家庭教師。撮影なしで動画発信を約10倍に増やし、制作コスト約80%減。無料受験相談の申込を前年同期比 約1.8倍に。</p>
+      <div class="case-tags"><span>#SNS運用</span><span>#内製化</span></div>
+    </a>
+    </div><!-- /voice-track -->
+    <div class="voice-controls">
+      <div class="voice-arrows">
+        <button class="voice-arrow" id="voicePrev" aria-label="前へ" type="button"><svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="voice-arrow" id="voiceNext" aria-label="次へ" type="button"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="voice-progress"><div class="voice-progress-fill" id="voiceProgress"></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="ai-features sec" id="features">
   <div class="sec-inner">
     <div class="sec-center">
@@ -1626,7 +1725,7 @@ ul { list-style: none; }
         <p class="aif-hero-desc">お手持ちのキャスト画像を指定するだけでAI動画を生成。キャストがいない場合は、AIキャストを自動生成することも可能です。</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;">
-        <img src="lp-videos/actor-grid.png" style="width:100%;border-radius:12px;" alt="AIキャスト一覧">
+        <img src="lp-videos/feat-aicast.png" style="width:100%;border-radius:12px;" alt="多彩なAIキャストを自動生成">
       </div>
     </div>
 
@@ -1679,104 +1778,12 @@ ul { list-style: none; }
         <h4 class="aif-card-title">AIがスクリプトを自動生成</h4>
         <p class="aif-card-desc">商品情報を入力するだけで、広告効果の高い台本をAIが複数パターン作成。フック・訴求軸・CTAまで自動最適化。</p>
       </div>
-      <div class="aif-card anim" style="position:relative;">
-        <div class="aif-card-visual" style="position:relative;">
-          <span style="position:absolute;top:0.7rem;left:0.7rem;z-index:2;display:inline-flex;align-items:center;gap:0.4rem;background:rgba(27,42,69,0.92);color:#FFFFFF;font-size:0.72rem;font-weight:700;padding:0.32rem 0.7rem 0.32rem 0.6rem;border-radius:8px;letter-spacing:0.06em;box-shadow:0 4px 12px rgba(27,42,69,0.18);backdrop-filter:blur(2px);"><span style="width:6px;height:6px;border-radius:50%;background:#FBBC04;box-shadow:0 0 0 3px rgba(251,188,4,0.25);"></span>リリース予定</span>
-          <svg viewBox="0 0 320 200" style="width:100%;height:100%;display:block" xmlns="http://www.w3.org/2000/svg" aria-label="BGMとテロップを自動追加">
-            <defs>
-              <linearGradient id="bgmBgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CEDEFB"/><stop offset="1" stop-color="#BFD3F7"/></linearGradient>
-              <linearGradient id="bgmScrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF1FD"/><stop offset="1" stop-color="#D7E4FB"/></linearGradient>
-            </defs>
-            <rect width="320" height="200" fill="url(#bgmBgG)"/>
-            <rect x="40" y="48" width="240" height="114" rx="16" fill="#A9C0EC" opacity="0.45"/>
-            <rect x="40" y="44" width="240" height="114" rx="16" fill="#FFFFFF"/>
-            <rect x="54" y="56" width="212" height="90" rx="9" fill="url(#bgmScrG)"/>
-            <path d="M150 76 L176 90 L150 104 Z" fill="#4285F4"/>
-            <rect x="100" y="118" width="120" height="18" rx="6" fill="#1B2A45" opacity="0.88"/>
-            <rect x="111" y="125" width="50" height="4" rx="2" fill="#FFFFFF"/>
-            <rect x="167" y="125" width="42" height="4" rx="2" fill="#FFFFFF" opacity="0.65"/>
-            <rect x="198" y="132" width="76" height="34" rx="17" fill="#9BB6E8" opacity="0.45"/>
-            <rect x="196" y="128" width="76" height="34" rx="17" fill="#FFFFFF"/>
-            <g fill="#4285F4">
-              <rect x="212" y="141" width="5" height="8" rx="2.5"/>
-              <rect x="222" y="136" width="5" height="18" rx="2.5"/>
-              <rect x="232" y="132" width="5" height="26" rx="2.5"/>
-              <rect x="242" y="138" width="5" height="14" rx="2.5"/>
-              <rect x="252" y="143" width="5" height="9" rx="2.5"/>
-            </g>
-          </svg>
+      <div class="aif-card anim">
+        <div class="aif-card-visual">
+          <img src="lp-videos/feat-dressing.png" alt="AIキャストに服を着せ、商品を持たせる" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
-        <h4 class="aif-card-title">BGMとテロップを自動追加</h4>
-        <p class="aif-card-desc">生成した動画にBGMとテロップを自動で追加。編集作業ゼロでSNS投稿可能な完成動画を出力。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="voice-sec sec" id="cases">
-  <div class="sec-inner">
-    <div class="sec-center" style="margin-bottom:3rem;">
-      <div class="sec-label anim">VOICE</div>
-      <h2 class="sec-title anim">お客様の声</h2>
-    </div>
-
-    <!-- Voice 1 -->
-    <div class="voice-card anim">
-      <div class="voice-header">
-        <div class="voice-company">人材系広告代理店 A社様</div>
-        <h3 class="voice-headline">月5本が限界だったクリエイティブが、月100本以上に。<br>制作コストは90%以上削減できました。</h3>
-      </div>
-      <div class="voice-body">
-        <div class="voice-col">
-          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
-          <p class="voice-col-summary">月5本が限界、外注費が高すぎて本数を増やせない</p>
-          <p class="voice-col-text">月5本のクリエイティブが限界で、<strong>本数を増やしたくても外注費がネック</strong>でした。外注すると<strong>1本あたり数十万円</strong>、社内で作ろうにもリソースもノウハウもない状況でした。</p>
-        </div>
-        <div class="voice-col">
-          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
-          <p class="voice-col-summary">月100本以上を量産、制作コスト90%以上削減</p>
-          <p class="voice-col-text">導入初月から月100本以上の動画広告を量産。<strong>制作コストは従来比90%以上削減</strong>しながら、広告パフォーマンスも維持。浮いた予算で<strong>配信量を大幅に拡大</strong>でき、来期の予算増額も決定しました。</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voice 2 -->
-    <div class="voice-card anim">
-      <div class="voice-header">
-        <div class="voice-company">EC・D2Cブランド B社様</div>
-        <h3 class="voice-headline">外注コスト月100万円以上を削減。<br>広告パフォーマンスを落とさず完全内製化できました。</h3>
-      </div>
-      <div class="voice-body">
-        <div class="voice-col">
-          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
-          <p class="voice-col-summary">制作会社への外注費が月100万円超、本数も限られていた</p>
-          <p class="voice-col-text">制作会社に依頼すると<strong>月100万円以上のコスト</strong>がかかり、それでも月に数本しか納品されません。<strong>もっと本数を増やしたい</strong>のに、予算的にこれ以上の外注は難しい状況でした。</p>
-        </div>
-        <div class="voice-col">
-          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
-          <p class="voice-col-summary">外注コスト月100万円以上削減、広告数値も維持</p>
-          <p class="voice-col-text">制作を完全内製化し、<strong>外注コストを月100万円以上削減</strong>。動画の量産体制が整い本数は数十倍に。Meta広告での<strong>CTRも従来水準をキープ</strong>したまま、クリエイティブの検証サイクルが格段に速くなりました。</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voice 3 -->
-    <div class="voice-card anim">
-      <div class="voice-header">
-        <div class="voice-company">店舗リード獲得 C社様</div>
-        <h3 class="voice-headline">撮影の手間がゼロに。制作費を大幅カットしながら、<br>広告本数を一気に増やせました。</h3>
-      </div>
-      <div class="voice-body">
-        <div class="voice-col">
-          <div class="voice-col-label label-issue"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.25" stroke="#b91c1c" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5h.01" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>課題</div>
-          <p class="voice-col-summary">Web 広告の知見ゼロ、制作も運用も外注依存だった</p>
-          <p class="voice-col-text">オフライン集客がメインでしたが、Web広告の必要性を感じていました。社内に<strong>広告の知見がなく</strong>、制作も運用も外注に頼るしかなく、<strong>コストも時間もかかりすぎ</strong>ていました。</p>
-        </div>
-        <div class="voice-col">
-          <div class="voice-col-label label-effect"><svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5l3 3 5-6" stroke="#15803d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>効果</div>
-          <p class="voice-col-summary">制作コスト大幅削減、動画本数は10倍以上に</p>
-          <p class="voice-col-text">動画制作の手間がほぼゼロになり、<strong>外注費を大幅にカット</strong>。それでいて動画本数は<strong>10倍以上に拡大</strong>でき、広告の数値も維持したままWeb集客の体制を一気に構築できました。</p>
-        </div>
+        <h4 class="aif-card-title">服を着せる・商品を持たせる</h4>
+        <p class="aif-card-desc">AIキャストに好きな服を着せたり、商品を手に持たせたりを高精度に再現。撮影なしで、ブランドの世界観やLPに合わせたビジュアルを量産できます。</p>
       </div>
     </div>
   </div>
@@ -1857,7 +1864,7 @@ ul { list-style: none; }
 
 
 <!-- ===== Mass Production & AB Test ===== -->
-<section class="mass-section sec">
+<section class="mass-section sec" style="display:none">
   <div class="sec-inner">
     <div class="sec-center">
       <div class="sec-label anim">SCALE</div>
@@ -1909,10 +1916,10 @@ ul { list-style: none; }
       <div class="sc-row-comp"><div class="sc-row-comp-val">○</div><div class="sc-row-comp-sub">代理店が手配</div></div>
       <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">固定できない</div></div>
       <div class="sc-row-label">制作コスト/本</div>
-      <div class="sc-row-brand"><span class="sc-badge">最安水準</span><div class="sc-row-brand-val">¥2,000<small>〜</small></div><div class="sc-row-brand-sub">プランにより変動</div></div>
-      <div class="sc-row-comp"><div class="sc-row-comp-val">¥30万<small>〜</small></div><div class="sc-row-comp-sub">撮影・編集費込み</div></div>
-      <div class="sc-row-comp"><div class="sc-row-comp-val">¥50万<small>〜</small></div><div class="sc-row-comp-sub">企画〜納品</div></div>
-      <div class="sc-row-comp"><div class="sc-row-comp-val">¥0<small>〜</small></div><div class="sc-row-comp-sub">API利用料のみ</div></div>
+      <div class="sc-row-brand"><span class="sc-badge">最安水準</span><div class="sc-row-brand-val">2,000円<small>〜</small></div><div class="sc-row-brand-sub">プランにより変動</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">30万円<small>〜</small></div><div class="sc-row-comp-sub">撮影・編集費込み</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">50万円<small>〜</small></div><div class="sc-row-comp-sub">企画〜納品</div></div>
+      <div class="sc-row-comp"><div class="sc-row-comp-val">0円<small>〜</small></div><div class="sc-row-comp-sub">API利用料のみ</div></div>
       <div class="sc-row-label">制作時間</div>
       <div class="sc-row-brand"><span class="sc-badge">最速</span><div class="sc-row-brand-val">数分</div><div class="sc-row-brand-sub">テキスト入力のみ</div></div>
       <div class="sc-row-comp"><div class="sc-row-comp-icon">△</div><div class="sc-row-comp-sub">数日〜数週間</div></div>
@@ -1947,7 +1954,7 @@ ul { list-style: none; }
         <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">○</div><div class="sc-slider-sub">キャスティング必要</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
-        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥30万〜</div><div class="sc-slider-sub">撮影・編集費込み</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">2,000円〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">30万円〜</div><div class="sc-slider-sub">撮影・編集費込み</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">数日〜数週間</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
@@ -1958,7 +1965,7 @@ ul { list-style: none; }
         <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">○</div><div class="sc-slider-sub">代理店が手配</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
-        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥50万〜</div><div class="sc-slider-sub">企画〜納品</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">2,000円〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">50万円〜</div><div class="sc-slider-sub">企画〜納品</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">2週間〜1ヶ月</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
@@ -1969,7 +1976,7 @@ ul { list-style: none; }
         <div class="sc-slider-row"><div class="sc-slider-label">インフルエンサー選択</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">◎</div><div class="sc-slider-sub">400種以上から選択</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">固定できない</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作コスト/本</div></div>
-        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">¥2,000〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">¥0〜</div><div class="sc-slider-sub">API利用料のみ</div></div></div>
+        <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">2,000円〜</div><div class="sc-slider-sub">プランにより変動</div></div><div class="sc-slider-comp"><div class="sc-slider-val">0円〜</div><div class="sc-slider-sub">API利用料のみ</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">制作時間</div></div>
         <div class="sc-slider-row"><div class="sc-slider-brand"><div class="sc-slider-val brand">数分</div><div class="sc-slider-sub">テキスト入力のみ</div></div><div class="sc-slider-comp"><div class="sc-slider-val">△</div><div class="sc-slider-sub">試行錯誤が必要</div></div></div>
         <div class="sc-slider-row"><div class="sc-slider-label">量産性</div></div>
@@ -1993,7 +2000,7 @@ ul { list-style: none; }
         <div class="plan-head">
           <h3 class="plan-name">スタータープラン</h3>
           <p class="plan-for">週2〜3回投稿におすすめ</p>
-          <div class="plan-price">¥21,000<span>/月</span></div>
+          <div class="plan-price">21,000円<span>/月</span></div>
         </div>
         <div class="plan-body">
           <div class="plan-group">
@@ -2018,7 +2025,7 @@ ul { list-style: none; }
         <div class="plan-head">
           <h3 class="plan-name">プロプラン</h3>
           <p class="plan-for">毎日投稿・本格運用に</p>
-          <div class="plan-price">¥62,000<span>/月</span></div>
+          <div class="plan-price">62,000円<span>/月</span></div>
         </div>
         <div class="plan-body">
           <div class="plan-group">
@@ -2071,7 +2078,7 @@ ul { list-style: none; }
       <div class="plan-initial-inner">
         <div class="plan-initial-head">
           <div class="plan-initial-label">導入サポート</div>
-          <div class="plan-initial-price">¥200,000<span>（税別）</span></div>
+          <div class="plan-initial-price">200,000円<span>（税別）</span></div>
           <div class="plan-initial-note">プロによる初期設定・運用支援</div>
           <div style="margin-top:0.6rem;font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.6;">※ ツール単体でも十分にご利用いただけます。<br>導入サポートなしでも広告動画の生成・運用が可能です。</div>
         </div>
@@ -2227,9 +2234,11 @@ ul { list-style: none; }
 .column-more-btn:hover { background:var(--primary-blue); color:#fff; }
 .column-more-arrow { font-weight:700; }
 .column-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; align-items:stretch; }
-.column-card { display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.05); text-decoration:none; color:inherit; transition:transform 0.25s ease, box-shadow 0.25s ease; }
-.column-card:hover { transform:translateY(-5px); box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 18px 44px rgba(0,0,0,0.11); }
-.column-thumb { position:relative; aspect-ratio:1200/630; overflow:hidden; background:#eef1f6; }
+.column-card { display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.05); text-decoration:none; color:inherit; }
+/* ホバー: お客様の声カードと同じ（画像を少し暗く＋タイトルが淡いグレーに） */
+.column-card:hover .column-thumb { filter:brightness(0.9); }
+.column-card:hover .column-title { color:#9197B1; }
+.column-thumb { position:relative; aspect-ratio:1200/630; overflow:hidden; background:#eef1f6; transition:filter 0.25s ease; }
 .column-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
 .column-badge { position:absolute; bottom:0; right:0; background:#1f7a4d; color:#fff; font-size:var(--fs-xs); font-weight:700; letter-spacing:0.04em; padding:0.4rem 1.1rem; border-top-left-radius:8px; }
 .column-thumb-ph { display:flex; flex-direction:column; justify-content:center; padding:1.6rem 1.7rem; position:relative; overflow:hidden; }
@@ -2241,12 +2250,16 @@ ul { list-style: none; }
 .column-thumb-ph .ph-label { position:relative; z-index:1; font-size:var(--fs-xs); font-weight:700; color:rgba(255,255,255,0.92); margin-bottom:0.6rem; }
 .column-thumb-ph .ph-title { position:relative; z-index:1; font-size:1.15rem; font-weight:900; line-height:1.55; color:#fff; letter-spacing:0.02em; }
 .column-body { display:flex; flex-direction:column; gap:1rem; padding:1.6rem 1.5rem 1.75rem; flex:1; }
-.column-title { font-size:var(--fs-md); font-weight:700; line-height:1.6; letter-spacing:0.02em; color:var(--black); }
+.column-title { font-size:var(--fs-md); font-weight:700; line-height:1.6; letter-spacing:0.02em; color:var(--black); transition:color 0.2s ease; }
 .column-desc { font-size:var(--fs-sm); color:rgba(0,0,0,0.6); line-height:1.8; flex:1; }
 .column-meta { display:flex; align-items:center; gap:0.4rem; font-size:var(--fs-xs); color:var(--gray-500); font-weight:700; letter-spacing:0.02em; }
-.column-btn { margin-top:0.4rem; text-align:center; background:var(--primary-blue); color:#fff; font-weight:700; font-size:var(--fs-body); padding:0.9rem 1rem; border-radius:8px; transition:background 0.2s; }
-.column-card:hover .column-btn { background:var(--primary-blue-hover); }
-@media(max-width:900px){ .column-grid { grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+.column-btn { margin-top:0.4rem; text-align:center; background:var(--primary-blue); color:#fff; font-weight:700; font-size:var(--fs-body); padding:0.9rem 1rem; border-radius:8px; }
+/* モバイル: お客様の声と同じ横スクロール(カルーセル)にする */
+@media(max-width:900px){
+  .column-grid { display:flex; grid-template-columns:none; gap:1.5rem; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; max-width:none; margin:0; padding:0.5rem 2px 1rem; }
+  .column-grid::-webkit-scrollbar { display:none; }
+  .column-card { flex:0 0 82%; scroll-snap-align:start; }
+}
 </style>
 <section class="sec column-sec" id="column">
   <div class="sec-inner">
@@ -2256,30 +2269,30 @@ ul { list-style: none; }
       <p class="sec-sub anim">動画広告・クリエイティブ運用のノウハウをお届けします</p>
     </div>
     <div class="column-grid anim">
-      <a class="column-card" href="column-4">
-        <div class="column-thumb"><img src="lp-videos/col4-ogp.png" alt="勝てる動画クリエイティブの「型」。冒頭2秒で決まる構成設計"></div>
+            <a class="column-card" href="column-7">
+        <div class="column-thumb"><img src="lp-videos/col7-ogp.png" alt="同じ動画では戦えない。Meta・TikTok・YouTubeで勝つ動画の作り分け方" loading="lazy"></div>
         <div class="column-body">
-          <h3 class="column-title">勝てる動画クリエイティブの「型」。冒頭2秒で決まる構成設計</h3>
-          <p class="column-desc">成果を出す動画広告に共通する「型」を解説。冒頭フックの4つの型と、フック→本編→CTAの構成設計を具体的に紹介します。</p>
-          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約13分</div>
+          <h3 class="column-title">同じ動画では戦えない。Meta・TikTok・YouTubeで勝つ動画の作り分け方</h3>
+          <p class="column-desc">Meta・TikTok・YouTubeで動画広告を作り分ける方法を、縦型で6秒視聴率391％というデータや媒体ごとの性格から解説します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約14分</div>
           <span class="column-btn">記事を読む</span>
         </div>
       </a>
-      <a class="column-card" href="column-5">
-        <div class="column-thumb"><img src="lp-videos/col5-ogp.png" alt="クリエイティブ疲弊とABテスト。成果を伸ばし続ける改善の回し方"></div>
+      <a class="column-card" href="column-8">
+        <div class="column-thumb"><img src="lp-videos/col8-ogp.png" alt="「刈り取り」だけでは頭打ち。認知から購入までをつなぐ動画広告のファネル設計" loading="lazy"></div>
         <div class="column-body">
-          <h3 class="column-title">クリエイティブ疲弊とABテスト。成果を伸ばし続ける改善の回し方</h3>
-          <p class="column-desc">クリエイティブ疲弊の仕組みと差し替えのサイン、成果を伸ばし続けるABテストの回し方を、データとともに解説します。</p>
-          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約12分</div>
+          <h3 class="column-title">「刈り取り」だけでは頭打ち。認知から購入までをつなぐ動画広告のファネル設計</h3>
+          <p class="column-desc">「刈り取り」だけでは頭打ちになる理由と、認知から購入・ファン化までをつなぐフルファネルの設計を段階ごとに解説します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約14分</div>
           <span class="column-btn">記事を読む</span>
         </div>
       </a>
-      <a class="column-card" href="column-6">
-        <div class="column-thumb"><img src="lp-videos/col6-ogp.png" alt="生成AIは動画広告をどう変えるか。これからのクリエイティブ制作"></div>
+      <a class="column-card" href="column-9">
+        <div class="column-thumb"><img src="lp-videos/col9-ogp.png" alt="再生数だけ見ていませんか。動画広告のKPI設計と効果測定の基本" loading="lazy"></div>
         <div class="column-body">
-          <h3 class="column-title">生成AIは動画広告をどう変えるか。これからのクリエイティブ制作</h3>
-          <p class="column-desc">生成AIが動画広告の制作をどう変えているのか。市場規模・活用率・企業事例と、これからの人とAIの役割分担を紹介します。</p>
-          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約13分</div>
+          <h3 class="column-title">再生数だけ見ていませんか。動画広告のKPI設計と効果測定の基本</h3>
+          <p class="column-desc">再生数だけでは成果を見誤ります。KGIから分解し、視聴・反応・検索需要・成果の4層で捉えるKPI設計と効果測定の基本を解説します。</p>
+          <div class="column-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>読了 約14分</div>
           <span class="column-btn">記事を読む</span>
         </div>
       </a>
@@ -2956,6 +2969,49 @@ floatClose.addEventListener('click',()=>{
       });
     }, ms);
   });
+})();
+</script>
+<script>
+/* お客様の声 カルーセル（無限ループ） */
+(function(){
+  var track = document.getElementById('voiceTrack');
+  if(!track) return;
+  var prev = document.getElementById('voicePrev');
+  var next = document.getElementById('voiceNext');
+  var fill = document.getElementById('voiceProgress');
+  var originals = Array.prototype.slice.call(track.children);
+  if(originals.length === 0) return;
+  // 事例が3つ以下のときは操作バー（矢印＋進捗バー）を非表示・ループなし。4つ以上で表示。
+  var controls = document.querySelector('.voice-controls');
+  if(originals.length <= 3){ if(controls) controls.style.display = 'none'; return; }
+  if(controls) controls.style.display = '';
+  function gap(){ return parseFloat(getComputedStyle(track).gap) || 24; }
+  function oneSetWidth(){
+    var w = 0;
+    for(var i=0;i<originals.length;i++){ w += originals[i].getBoundingClientRect().width + gap(); }
+    return w;
+  }
+  // 前後にクローンを足して3セット化（無限ループ用）
+  originals.forEach(function(c){ track.appendChild(c.cloneNode(true)); });
+  originals.slice().reverse().forEach(function(c){ track.insertBefore(c.cloneNode(true), track.firstChild); });
+  var oneSet = oneSetWidth();
+  var lock = false;
+  function jumpTo(x){ lock = true; track.scrollLeft = x; requestAnimationFrame(function(){ lock = false; }); }
+  jumpTo(oneSet); // 中央セットから開始
+  function onScroll(){
+    if(!lock){
+      var x = track.scrollLeft;
+      if(x < oneSet * 0.5) jumpTo(x + oneSet);
+      else if(x > oneSet * 1.5) jumpTo(x - oneSet);
+    }
+    if(fill){ var p = ((((track.scrollLeft % oneSet) + oneSet) % oneSet) / oneSet) * 100; fill.style.width = Math.max(8, p) + '%'; }
+  }
+  function step(){ return originals[0].getBoundingClientRect().width + gap(); }
+  if(prev) prev.addEventListener('click', function(){ track.scrollBy({left:-step(), behavior:'smooth'}); });
+  if(next) next.addEventListener('click', function(){ track.scrollBy({left:step(), behavior:'smooth'}); });
+  track.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ oneSet = oneSetWidth(); jumpTo(oneSet); });
+  onScroll();
 })();
 </script>
 </body>
