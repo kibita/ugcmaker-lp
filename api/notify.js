@@ -56,7 +56,7 @@ export default async function handler(req, res) {
   try {
     const { type, company, name, email, phone, message, referral } = req.body;
 
-    if (email && isBlockedEmail(email)) {
+    if (type !== 'download' && email && isBlockedEmail(email)) {
       return res.status(400).json({
         error: 'invalid_email_domain',
         message: '会社ドメインのメールアドレスをご入力ください（フリーメール・キャリアメール不可）',
