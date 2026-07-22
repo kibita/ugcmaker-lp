@@ -79,7 +79,8 @@ export default async function handler(req, res) {
       blocks = [
         { type: 'section', text: { type: 'mrkdwn', text: `*${headerText}*` } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
-        { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('知ったきっかけ', referral) ] },
+        { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
+        { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
       ];
       if (message) {
         blocks.push({ type: 'divider' });
