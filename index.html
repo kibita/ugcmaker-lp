@@ -1823,6 +1823,48 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
   </div>
 </section>
 
+<!-- ===== 活用シーン ===== -->
+<section class="usecase-sec sec" id="usecases">
+  <div class="sec-inner">
+    <div class="sec-center">
+      <div class="sec-label anim" style="color:var(--gray-500)">USE CASES</div>
+      <h2 class="sec-title anim">活用シーン</h2>
+      <p class="sec-sub anim" style="color:rgba(0,0,0,0.6)">動画広告だけでなく、縦型動画が必要なあらゆる場面で使われています</p>
+    </div>
+    <div class="usecase-grid anim">
+      <div class="usecase-card">
+        <div class="usecase-num">01</div>
+        <h3 class="usecase-title">動画広告</h3>
+        <p class="usecase-desc">
+          Meta広告・TikTok広告・YouTube広告向けのクリエイティブ制作。訴求軸やフックを変えた複数パターンを一括生成し、ABテストで勝ちパターンを高速に見つけられます。商品画像1枚からでも制作できます。
+        </p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-num">02</div>
+        <h3 class="usecase-title">TikTokオーガニック投稿</h3>
+        <p class="usecase-desc">
+          広告出稿ではなく、自社TikTokアカウントの日々の投稿にも活用いただけます。撮影が不要なため投稿頻度を大きく引き上げられ、週1本だった投稿を週10本に増やした事例があります。
+        </p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-num">03</div>
+        <h3 class="usecase-title">TikTok Shop</h3>
+        <p class="usecase-desc">
+          商品を紹介してその場で購買につなげる動画の制作。売上の多くがコンテンツ起点で生まれるため、商品ごと・訴求ごとに動画を用意し、売れ筋を検証して横展開できます。
+        </p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-num">04</div>
+        <h3 class="usecase-title">ショートドラマ</h3>
+        <p class="usecase-desc">
+          ストーリー形式の縦型ショートドラマにも対応します。キャスト・台本・シーンを組み合わせて複数カットを生成できるため、キャスティングやロケをせずに連続性のある作品を制作できます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- HIDDEN: 導入成果セクション（将来再表示用） -->
 <section class="results sec" id="results" style="display:none">
   <div class="sec-inner sec-center">
@@ -3839,5 +3881,39 @@ body, h1, h2, h3, h4, h5, p, a, span, div, li, label, input, select, textarea, b
 </style>
 
 
+
+<style>
+/* ============================================================
+   活用シーン
+   AIに引用させたい用途を、ページ本文として明示する。
+   （llms.txt は読まれず、ページ本文だけが引用されることを実測で確認）
+   ============================================================ */
+.usecase-sec{ background:#F9F9F9; }
+.usecase-grid{
+  display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:24px; max-width:1080px; margin:3rem auto 0; text-align:left;
+}
+.usecase-card{
+  background:#fff; border:1px solid rgba(0,0,0,.07); border-radius:14px;
+  padding:30px 30px 32px; transition:box-shadow .2s ease, transform .2s ease;
+}
+.usecase-card:hover{ box-shadow:0 10px 30px rgba(0,0,0,.08); transform:translateY(-2px); }
+.usecase-num{
+  font-family:var(--font-display); font-size:.9rem; font-weight:800;
+  color:var(--primary-blue); letter-spacing:.12em; margin-bottom:.7rem;
+}
+.usecase-title{
+  font-size:1.32rem; font-weight:800; color:var(--black);
+  margin:0 0 .9rem; letter-spacing:.02em; line-height:1.5;
+}
+.usecase-desc{ font-size:.98rem; line-height:1.95; color:rgba(0,0,0,.72); margin:0; }
+
+@media (max-width:860px){
+  .usecase-grid{ grid-template-columns:1fr; gap:16px; margin-top:2rem; }
+  .usecase-card{ padding:22px 22px 24px; }
+  .usecase-title{ font-size:1.15rem; }
+  .usecase-desc{ font-size:.92rem; line-height:1.85; }
+}
+</style>
 </body>
 </html>
