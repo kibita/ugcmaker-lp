@@ -54,7 +54,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { type, company, name, email, phone, message, referral } = req.body;
+    const { type, company, name, email, phone, message, referral, position, department, source, topic } = req.body;
 
     if (type !== 'download' && email && isBlockedEmail(email)) {
       return res.status(400).json({
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
         { type: 'section', text: { type: 'mrkdwn', text: `*${headerText}*` } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
         { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
-        { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
+        { type: 'section', fields: [ field('お問い合わせの種類', topic), field('知ったきっかけ', referral) ] },
       ];
       if (message) {
         blocks.push({ type: 'divider' });
@@ -89,11 +89,14 @@ export default async function handler(req, res) {
       blocks.push({ type: 'context', elements: [ { type: 'mrkdwn', text: `受信日時: ${nowJst} (JST)　|　service.ugcmaker.jp` } ] });
     } else if (type === 'download') {
       headerText = '📥 資料のダウンロード依頼がありました 📥';
+      // どの導線から来たか（右カラムの常設フォーム = side-form / ページ下部 = 未指定）
+      const via = source === 'side-form' ? '右カラム常設フォーム' : 'ページ下部フォーム';
       blocks = [
         { type: 'section', text: { type: 'mrkdwn', text: `*${headerText}*` } },
         { type: 'section', fields: [ field('会社名', company), field('お名前', name) ] },
         { type: 'section', fields: [ field('メールアドレス', email ? `<mailto:${email}|${email}>` : null), field('電話番号', phone) ] },
-        { type: 'section', fields: [ field('知ったきっかけ', referral) ] },
+        { type: 'section', fields: [ field('役職', position), field('部署', department) ] },
+        { type: 'section', fields: [ field('知ったきっかけ', referral), field('入力フォーム', via) ] },
         { type: 'context', elements: [ { type: 'mrkdwn', text: `受信日時: ${nowJst} (JST)　|　service.ugcmaker.jp` } ] },
       ];
     } else {

@@ -505,7 +505,7 @@ ul { list-style: none; }
 .step-title { font-size:var(--fs-md); font-weight:700; letter-spacing:0.02em; margin-bottom:0.5rem; line-height:1.55; color:var(--gray-900); }
 .step-desc { font-size:var(--fs-body); color:var(--gray-600); line-height:1.7; }
 .steps-cta-wrap { margin-top:3rem; text-align:center; }
-.steps-cta-msg { font-size:1.5rem; font-weight:700; color:var(--black); margin-bottom:1.8rem; letter-spacing:0.04em; line-height:1.6; }
+.steps-cta-msg { font-size:1.5rem; font-weight:700; color:var(--black); margin-bottom:0; letter-spacing:0.04em; line-height:1.6; }
 .steps-cta-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--black); color:#fff; padding:1rem 3rem; border-radius:10px; font-weight:800; font-size:1rem; text-decoration:none; position:relative; overflow:hidden; z-index:1; transition:color 0.8s; border:1px solid var(--black); }
 .steps-cta-btn::before { content:''; position:absolute; top:0; left:0; width:0; height:100%; background:#fff; z-index:-1; transition:width 0.8s cubic-bezier(0.25,0.8,0.25,1); }
 .steps-cta-btn:hover { color:var(--black); }
@@ -1728,6 +1728,21 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
   </div>
 </section>
 
+<!-- CTA（2択）: お客様の声の直後。第三者の評価を見た直後は最も動く -->
+<div class="cta-duo">
+  <div class="cta-duo-inner">
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap cta-duo-cap-ghost">＼ 貴社専用デモを無料作成 ／</span>
+      <a class="cta-duo-btn cta-duo-primary" href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener">無料で相談する</a>
+    </div>
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap">＼ 3分で詳しい実績が分かる ／</span>
+      <a class="cta-duo-btn cta-duo-secondary" href="#download">資料をダウンロード</a>
+    </div>
+  </div>
+</div>
+
+
 <section class="ai-features sec" id="features">
   <div class="sec-inner">
     <div class="sec-center">
@@ -1869,7 +1884,7 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
       </div>
       <div class="cost-col cost-col-hl">
         <div class="cost-saving-badge">最大コスト削減<span class="cost-saving-circle">80<span class="cost-saving-pct">%</span></span></div>
-        <div class="cost-col-price cost-col-price-hl">月額2.1万円〜</div>
+        <div class="cost-col-price cost-col-price-hl">1本あたり5,000円〜</div>
         <div class="cost-bar cost-bar-short">
           <div class="cost-bar-item cost-bar-hl">独自AIワークフロー<br>ですべて代替</div>
         </div>
@@ -2004,6 +2019,21 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
   </div>
 </section>
 
+<!-- CTA（2択）: 高意向の「相談」と低摩擦の「資料」を並べる -->
+<div class="cta-duo">
+  <div class="cta-duo-inner">
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap cta-duo-cap-ghost">＼ 貴社専用デモを無料作成 ／</span>
+      <a class="cta-duo-btn cta-duo-primary" href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener">無料で相談する</a>
+    </div>
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap">＼ 3分で詳しい実績が分かる ／</span>
+      <a class="cta-duo-btn cta-duo-secondary" href="#download">資料をダウンロード</a>
+    </div>
+  </div>
+</div>
+
+
 <!-- HIDDEN: 料金プランセクション（将来再表示用） -->
 <section class="pricing sec" id="pricing" style="display:none">
   <div class="sec-inner sec-center">
@@ -2136,7 +2166,7 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
     .flow-card { display:grid; grid-template-columns:1fr 340px; gap:2.5rem; align-items:center; background:#fff; border:1px solid rgba(0,0,0,0.06); border-radius:18px; box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.05); padding:2.5rem 2.75rem; }
     .flow-steps { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.4rem; flex-wrap:wrap; }
     .flow-step { font-size:var(--fs-xs); font-weight:700; color:var(--gray-500); border:1px solid #dcdfe5; border-radius:6px; padding:0.32rem 0.75rem; }
-    .flow-step.is-active { background:var(--black); color:#fff; border-color:var(--black); }
+    .flow-step.is-active { background:#F56C6C; color:#fff; border-color:#F56C6C; }
     .flow-step-arrow { color:#c0c4cc; font-size:0.85rem; }
     .flow-title { font-size:var(--fs-xl); font-weight:700; line-height:1.55; letter-spacing:0.02em; color:var(--black); margin-bottom:0.8rem; }
     .flow-sub { font-size:var(--fs-sm); color:var(--gray-500); line-height:1.8; margin-bottom:1.3rem; }
@@ -2239,10 +2269,24 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
     </div>
     <div class="steps-cta-wrap anim">
       <p class="steps-cta-msg">難しい作業は一切なし。すぐに動画生成をスタートできます。</p>
-      <a href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;">無料で導入相談する</a>
     </div>
   </div>
 </section>
+
+<!-- CTA（2択）: 高意向の「相談」と低摩擦の「資料」を並べる -->
+<div class="cta-duo">
+  <div class="cta-duo-inner">
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap cta-duo-cap-ghost">＼ 貴社専用デモを無料作成 ／</span>
+      <a class="cta-duo-btn cta-duo-primary" href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener">無料で相談する</a>
+    </div>
+    <div class="cta-duo-col">
+      <span class="cta-duo-cap">＼ 3分で詳しい実績が分かる ／</span>
+      <a class="cta-duo-btn cta-duo-secondary" href="#download">資料をダウンロード</a>
+    </div>
+  </div>
+</div>
+
 
 <!-- ===== お役立ちコラム ===== -->
 <style>
@@ -2327,9 +2371,9 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
     <h2 class="resource-cta-title">動画広告の制作効率化・コスト削減に<br>ご興味のある方へ</h2>
     <p class="resource-cta-sub">現状のご状況や、他社様の実績・成功事例について<br>お気軽にお問い合わせください。</p>
     <div class="resource-cta-slides">
-      <div class="resource-slide"><img src="lp-videos/slide-service.png" alt="UGC Maker サービス概要"></div>
-      <div class="resource-slide"><img src="lp-videos/slide-workflow.png" alt="80%以上のコストカット"></div>
-      <div class="resource-slide"><img src="lp-videos/slide-quality.png" alt="ハイクオリティ動画生成 ワークフロー"></div>
+      <div class="resource-slide"><img src="/doc-thumbs/p1-560.png" srcset="/doc-thumbs/p1-560.png 560w, /doc-thumbs/p1-1120.png 1120w" sizes="(min-width:900px) 275px, 33vw" alt="UGC Maker サービス概要"></div>
+      <div class="resource-slide"><img src="/doc-thumbs/p9-560.png" srcset="/doc-thumbs/p9-560.png 560w, /doc-thumbs/p9-1120.png 1120w" sizes="(min-width:900px) 275px, 33vw" alt="80%以上のコストカット"></div>
+      <div class="resource-slide"><img src="/doc-thumbs/p14-560.png" srcset="/doc-thumbs/p14-560.png 560w, /doc-thumbs/p14-1120.png 1120w" sizes="(min-width:900px) 275px, 33vw" alt="ハイクオリティ動画生成 ワークフロー"></div>
     </div>
     <a href="#download" class="resource-cta-btn">
       <span class="resource-cta-badge">無料</span>
@@ -2520,6 +2564,21 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
             <div class="form-error">正しい電話番号を入力してください（例: 03-1234-5678）</div>
           </div>
           <div class="form-group">
+            <label>お問い合わせの種類<span class="req">*</span></label>
+            <select name="topic" required>
+              <option value="">選択してください</option>
+              <option value="料金・プランを知りたい">料金・プランを知りたい</option>
+              <option value="サービス内容・機能を詳しく知りたい">サービス内容・機能を詳しく知りたい</option>
+              <option value="デモ・トライアルを希望">デモ・トライアルを希望</option>
+              <option value="導入の進め方を相談したい">導入の進め方を相談したい</option>
+              <option value="クリエイティブ制作代行について">クリエイティブ制作代行について</option>
+              <option value="SNS運用代行について">SNS運用代行について</option>
+              <option value="取材・協業のご相談">取材・協業のご相談</option>
+              <option value="その他">その他</option>
+            </select>
+            <div class="form-error">お問い合わせの種類を選択してください</div>
+          </div>
+          <div class="form-group">
             <label>お問い合わせ内容</label>
             <textarea name="message" placeholder="ご質問やご要望をご記入ください"></textarea>
           </div>
@@ -2561,7 +2620,19 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
     <div class="download-inner anim">
       <div class="download-block">
         <div class="download-block-title">UGC Maker サービス資料</div>
-        <p class="download-block-desc">料金プラン・導入事例・機能詳細をまとめた<br>サービス紹介資料をダウンロードいただけます。</p>
+        <div class="doc-preview-lg">
+          <div class="dpl-slides">
+            <img class="dpl-slide dpl-side" src="/doc-thumbs/p9-560.png" srcset="/doc-thumbs/p9-560.png 560w, /doc-thumbs/p9-1120.png 1120w" sizes="150px" alt="" loading="lazy" decoding="async">
+            <img class="dpl-slide dpl-main" src="/doc-thumbs/p1-560.png" srcset="/doc-thumbs/p1-560.png 560w, /doc-thumbs/p1-1120.png 1120w" sizes="244px" alt="" loading="lazy" decoding="async">
+            <img class="dpl-slide dpl-side" src="/doc-thumbs/p14-560.png" srcset="/doc-thumbs/p14-560.png 560w, /doc-thumbs/p14-1120.png 1120w" sizes="150px" alt="" loading="lazy" decoding="async">
+          </div>
+          <p class="dpl-title">3分でわかる<b>サービス概要資料</b></p>
+          <ul class="dpl-list">
+            <li>1本5,000円で動画広告を量産する仕組み</li>
+            <li>撮影・キャスティングが不要になる制作フロー</li>
+            <li>導入企業のCPA改善事例と料金プラン</li>
+          </ul>
+        </div>
         <form id="downloadForm" novalidate>
           <div class="form-group">
             <label>会社名<span class="req">*</span></label>
@@ -2651,6 +2722,56 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
 
 
 
+
+
+<!-- ===== 最終CTA（ページ最下部） ===== -->
+<!-- 一旦非表示。戻すときは style="display:none" を外す -->
+<section class="final-cta" id="final-cta" style="display:none">
+  <div class="final-cta-bg" aria-hidden="true">
+    <img src="/lp-videos/actor-1.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-3.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-4.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-5.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-6.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-nurse.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-waving.jpg" alt="" loading="lazy" decoding="async">
+    <img src="/lp-videos/actor-1.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="final-cta-inner">
+    <h2 class="final-cta-title">撮影も編集もせずに、<br>動画広告を「量産」する。</h2>
+    <p class="final-cta-lead">
+      1本あたり5,000円〜、企画から生成まで最短数分。<br>
+      導入のご相談も、資料のご請求もお気軽にどうぞ。
+    </p>
+    <div class="final-cta-cards">
+      <a class="final-cta-card" href="https://calendar.app.google/FWnUdTynjptLXPV96" target="_blank" rel="noopener">
+        <span class="fc-label">無料で相談</span>
+        <span class="fc-icon">
+          <svg viewBox="0 0 48 40" width="48" height="40" fill="none" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="30" height="22" rx="4" stroke="currentColor" stroke-width="2.6"/>
+            <path d="M9 30.5l7-7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="10.5" cy="12.5" r="1.9" fill="currentColor"/>
+            <circle cx="16.5" cy="12.5" r="1.9" fill="currentColor"/>
+            <circle cx="22.5" cy="12.5" r="1.9" fill="currentColor"/>
+            <path d="M46 24v-6a8 8 0 0 0-16 0v6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <rect x="27.5" y="22.5" width="5.5" height="9" rx="2.6" stroke="currentColor" stroke-width="2.6"/>
+            <rect x="43" y="22.5" width="5.5" height="9" rx="2.6" stroke="currentColor" stroke-width="2.6"/>
+          </svg>
+        </span>
+      </a>
+      <a class="final-cta-card" href="#download">
+        <span class="fc-label">資料をダウンロード</span>
+        <span class="fc-icon">
+          <svg viewBox="0 0 40 40" width="42" height="40" fill="none" aria-hidden="true">
+            <path d="M20 3v22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M9.5 15.5L20 26l10.5-10.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 32.5h32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -2812,7 +2933,7 @@ document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
   if(!validateForm(this))return;
   const fd=new FormData(this);
-  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),referral:resolveReferral(fd)})}).catch(()=>{});
+  fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact',company:fd.get('company'),name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),topic:fd.get('topic'),message:fd.get('message'),referral:resolveReferral(fd)})}).catch(()=>{});
   this.style.display='none';
   document.getElementById('contactSuccess').classList.add('show');
 });
@@ -2867,11 +2988,15 @@ floatClose.addEventListener('click',()=>{
   const canvas = document.getElementById('particleCanvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, particles = [];
+  let w = 0, h = 0, particles = [];
   const PARTICLE_COUNT = 700;
 
   function resize(){
     const rect = canvas.parentElement.getBoundingClientRect();
+    // 寸法が変わっていないなら何もしない。
+    // ResizeObserver から呼ぶため、毎回 style を書き換えると親の再計測を誘発して
+    // 監視が延々と発火し続ける（＝ページが固まる）。
+    if (Math.abs(rect.width - w) < 1 && Math.abs(rect.height - h) < 1) return false;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -2879,6 +3004,7 @@ floatClose.addEventListener('click',()=>{
     canvas.style.height = rect.height + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     w = rect.width; h = rect.height;
+    return true;
   }
 
   function initParticles(){
@@ -2895,8 +3021,8 @@ floatClose.addEventListener('click',()=>{
         cx: cx, cy: cy,
         size: Math.random() * 2.0 + 0.4,
         alpha: Math.random() * 0.7 + 0.3,
-        speed: (Math.random() - 0.5) * 0.012,
-        drift: Math.random() * 1.2 + 0.6,
+        speed: (Math.random() - 0.5) * 0.055,
+        drift: Math.random() * 2.4 + 1.0,
         phase: Math.random() * Math.PI * 2
       });
     }
@@ -2910,8 +3036,8 @@ floatClose.addEventListener('click',()=>{
         cx: cx, cy: cy,
         size: Math.random() * 1.2 + 0.3,
         alpha: Math.random() * 0.3 + 0.1,
-        speed: (Math.random() - 0.5) * 0.008,
-        drift: Math.random() * 0.8 + 0.3,
+        speed: (Math.random() - 0.5) * 0.040,
+        drift: Math.random() * 1.8 + 0.6,
         phase: Math.random() * Math.PI * 2
       });
     }
@@ -2920,10 +3046,10 @@ floatClose.addEventListener('click',()=>{
   let time = 0;
   function draw(){
     ctx.clearRect(0,0,w,h);
-    time += 0.006;
+    time += 0.014;
     for(const p of particles){
-      const angle = p.baseAngle + time * p.speed + Math.sin(time * 0.6 + p.phase) * 0.08;
-      const r = p.baseR + Math.sin(time * p.drift + p.phase) * 6;
+      const angle = p.baseAngle + time * p.speed + Math.sin(time * 0.6 + p.phase) * 0.16;
+      const r = p.baseR + Math.sin(time * p.drift + p.phase) * 14;
       const x = p.cx + Math.cos(angle) * r;
       const y = p.cy + Math.sin(angle) * r;
       const a = p.alpha * (0.65 + Math.sin(time * 0.8 + p.phase) * 0.35);
@@ -2939,6 +3065,13 @@ floatClose.addEventListener('click',()=>{
   initParticles();
   draw();
   window.addEventListener('resize', function(){ resize(); initParticles(); });
+  // 親要素の幅は後から変わる（サイドフォーム追加・フォント読込・画像読込）。
+  // 初期化時の1回だけだとキャンバスが古い寸法のまま残り、リングが右にずれて見切れる。
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function(){ if (resize()) initParticles(); });
+    ro.observe(canvas.parentElement);
+  }
+  window.addEventListener('load', function(){ if (resize()) initParticles(); });
 })();
 </script>
 
@@ -3075,64 +3208,238 @@ floatClose.addEventListener('click',()=>{
 <style>
 /* ============================================================
    常設サイドフォーム（PC のみ）
-   ・1200px 以上でのみ右カラムとして固定表示する
-   ・固定要素（.header / .float-cta）は右カラム幅ぶん内側へ寄せる
-   ・それ未満の幅では完全に非表示にし、既存の導線をそのまま使う
+   寸法は YOUTRUST TALENT (youtrust.jp/talent) の実測値に合わせている。
+   幅378 / padding 30-16-16 / 入力欄h50 r4 border#eee / ボタンh50 r8。
+   色だけは UGC Maker のブランド色を使う。
    ============================================================ */
 .side-form { display:none; }
 
-@media (min-width:1200px){
-  :root { --side-form-w: 390px; }
+@media (min-width:1400px){
+  /* YOUTRUST は固定幅ではなく画面幅の25%（1280→320 / 1920→480 / 2200→550 を実測）。
+     狭い側だけ下限を設けて、フォームが窮屈にならないようにする */
+  :root { --side-form-w: 25vw; }
 
-  /* 本文を右カラムぶん逃がす */
   body { padding-right: var(--side-form-w); }
 
   /* 全幅固定の要素を内側へ */
   .header { width: calc(100% - var(--side-form-w)) !important; }
-  .float-cta { right: calc(var(--side-form-w) + 24px) !important; }
 
+  /* 右カラムが常設の導線になるので、重複するCTAはPCでは出さない。
+     （スマホ・タブレットには右カラムが無いため、これらは従来どおり残す） */
+  .float-cta{ display:none !important; }
+  .nav-cta, .nav-cta-secondary{ display:none !important; }
+  .sticky-cta{ display:none !important; }
+
+  /* 横方向の余白はビューポート幅(vw)基準のままだと、本文が378px狭くなった分だけ
+     相対的に余白が太って見える。本文幅を基準に取り直して比率を元に戻す。 */
+  :root{ --content-w: calc(100vw - var(--side-form-w)); }
+  .sec{
+    padding-left:calc(var(--content-w) * .07) !important;
+    padding-right:calc(var(--content-w) * .07) !important;
+  }
+  .hero{
+    padding-left:calc(var(--content-w) * .07) !important;
+    padding-right:calc(var(--content-w) * .07) !important;
+  }
+  .cta-duo{
+    padding-left:calc(var(--content-w) * .05);
+    padding-right:calc(var(--content-w) * .05);
+  }
+  .header{ padding:0 calc(var(--content-w) * .035) !important; }
+  .nav{ gap:1.35rem; }
+  .nav a{ white-space:nowrap; }
+
+  /* 横スクロールのカルーセルが右カラムの下に潜り込むのを防ぐ */
+  section{ overflow-x:clip; }
+
+  /* ---- サイドバー本体（実測: fixed / 378px / #E9F7F8 / padding 30px 16px 16px） ---- */
   .side-form{
     display:block; position:fixed; top:0; right:0; bottom:0;
     width:var(--side-form-w); z-index:1300;
-    background:#f4f8f9; border-left:1px solid rgba(0,0,0,.08);
+    /* ブランドの青 #4285F4 の淡色。ヒーローの #F4F8FF と同系で、
+       白い本文の隣でパネルとして分離して見える濃度に置いている */
+    background:#EDF3FD; border-left:1px solid rgba(66,133,244,.16);
     overflow-y:auto; overscroll-behavior:contain;
     -webkit-overflow-scrolling:touch;
   }
-  .side-form-inner{ padding:28px 24px 40px; }
+  .side-form-inner{ padding:22px 16px 16px; }
 
-  .side-form-head{ text-align:center; margin-bottom:20px; }
-  .side-form-title{ font-size:22px; font-weight:800; letter-spacing:.02em; margin:0 0 8px; }
-  .side-form-lead{ font-size:12.5px; line-height:1.7; color:#5a6b70; margin:0; }
+  /* 役職・部署は2カラム（1行ぶん節約して1画面に収める） */
+  .side-row{ display:flex; gap:10px; }
+  .side-row .form-group{ flex:1; min-width:0; }
 
-  /* フォーム部品は既存クラスを流用しつつ、狭い幅に合わせて詰める */
-  .side-form .form-group{ margin-bottom:12px; }
-  .side-form label{ font-size:13px; font-weight:700; }
-  .side-form input, .side-form select{ font-size:14px; padding:10px 12px; }
-  .side-form .form-hint{ font-size:11px; }
-  .side-form .form-submit{ width:100%; margin-top:6px; }
-  .side-form-note{ font-size:11.5px; line-height:1.7; color:#5a6b70; margin:12px 0 0; text-align:center; }
+  /* ---- 見出し（実測: 20px / weight 500） ---- */
+  .side-form-head{ text-align:center; margin-bottom:12px; }
+  .side-form-title{ font-size:21px; font-weight:800; letter-spacing:.02em; margin:0 0 8px; color:#1A1A1A; }
+  .side-form-lead{ font-size:12px; line-height:1.6; color:#333; margin:0; }
+
+  /* ---- 項目（実測: ラベル14px/700/#333、下2px。入力欄 h50 / 16px / padding8 / r4 / 1px #EEE） ---- */
+  .side-form .form-group{ margin-bottom:10px; }
+  .side-form label{
+    display:block; font-size:14px; font-weight:700; color:#333; margin-bottom:2px;
+  }
+  .side-form input[type="text"],
+  .side-form input[type="email"],
+  .side-form input[type="tel"],
+  .side-form select{
+    width:100%; height:46px; padding:8px 10px;
+    font-size:15px; font-weight:400; color:#000;
+    background:#fff; border:1px solid #eee; border-radius:4px;
+    box-shadow:none;
+  }
+  /* セレクトは既存フォーム（資料DL・お問い合わせ）と同じ三角マークと余白に揃える */
+  .side-form select{
+    font-size:14px;
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+    padding-right:40px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 4.5l3 3 3-3' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:12px 12px;
+    cursor:pointer;
+  }
+  .side-form input::placeholder{ color:#9aa5a7; }
+  .side-form .form-hint{ font-size:10.5px; line-height:1.5; color:#5a6b70; margin-top:3px; }
+  .side-form .form-error{ font-size:11.5px; }
+
+  /* ---- 送信ボタン（実測: h50 / 16px / weight700 / r8 / 全幅） ---- */
+  /* 既存の「kashika-inspired Button Override」が !important で
+     height/padding/font-size/max-width を固定してくるので、こちらも !important で上書きする */
+  .side-form .form-submit{
+    width:100% !important; max-width:none !important;
+    height:48px !important; padding:8px !important;
+    font-size:16px !important; font-weight:700 !important;
+    border-radius:8px !important;
+    margin-top:10px !important;
+  }
+
+  .side-form-note{ font-size:11px; line-height:1.6; color:#333; margin:8px 0 0; text-align:left; }
   .side-form-note a{ text-decoration:underline; }
   .side-form .form-success{ margin-top:14px; }
 
+  /* ---- 資料プレビュー ---- */
+  .doc-preview{
+    margin-top:12px; background:#fff; border:2px solid #4285F4;
+    border-radius:10px; padding:10px 12px 12px; text-align:center;
+  }
+  /* 資料の実ページを3枚。中央を手前に持ち上げ、左右は奥に控えさせる */
+  .doc-preview-slides{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    width:100%; overflow:hidden;
+  }
+  /* スライドは元データと同じ 16:9。高さを固定すると下端が切れるので比率で持たせる */
+  .dp-slide{
+    display:block; border-radius:3px; background:#fff;
+    border:1px solid #d8e2f2; aspect-ratio:16/9; height:auto;
+    object-fit:contain; object-position:center;
+  }
+  .dp-side{
+    width:32%; opacity:.8;
+    box-shadow:0 2px 6px rgba(20,40,80,.10);
+  }
+  /* 32 + 52 + 32 − 9 − 9 = 98%。枠内に必ず収める */
+  .dp-side:first-child{ margin-right:-9%; }
+  .dp-side:last-child{ margin-left:-9%; }
+  .dp-main{
+    position:relative; z-index:2;
+    width:52%;
+    border:1px solid #c3d3ec;
+    box-shadow:0 8px 20px rgba(20,40,80,.22);
+  }
+
+  .doc-preview-title{
+    margin:10px 0 9px; font-size:15px; font-weight:700; color:#1A1A1A; line-height:1.45;
+  }
+  .doc-preview-title b{ display:block; font-size:23px; font-weight:800; color:#F56C6C; letter-spacing:.01em; }
+  .doc-preview-list{ list-style:none; margin:0; padding:0; text-align:left; }
+  .doc-preview-list li{
+    position:relative; padding-left:17px; font-size:13.5px; line-height:1.75;
+    color:#1A1A1A; font-weight:600;
+  }
+  .doc-preview-list li::before{
+    content:''; position:absolute; left:2px; top:.66em;
+    width:7px; height:7px; border-radius:50%; background:#4285F4;
+  }
+
   /* 完了モーダルはサイドフォームより前面に */
   .dl-modal{ z-index:1400 !important; }
-
-  /* 右カラムが常設の資料請求導線になるので、浮遊CTAは重複。PCでは出さない */
-  .float-cta{ display:none !important; }
-
-  /* ヘッダーは幅が 390px 減るぶん、ナビを詰めて1行に収める */
-  .header{ padding:0 3vw !important; }
-  .header-inner{ padding:1.05rem 0; }
-  .nav{ gap:1.05rem; }
-  .nav a{ font-size:0.86rem; white-space:nowrap; }
-  .nav-cta, .nav-cta-secondary{ padding:0 14px !important; font-size:12px !important; white-space:nowrap; }
 }
 
-/* 画面が低い環境でも中身に到達できるように */
-@media (min-width:1200px) and (max-height:760px){
-  .side-form-inner{ padding-top:18px; }
-  .side-form-head{ margin-bottom:14px; }
-  .side-form-title{ font-size:20px; }
+/* 画面が低い環境では、さらに詰めて1画面に収める */
+@media (min-width:1400px) and (max-height:900px){
+  .side-form-inner{ padding:14px 16px 12px; }
+  .side-form-head{ margin-bottom:8px; }
+  .side-form-title{ font-size:19px; margin-bottom:5px; }
+  .side-form-lead{ font-size:11px; }
+  .side-form .form-group{ margin-bottom:7px; }
+  .side-form label{ font-size:13px; }
+  .side-form input[type="text"], .side-form input[type="email"],
+  .side-form input[type="tel"], .side-form select{ height:42px; font-size:14px; }
+  .side-form .form-submit{ height:46px !important; }
+  .doc-preview{ margin-top:9px; padding:8px 10px 10px; }
+  .doc-preview-title{ margin:7px 0 6px; font-size:13px; }
+  .doc-preview-title b{ font-size:19px; }
+  .doc-preview-list li{ font-size:12px; line-height:1.62; }
+}
+/* さらに低い画面では、資料プレビューよりフォームの完走を優先する */
+@media (min-width:1400px) and (max-height:800px){
+  .doc-preview{ display:none; }
+  .side-form-lead{ display:none; }
+}
+</style>
+
+<style>
+/* ============================================================
+   CTA（2択ボタン）
+   左＝高意向の「相談」／右＝低摩擦の「資料」。
+   右にだけ吹き出し風のひと言を置き、視線を集める。
+   ============================================================ */
+.cta-duo{ padding:24px 5vw 52px; background:#F9F9F9; }
+/* 直前セクションの下余白＋CTAの上余白で150px近く空いていたので、
+   CTAが続く場合はセクション側の下余白を削って詰める */
+.sec:has(+ .cta-duo){ padding-bottom:24px !important; }
+.steps-cta-wrap{ margin-top:2rem !important; }
+.cta-duo-inner{
+  max-width:900px; margin:0 auto;
+  display:flex; justify-content:center; align-items:flex-end; gap:36px; flex-wrap:wrap;
+}
+.cta-duo-col{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+.cta-duo-cap{
+  font-size:15px; font-weight:700; color:#1A1A1A; letter-spacing:.02em; white-space:nowrap;
+}
+.cta-duo-cap-ghost{ color:#6b7780; font-weight:600; }
+.cta-duo-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:403px; height:83px; border-radius:8px;
+  font-size:19px; font-weight:800; letter-spacing:.02em;
+  color:#fff !important; text-decoration:none;
+  box-shadow:0 6px 18px rgba(0,0,0,.10);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+/* ホバー: 白い面が左から右へワイプして色が反転する（参考動画の挙動） */
+.cta-duo-btn{
+  position:relative; isolation:isolate; overflow:hidden;
+  border:2px solid transparent;
+  transition:color .22s ease, border-color .22s ease, box-shadow .2s ease;
+}
+.cta-duo-btn::before{
+  content:''; position:absolute; inset:0; z-index:-1; background:#fff;
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform .34s cubic-bezier(.4,0,.2,1);
+}
+.cta-duo-btn:hover::before{ transform:scaleX(1); }
+.cta-duo-btn:hover{ box-shadow:0 8px 20px rgba(0,0,0,.14); }
+
+.cta-duo-primary{ background:#4285F4; }
+.cta-duo-primary:hover{ color:#4285F4 !important; border-color:#4285F4; }
+/* 単色（指定のビビッドカラー） */
+.cta-duo-secondary{ background:#F56C6C; }
+.cta-duo-secondary:hover{ color:#F56C6C !important; border-color:#F56C6C; }
+
+@media (max-width:900px){
+  .cta-duo{ padding:40px 6vw; }
+  .cta-duo-inner{ gap:22px; }
+  .cta-duo-col{ width:100%; }
+  .cta-duo-btn{ width:100%; max-width:420px; height:64px; font-size:18px; }
+  .cta-duo-cap{ font-size:14px; }
 }
 </style>
 <aside class="side-form" id="sideForm" aria-label="資料請求フォーム">
@@ -3148,42 +3455,76 @@ floatClose.addEventListener('click',()=>{
         <div class="form-error">正しい会社名を入力してください</div>
       </div>
       <div class="form-group">
-        <label>お名前</label>
-        <input type="text" name="name" placeholder="山田 太郎">
+        <label>お名前<span class="req">*</span></label>
+        <input type="text" name="name" required placeholder="山田 太郎">
+        <div class="form-error">正しいお名前を入力してください</div>
+      </div>
+      <div class="side-row">
+      <div class="form-group">
+        <label>役職</label>
+        <select name="position">
+          <option value="">選択してください</option>
+          <option value="経営者">経営者</option>
+          <option value="取締役・役員">取締役・役員</option>
+          <option value="本部長・事業部長">本部長・事業部長</option>
+          <option value="部長・課長">部長・課長</option>
+          <option value="係長・主任">係長・主任</option>
+          <option value="一般社員・職員">一般社員・職員</option>
+          <option value="契約・派遣・委託">契約・派遣・委託</option>
+          <option value="その他">その他</option>
+        </select>
+        <div class="form-error">役職を選択してください</div>
+      </div>
+      <div class="form-group">
+        <label>部署</label>
+        <select name="department">
+          <option value="">選択してください</option>
+          <option value="経営・事業企画">経営・事業企画</option>
+          <option value="マーケティング">マーケティング</option>
+          <option value="営業">営業</option>
+          <option value="広報">広報</option>
+          <option value="EC・通販">EC・通販</option>
+          <option value="情報システム・DX">情報システム・DX</option>
+          <option value="人事">人事</option>
+          <option value="総務・法務">総務・法務</option>
+          <option value="財務・経理・IR">財務・経理・IR</option>
+          <option value="カスタマー・サポート">カスタマー・サポート</option>
+          <option value="その他">その他</option>
+        </select>
+        <div class="form-error">部署を選択してください</div>
+      </div>
       </div>
       <div class="form-group">
         <label>メールアドレス<span class="req">*</span></label>
         <input type="email" name="email" required placeholder="example@company.com">
         <div class="form-error">正しいメールアドレスを入力してください</div>
+        <p class="form-hint">※infoなどの汎用アドレスは資料が届かない場合がございます。社用アドレスをご入力ください。</p>
       </div>
       <div class="form-group">
         <label>電話番号<span class="req">*</span></label>
         <input type="tel" name="phone" required pattern="^[0-9\-\+\(\)\s]{8,15}$" placeholder="03-1234-5678">
         <div class="form-error">正しい電話番号を入力してください（例: 03-1234-5678）</div>
       </div>
-      <div class="form-group">
-        <label>本サービスを知ったきっかけ</label>
-        <select name="referral">
-          <option value="">選択してください</option>
-          <option value="検索エンジン (Google / Yahoo! 等)">検索エンジン (Google / Yahoo! 等)</option>
-          <option value="SNS (X / Instagram / TikTok 等)">SNS (X / Instagram / TikTok 等)</option>
-          <option value="知人・紹介">知人・紹介</option>
-          <option value="メディア記事">メディア記事</option>
-          <option value="イベント・セミナー">イベント・セミナー</option>
-          <option value="広告">広告</option>
-          <option value="メールマガジン">メールマガジン</option>
-          <option value="other">その他</option>
-        </select>
-      </div>
-      <div class="form-group is-hidden" data-referral-other>
-        <label>その他の場合は具体的にご記入ください</label>
-        <input type="text" name="referralOther" placeholder="例: 取引先からの紹介">
-      </div>
       <button type="submit" class="form-submit">資料をダウンロードする</button>
       <p class="side-form-note">
         <a href="/privacypolicy/">プライバシーポリシー</a> の利用目的に同意の上、申し込みます。
       </p>
     </form>
+
+    <!-- 資料の中身が一目で分かるプレビュー。画像ではなくCSSで組んでいるので差し替え不要 -->
+    <div class="doc-preview" aria-hidden="true">
+      <div class="doc-preview-slides">
+        <img class="dp-slide dp-side" src="/doc-thumbs/p9-560.png" srcset="/doc-thumbs/p9-560.png 560w, /doc-thumbs/p9-1120.png 1120w" sizes="101px" alt="" loading="lazy" decoding="async">
+        <img class="dp-slide dp-main" src="/doc-thumbs/p1-560.png" srcset="/doc-thumbs/p1-560.png 560w, /doc-thumbs/p1-1120.png 1120w" sizes="165px" alt="" loading="lazy" decoding="async">
+        <img class="dp-slide dp-side" src="/doc-thumbs/p14-560.png" srcset="/doc-thumbs/p14-560.png 560w, /doc-thumbs/p14-1120.png 1120w" sizes="101px" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="doc-preview-title">3分でわかる<br><b>サービス概要資料</b></p>
+      <ul class="doc-preview-list">
+        <li>1本5,000円で動画広告を量産する仕組み</li>
+        <li>撮影・キャスティングが不要になる制作フロー</li>
+        <li>導入企業のCPA改善事例と料金プラン</li>
+      </ul>
+    </div>
     <div class="form-success" id="sideDownloadSuccess">送信ありがとうございます。資料をお送りしました。</div>
   </div>
 </aside>
@@ -3229,6 +3570,8 @@ floatClose.addEventListener('click',()=>{
         name: fd.get('name'),
         email: fd.get('email'),
         phone: fd.get('phone'),
+        position: fd.get('position'),
+        department: fd.get('department'),
         referral: referral,
         source: 'side-form'   /* どの導線から来たか判別できるように */
       })
@@ -3242,5 +3585,102 @@ floatClose.addEventListener('click',()=>{
   });
 })();
 </script>
+
+<style>
+/* ============================================================
+   【テスト】フォントを YOUTRUST TALENT と同一構成に揃える
+   実測: "Noto Sans JP", 游ゴシック体, YuGothic, 游ゴシック, "Yu Gothic",
+         メイリオ, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif
+   本文16px/400・見出し600。Noto Sans JP は SIL OFL の無償フォント。
+   ※戻す場合はこの <style> ブロックごと削除すれば元に戻る
+   ============================================================ */
+:root{
+  --font-body: "Noto Sans JP", 游ゴシック体, YuGothic, 游ゴシック, "Yu Gothic", メイリオ, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-display: "Noto Sans JP", 游ゴシック体, YuGothic, 游ゴシック, "Yu Gothic", メイリオ, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+}
+body, h1, h2, h3, h4, h5, p, a, span, div, li, label, input, select, textarea, button{
+  font-family: var(--font-body);
+}
+/* ロゴのワードマークだけはブランド資産なので従来のまま残す */
+.logo, .logo *{ font-family:'Nunito Sans', sans-serif !important; }
+</style>
+
+<style>
+/* ============================================================
+   最終CTA（ページ最下部）
+   背景は自社の生成出演者カットを横一列に敷き、ブランド色で強く覆う。
+   カードは白ヌキ2枚（相談／資料）。
+   ============================================================ */
+.final-cta{ position:relative; overflow:hidden; padding:96px 6vw 104px; isolation:isolate; }
+.final-cta-bg{ position:absolute; inset:0; z-index:-2; display:flex; }
+.final-cta-bg img{ flex:1 1 0; min-width:0; height:100%; object-fit:cover; object-position:center 28%; }
+.final-cta::after{
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg, rgba(23,62,133,.93) 0%, rgba(20,52,116,.95) 100%);
+}
+.final-cta-inner{ max-width:900px; margin:0 auto; text-align:center; color:#fff; }
+.final-cta-title{
+  font-size:2.35rem; font-weight:800; line-height:1.5; letter-spacing:.02em; margin:0 0 18px; color:#fff;
+}
+.final-cta-lead{ font-size:1.05rem; line-height:1.9; margin:0 0 40px; color:rgba(255,255,255,.92); }
+.final-cta-cards{ display:flex; justify-content:center; gap:26px; flex-wrap:wrap; }
+.final-cta-card{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  width:290px; height:172px; background:#fff; border-radius:6px; text-decoration:none;
+  color:#1A1A1A; box-shadow:0 10px 30px rgba(0,0,0,.18);
+  transition:transform .2s ease, box-shadow .2s ease, color .2s ease;
+}
+.final-cta-card:hover{ transform:translateY(-4px); box-shadow:0 16px 38px rgba(0,0,0,.26); color:#4285F4; }
+.fc-label{ font-size:1.12rem; font-weight:700; letter-spacing:.03em; }
+.fc-icon{ display:block; line-height:0; color:#1A1A1A; transition:color .2s ease; }
+.final-cta-card:hover .fc-icon{ color:#4285F4; }
+
+@media (max-width:768px){
+  .final-cta{ padding:64px 6vw 72px; }
+  .final-cta-title{ font-size:1.6rem; }
+  .final-cta-lead{ font-size:.95rem; margin-bottom:28px; }
+  .final-cta-cards{ gap:16px; }
+  .final-cta-card{ width:100%; max-width:340px; height:132px; gap:12px; }
+  .final-cta-bg img:nth-child(n+5){ display:none; }
+}
+</style>
+
+<style>
+/* 資料ダウンロードセクションの資料プレビュー（右カラムと同じ3枚重ね／こちらは大きめ） */
+.doc-preview-lg{
+  max-width:520px; margin:22px auto 30px;
+  background:#fff; border:2px solid #4285F4; border-radius:14px;
+  padding:20px 22px 22px; text-align:center;
+}
+.dpl-slides{ display:flex; align-items:center; justify-content:center; width:100%; overflow:hidden; }
+.dpl-slide{
+  display:block; border-radius:4px; background:#fff; border:1px solid #d8e2f2;
+  aspect-ratio:16/9; height:auto; object-fit:contain;
+}
+.dpl-side{ width:32%; opacity:.8; box-shadow:0 2px 8px rgba(20,40,80,.10); }
+.dpl-side:first-child{ margin-right:-9%; }
+.dpl-side:last-child{ margin-left:-9%; }
+.dpl-main{
+  position:relative; z-index:2; width:52%;
+  border:1px solid #c3d3ec; box-shadow:0 10px 26px rgba(20,40,80,.24);
+}
+.dpl-title{ margin:16px 0 12px; font-size:19px; font-weight:700; color:#1A1A1A; line-height:1.45; }
+.dpl-title b{ display:block; font-size:30px; font-weight:800; color:#F56C6C; letter-spacing:.01em; }
+.dpl-list{ list-style:none; margin:0; padding:0; text-align:left; display:inline-block; }
+.dpl-list li{
+  position:relative; padding-left:20px; font-size:15px; line-height:1.9;
+  color:#1A1A1A; font-weight:600;
+}
+.dpl-list li::before{
+  content:''; position:absolute; left:2px; top:.72em;
+  width:8px; height:8px; border-radius:50%; background:#4285F4;
+}
+@media (max-width:600px){
+  .doc-preview-lg{ padding:14px 14px 16px; margin:16px auto 22px; }
+  .dpl-title{ font-size:16px; margin:12px 0 10px; }
+  .dpl-title b{ font-size:23px; }
+  .dpl-list li{ font-size:13px; line-height:1.8; padding-left:17px; }
+}
+</style>
 </body>
 </html>
