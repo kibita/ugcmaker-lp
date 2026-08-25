@@ -1483,6 +1483,8 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
   }
   /* SP: ステップセクション全体を非表示（バッジ重なり問題&情報過多を回避）*/
   #steps { display:none !important; }
+  /* steps を隠すとその直後のCTAが直前のCTAと連続してしまうため一緒に隠す */
+  #cta-after-steps { display:none !important; }
   .step-num { width:28px !important; height:28px !important; font-size:0.82rem !important; left:1.2rem !important; top:1.6rem !important; border-radius:5px; box-shadow:0 0 0 8px #fff !important; }
   .step-card { padding-top:4rem !important; }
   .step-icon { height:64px !important; width:64px !important; }
@@ -2274,7 +2276,7 @@ a.voice-card.case-card:hover .case-company { color:#9197B1; }
 </section>
 
 <!-- CTA（2択）: 高意向の「相談」と低摩擦の「資料」を並べる -->
-<div class="cta-duo">
+<div class="cta-duo" id="cta-after-steps">
   <div class="cta-duo-inner">
     <div class="cta-duo-col">
       <span class="cta-duo-cap cta-duo-cap-ghost">＼ 貴社専用デモを無料作成 ／</span>
